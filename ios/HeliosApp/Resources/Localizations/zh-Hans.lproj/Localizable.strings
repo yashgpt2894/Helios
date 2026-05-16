@@ -1,0 +1,21 @@
+/* Helios iOS Localization — Chinese Simplified (stub) */
+"status_producing" = "发电中";
+"status_standby" = "待机";
+"status_curtailed" = "限电";
+"status_night" = "夜间";
+"status_fault" = "故障";
+"live_label" = "实时";
+"kw_unit" = "千瓦";
+"kwh_unit" = "千瓦时";
+"today_label" = "今日";
+"self_use_label" = "自发自用";
+"co2_saved_label" = "减少二氧化碳";
+"solar_label" = "太阳能";
+"home_label" = "家庭";
+"battery_label" = "电池";
+"grid_label" = "电网";
+"dashboard_title" = "首页";
+"production_title" = "发电";
+"insights_title" = "洞察";
+"battery_title" = "电池";
+"settings_title" = "设置";

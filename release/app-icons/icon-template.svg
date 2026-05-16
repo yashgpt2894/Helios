@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!--
+    Helios App Icon Template
+    -------------------------
+    This SVG is the source template for all app icon assets.
+    Export workflow:
+    1. Layer 3 (Background): Render with all Layer-3 elements visible, Layer-2 and Layer-1 hidden.
+    2. Layer 2 (Helios Mark): Render with only Layer-2 visible on transparent background.
+    3. Layer 1 (Foreground Sun): Render with only Layer-1 visible on transparent background.
+    
+    Output: Three 1024x1024 PNG-24 files per platform requirements.
+  -->
+
+  <defs>
+    <!-- Background radial gradient (carbon) -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#1A1A1C"/>
+      <stop offset="45%" stop-color="#0F0F10"/>
+      <stop offset="90%" stop-color="#070708"/>
+      <stop offset="100%" stop-color="#0B0B0C"/>
+    </radialGradient>
+
+    <!-- Aurora accent overlay -->
+    <radialGradient id="auroraOverlay" cx="35%" cy="30%" r="70%" fx="30%" fy="25%">
+      <stop offset="0%" stop-color="#F0C674" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="#F0C674" stop-opacity="0.02"/>
+      <stop offset="100%" stop-color="#F0C674" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Helios mark glow -->
+    <radialGradient id="markGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="50%" stop-color="#F0C674" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="#F0C674" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Sun glyph inner glow -->
+    <radialGradient id="sunInnerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F0C674" stop-opacity="0.40"/>
+      <stop offset="60%" stop-color="#D4A843" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#D4A843" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Sun glyph fill -->
+    <radialGradient id="sunFill" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#F0C674"/>
+      <stop offset="100%" stop-color="#D4A843"/>
+    </radialGradient>
+
+    <!-- Noise texture -->
+    <filter id="noise" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feComponentTransfer in="grayNoise" result="dimNoise">
+        <feFuncA type="linear" slope="0.02"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="dimNoise" mode="normal"/>
+    </filter>
+
+    <!-- Helios Mark: 8-blade radial mark -->
+    <g id="heliosMark">
+      <!-- Subtle glow halo behind the mark -->
+      <circle cx="512" cy="512" r="180" fill="url(#markGlow)"/>
+      <!-- 8 blades at 45-degree intervals around center -->
+      <!-- Blade at 0 degrees (12 o'clock, top) -->
+      <path d="M512,512 L512,112 L518,112 L512,112" fill="#F4F1EA" opacity="0.92"
+            transform="rotate(0, 512, 512)"/>
+      <path d="M512,512 L512,112 Q515,180 518,130 L518,112 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 45 degrees -->
+      <path d="M512,512 L795,229 L789,234 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 90 degrees (3 o'clock, right) -->
+      <path d="M512,512 L912,512 L912,518 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 135 degrees -->
+      <path d="M512,512 L795,795 L789,789 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 180 degrees (6 o'clock, bottom) -->
+      <path d="M512,512 L512,912 L518,912 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 225 degrees -->
+      <path d="M512,512 L229,795 L234,789 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 270 degrees (9 o'clock, left) -->
+      <path d="M512,512 L112,512 L112,518 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Blade at 315 degrees -->
+      <path d="M512,512 L229,229 L234,234 Z" fill="#F4F1EA" opacity="0.92">
+      </path>
+      <!-- Center hub -->
+      <circle cx="512" cy="512" r="40" fill="none" stroke="#F4F1EA" stroke-width="3" opacity="0.92"/>
+      <circle cx="512" cy="512" r="18" fill="#F4F1EA" opacity="0.60"/>
+    </g>
+
+    <!-- Foreground Sun Glyph -->
+    <g id="sunGlyph">
+      <!-- Central disc -->
+      <circle cx="512" cy="512" r="56" fill="url(#sunFill)" opacity="0.90"/>
+      <!-- Inner highlight -->
+      <circle cx="512" cy="512" r="40" fill="url(#sunInnerGlow)"/>
+      <!-- 4 radial rays -->
+      <!-- Top ray -->
+      <line x1="512" y1="426" x2="512" y2="444" stroke="#D4A843" stroke-width="12" stroke-linecap="round" opacity="0.85"/>
+      <!-- Right ray -->
+      <line x1="598" y1="512" x2="580" y2="512" stroke="#D4A843" stroke-width="12" stroke-linecap="round" opacity="0.85"/>
+      <!-- Bottom ray -->
+      <line x1="512" y1="598" x2="512" y2="580" stroke="#D4A843" stroke-width="12" stroke-linecap="round" opacity="0.85"/>
+      <!-- Left ray -->
+      <line x1="426" y1="512" x2="444" y2="512" stroke="#D4A843" stroke-width="12" stroke-linecap="round" opacity="0.85"/>
+    </g>
+  </defs>
+
+  <!-- ============ LAYER 3: BACKGROUND ============ -->
+  <!-- Group label: layer-3-background -->
+  <rect width="1024" height="1024" fill="url(#bgGradient)"/>
+  <rect width="1024" height="1024" fill="url(#auroraOverlay)"/>
+  <rect width="1024" height="1024" fill="url(#auroraOverlay)" filter="url(#noise)" opacity="0.5"/>
+
+  <!-- ============ LAYER 2: HELIOS MARK ============ -->
+  <!-- Group label: layer-2-helios-mark -->
+  <use href="#heliosMark"/>
+
+  <!-- ============ LAYER 1: FOREGROUND SUN ============ -->
+  <!-- Group label: layer-1-foreground-sun -->
+  <use href="#sunGlyph"/>
+</svg>

@@ -1,0 +1,21 @@
+/* Helios iOS Localization — French (stub) */
+"status_producing" = "Production";
+"status_standby" = "Veille";
+"status_curtailed" = "Limité";
+"status_night" = "Nuit";
+"status_fault" = "Défaut";
+"live_label" = "DIRECT";
+"kw_unit" = "kW";
+"kwh_unit" = "kWh";
+"today_label" = "Aujourd'hui";
+"self_use_label" = "Auto-consommation";
+"co2_saved_label" = "CO₂ économisé";
+"solar_label" = "Solaire";
+"home_label" = "Maison";
+"battery_label" = "Batterie";
+"grid_label" = "Réseau";
+"dashboard_title" = "Accueil";
+"production_title" = "Production";
+"insights_title" = "Analyses";
+"battery_title" = "Batterie";
+"settings_title" = "Réglages";

@@ -1,0 +1,95 @@
+/* Helios iOS Localization — English Base */
+
+/* Status */
+"status_producing" = "Producing";
+"status_standby" = "Standby";
+"status_curtailed" = "Curtailed";
+"status_night" = "Night";
+"status_fault" = "Fault";
+"status_simulated" = "Simulated";
+"status_connected" = "Connected";
+
+/* Dashboard */
+"live_label" = "LIVE";
+"kw_unit" = "kW";
+"kwh_unit" = "kWh";
+"today_label" = "Today";
+"self_use_label" = "Self-use";
+"co2_saved_label" = "CO₂ saved";
+"kg_today" = "kg today";
+"solar_label" = "Solar";
+"home_label" = "Home";
+"battery_label" = "Battery";
+"grid_label" = "Grid";
+"charging_status" = "Charging";
+"discharging_status" = "Powering home";
+"idle_status" = "Idle";
+
+/* Sections */
+"dashboard_title" = "Home";
+"production_title" = "Production";
+"insights_title" = "Insights";
+"battery_title" = "Battery";
+"settings_title" = "Settings";
+"shared_snapshot_title" = "Shared snapshot";
+
+/* Insights */
+"insight_positive" = "Positive";
+"insight_neutral" = "Neutral";
+"insight_attention" = "Attention";
+"insight_critical" = "Critical";
+"insight_category_production" = "Production";
+"insight_category_consumption" = "Consumption";
+"insight_category_battery" = "Battery";
+"insight_category_savings" = "Savings";
+"insight_category_maintenance" = "Maintenance";
+"insight_category_forecast" = "Forecast";
+
+/* Battery */
+"soc_label" = "State of charge";
+"power_label" = "Power";
+"temp_label" = "Temp";
+"cycles_label" = "Cycles";
+"health_label" = "Health";
+"round_trip_label" = "Round-trip";
+"cell_temp_label" = "Cell temp";
+"hours_essentials" = "hours of essentials";
+"backup_readiness_title" = "Backup readiness";
+"charge_mode_self" = "Self-consumption";
+"charge_mode_tou" = "Time-of-use";
+"charge_mode_backup" = "Backup-only";
+"charge_mode_active" = "ACTIVE";
+
+/* Settings */
+"connection_section" = "CONNECTION";
+"location_section" = "LOCATION";
+"appearance_section" = "APPEARANCE";
+"preferences_section" = "PREFERENCES";
+"theme_dark" = "Carbon";
+"theme_light" = "Paper";
+"theme_auto" = "Auto";
+"test_connection" = "Test connection";
+"use_my_location" = "use my location";
+"simulation_mode" = "Simulation mode";
+
+/* Share */
+"share_snapshot" = "Share snapshot";
+"share_copied" = "Copied";
+"share_shared" = "Shared";
+
+/* Forecast */
+"forecast_title" = "7-day forecast";
+"vs_typical" = "vs typical";
+
+/* Errors / Empty */
+"error_invalid_snapshot" = "Link expired or invalid";
+"error_snapshot_body" = "This shared snapshot couldn't be decoded. The link may have been truncated.";
+"empty_insights" = "No additional advisories. Your system is operating cleanly.";
+
+/* Accessibility */
+"a11y_solar_node" = "Solar producing %@ kilowatts";
+"a11y_home_node" = "Home using %@ kilowatts";
+"a11y_battery_node" = "Battery %@, %@ kilowatts";
+"a11y_grid_node" = "Grid %@ kilowatts";
+"a11y_peak_production" = "Peak production today at %@";
+"a11y_current_production" = "Current production %@ kilowatts";

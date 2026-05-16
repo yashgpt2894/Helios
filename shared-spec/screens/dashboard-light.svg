@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="393" height="852" viewBox="0 0 393 852">
+  <defs>
+    <linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4f1ea"/><stop offset="100%" stop-color="#efece5"/></linearGradient>
+    <linearGradient id="auroraL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(184,134,46,0.07)"/><stop offset="100%" stop-color="transparent"/></linearGradient>
+    <linearGradient id="surfaceL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,0.95)"/><stop offset="100%" stop-color="rgba(248,246,240,0.95)"/></linearGradient>
+  </defs>
+  <rect width="393" height="852" fill="url(#bgL)"/>
+  <rect width="393" height="300" fill="url(#auroraL)"/>
+  <pattern id="gridL" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(11,11,12,0.05)"/></pattern>
+  <rect x="20" y="120" width="353" height="540" fill="url(#gridL)"/>
+  <!-- TopBar -->
+  <rect x="20" y="70" width="40" height="40" rx="20" fill="rgba(255,255,255,0.96)" stroke="rgba(11,11,12,0.12)"/>
+  <text x="70" y="88" fill="#0b0b0c" font-family="system-ui" font-size="15" font-weight="500">helios°</text>
+  <text x="70" y="102" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.15em">SIMULATED</text>
+  <circle cx="75" cy="98" r="2.5" fill="#b8862e"/>
+  <rect x="280" y="75" width="60" height="28" rx="14" fill="rgba(255,255,255,0.6)" stroke="rgba(11,11,12,0.08)"/>
+  <text x="310" y="93" fill="#1a1a1c" font-family="monospace" font-size="11" text-anchor="middle">1:42 PM</text>
+  <rect x="348" y="75" width="28" height="28" rx="14" fill="rgba(255,255,255,0.6)" stroke="rgba(11,11,12,0.08)"/>
+  <!-- Hero Card -->
+  <rect x="20" y="125" width="353" height="420" rx="20" fill="url(#surfaceL)" stroke="rgba(11,11,12,0.08)"/>
+  <text x="35" y="165" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">LIVE · 2S AGO</text>
+  <text x="35" y="215" fill="#0b0b0c" font-family="Georgia, serif" font-size="56" font-weight="300" letter-spacing="-0.02em">4.23</text>
+  <text x="155" y="215" fill="#544f47" font-family="monospace" font-size="14" letter-spacing="0.15em">kW</text>
+  <!-- EnergyFlow nodes -->
+  <circle cx="196" cy="310" r="44" fill="#ffffff" stroke="rgba(11,11,12,0.18)"/>
+  <text x="196" y="305" fill="#0b0b0c" font-family="monospace" font-size="11" text-anchor="middle">Home</text>
+  <circle cx="196" cy="210" r="28" fill="rgba(255,255,255,0.96)" stroke="#b8862e" stroke-width="1.5"/>
+  <text x="196" y="205" fill="#0b0b0c" font-family="monospace" font-size="9" text-anchor="middle">Solar</text>
+  <circle cx="96" cy="360" r="28" fill="rgba(255,255,255,0.96)" stroke="#856b32" stroke-width="1.5"/>
+  <text x="96" y="355" fill="#0b0b0c" font-family="monospace" font-size="9" text-anchor="middle">Battery</text>
+  <circle cx="296" cy="360" r="28" fill="rgba(255,255,255,0.96)" stroke="#3d6584" stroke-width="1.5"/>
+  <text x="296" y="355" fill="#0b0b0c" font-family="monospace" font-size="9" text-anchor="middle">Grid</text>
+  <!-- Metrics -->
+  <line x1="35" y1="420" x2="358" y2="420" stroke="rgba(11,11,12,0.08)"/>
+  <text x="110" y="445" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">TODAY</text>
+  <text x="110" y="475" fill="#0b0b0c" font-family="Georgia, serif" font-size="28" text-anchor="middle">28.6</text>
+  <text x="196" y="445" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">SELF-USE</text>
+  <text x="196" y="475" fill="#0b0b0c" font-family="Georgia, serif" font-size="28" text-anchor="middle">74</text>
+  <text x="283" y="445" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">CO₂ SAVED</text>
+  <text x="283" y="475" fill="#0b0b0c" font-family="Georgia, serif" font-size="28" text-anchor="middle">12.0</text>
+  <!-- Insight -->
+  <rect x="20" y="555" width="353" height="110" rx="18" fill="url(#surfaceL)" stroke="rgba(11,11,12,0.08)"/>
+  <rect x="20" y="555" width="353" height="110" rx="18" fill="none" stroke="rgba(79,124,74,0.4)" stroke-width="1"/>
+  <text x="35" y="580" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">HELIOS° INSIGHT · POSITIVE</text>
+  <rect x="35" y="595" width="36" height="36" rx="18" fill="#ffffff" stroke="rgba(11,11,12,0.12)"/>
+  <text x="80" y="615" fill="#0b0b0c" font-family="system-ui" font-size="15" font-weight="500">Peak production window</text>
+  <text x="80" y="635" fill="#544f47" font-family="system-ui" font-size="12">Run heavy loads on direct solar now.</text>
+  <!-- Forecast strip -->
+  <rect x="20" y="700" width="353" height="110" rx="18" fill="url(#surfaceL)" stroke="rgba(11,11,12,0.08)"/>
+  <text x="340" y="795" fill="#4f7c4a" font-family="monospace" font-size="9" text-anchor="end">+13% vs typical</text>
+  <!-- BottomNav -->
+  <rect x="20" y="780" width="353" height="64" rx="20" fill="url(#surfaceL)" stroke="rgba(11,11,12,0.08)"/>
+  <rect x="35" y="788" width="50" height="48" rx="12" fill="rgba(239,236,229,0.7)" stroke="rgba(11,11,12,0.18)"/>
+  <text x="60" y="815" fill="#0b0b0c" font-family="monospace" font-size="9" letter-spacing="0.15em" text-anchor="middle">Home</text>
+  <text x="130" y="815" fill="#a59f90" font-family="monospace" font-size="9" letter-spacing="0.15em" text-anchor="middle">Solar</text>
+  <text x="196" y="815" fill="#a59f90" font-family="monospace" font-size="9" letter-spacing="0.15em" text-anchor="middle">Insights</text>
+  <text x="263" y="815" fill="#a59f90" font-family="monospace" font-size="9" letter-spacing="0.15em" text-anchor="middle">Battery</text>
+  <text x="330" y="815" fill="#a59f90" font-family="monospace" font-size="9" letter-spacing="0.15em" text-anchor="middle">Settings</text>
+  <!-- Annotation -->
+  <line x1="380" y1="310" x2="420" y2="310" stroke="#b8862e" stroke-width="0.5"/>
+  <text x="425" y="313" fill="#b8862e" font-family="monospace" font-size="9">Light theme: parchment-and-graphite inversion</text>
+  <text x="425" y="325" fill="#b8862e" font-family="monospace" font-size="9">All surfaces use solid white instead of glass</text>
+</svg>

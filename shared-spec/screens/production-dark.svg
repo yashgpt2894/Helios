@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="393" height="852" viewBox="0 0 393 852">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#070708"/><stop offset="100%" stop-color="#0b0b0c"/></linearGradient>
+    <linearGradient id="surface" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(26,26,28,0.9)"/><stop offset="100%" stop-color="rgba(15,15,16,0.9)"/></linearGradient>
+  </defs>
+  <rect width="393" height="852" fill="url(#bg)"/>
+  <!-- Header -->
+  <text x="20" y="100" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">SOLAR ARRAY</text>
+  <text x="20" y="130" fill="#efece5" font-family="system-ui" font-size="28" font-weight="500" letter-spacing="-0.01em">Production</text>
+  <text x="20" y="152" fill="#7a7568" font-family="system-ui" font-size="13">3 strings · 24 panels · 9.6 kW DC rating</text>
+  <!-- Hero -->
+  <rect x="20" y="170" width="353" height="240" rx="20" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <text x="35" y="200" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">GENERATING NOW</text>
+  <text x="320" y="200" fill="#f0c674" font-family="monospace" font-size="10" text-anchor="end">847 W/m²</text>
+  <text x="35" y="245" fill="#efece5" font-family="Georgia, serif" font-size="48" font-weight="300" letter-spacing="-0.02em">4.23</text>
+  <text x="145" y="245" fill="#a59f90" font-family="monospace" font-size="14" letter-spacing="0.15em">kW AC</text>
+  <!-- Chart placeholder -->
+  <rect x="35" y="260" width="323" height="130" rx="8" fill="none" stroke="rgba(239,236,229,0.06)"/>
+  <text x="196" y="330" fill="#544f47" font-family="monospace" font-size="11" text-anchor="middle">ProductionChart (stacked area)</text>
+  <text x="196" y="348" fill="#544f47" font-family="monospace" font-size="10" text-anchor="middle">Solar solid + Home dashed · 0-24h</text>
+  <!-- Per-string cards -->
+  <text x="20" y="435" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">STRINGS · PER-STRING OUTPUT</text>
+  <rect x="20" y="445" width="353" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <circle cx="45" cy="475" r="14" fill="#1c1c1e" stroke="rgba(239,236,229,0.06)"/><text x="45" y="479" fill="#dcd6c8" font-family="monospace" font-size="10" text-anchor="middle">A</text>
+  <text x="70" y="472" fill="#efece5" font-family="system-ui" font-size="13" font-weight="500">Roof · South-East</text>
+  <text x="70" y="488" fill="#7a7568" font-family="monospace" font-size="10">8 panels · 3,200 W rated</text>
+  <text x="340" y="472" fill="#efece5" font-family="Georgia, serif" font-size="20" text-anchor="end">1.42</text>
+  <text x="340" y="488" fill="#7a7568" font-family="monospace" font-size="10" text-anchor="end">kW · 398 V · 3.6 A</text>
+  <rect x="35" y="505" width="323" height="4" rx="2" fill="#141416"/>
+  <rect x="35" y="505" width="242" height="4" rx="2" fill="#f0c674"/>
+  <text x="35" y="525" fill="#544f47" font-family="monospace" font-size="9" letter-spacing="0.15em">UTILIZATION</text>
+  <text x="340" y="525" fill="#a59f90" font-family="monospace" font-size="9" text-anchor="end">75%</text>
+
+  <rect x="20" y="555" width="353" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <circle cx="45" cy="585" r="14" fill="#1c1c1e" stroke="rgba(239,236,229,0.06)"/><text x="45" y="589" fill="#dcd6c8" font-family="monospace" font-size="10" text-anchor="middle">B</text>
+  <text x="70" y="582" fill="#efece5" font-family="system-ui" font-size="13" font-weight="500">Roof · South-West</text>
+  <rect x="35" y="615" width="323" height="4" rx="2" fill="#141416"/>
+  <rect x="35" y="615" width="210" height="4" rx="2" fill="#f0c674"/>
+
+  <rect x="20" y="665" width="353" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <circle cx="45" cy="695" r="14" fill="#1c1c1e" stroke="rgba(239,236,229,0.06)"/><text x="45" y="699" fill="#dcd6c8" font-family="monospace" font-size="10" text-anchor="middle">C</text>
+  <text x="70" y="692" fill="#efece5" font-family="system-ui" font-size="13" font-weight="500">Garage · South</text>
+  <rect x="35" y="725" width="323" height="4" rx="2" fill="#141416"/>
+  <rect x="35" y="725" width="265" height="4" rx="2" fill="#f0c674"/>
+  <!-- Week chart -->
+  <text x="20" y="790" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">LAST 7 DAYS · DAILY PRODUCTION VS USE</text>
+  <rect x="20" y="800" width="353" height="180" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <!-- Inverter telemetry -->
+  <text x="20" y="1000" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">INVERTER · SYSTEM TELEMETRY</text>
+  <rect x="20" y="1010" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <rect x="203" y="1010" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <rect x="20" y="1125" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <rect x="203" y="1125" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <!-- Annotation -->
+  <line x1="380" y1="495" x2="420" y2="495" stroke="#f0c674" stroke-width="0.5"/>
+  <text x="425" y="498" fill="#f0c674" font-family="monospace" font-size="9">Pull-to-refresh on scroll view</text>
+  <text x="425" y="510" fill="#f0c674" font-family="monospace" font-size="9">Swipe card to see DC/AC details</text>
+</svg>

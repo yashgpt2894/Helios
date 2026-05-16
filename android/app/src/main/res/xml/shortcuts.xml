@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="check_production"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_production"
+        android:shortcutLongLabel="@string/shortcut_production_long">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="helios://dashboard" />
+
+        <capability-binding android:key="actions.intent.GET_THING">
+            <parameter-binding
+                android:key="thing.name"
+                android:value="@string/thing_solar_production" />
+        </capability-binding>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="check_battery"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_battery"
+        android:shortcutLongLabel="@string/shortcut_battery_long">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="helios://battery" />
+
+        <capability-binding android:key="actions.intent.GET_THING">
+            <parameter-binding
+                android:key="thing.name"
+                android:value="@string/thing_battery_level" />
+        </capability-binding>
+    </shortcut>
+
+</shortcuts>

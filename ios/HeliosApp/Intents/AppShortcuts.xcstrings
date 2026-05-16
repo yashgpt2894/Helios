@@ -1,0 +1,126 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Get Current Production" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get Current Production" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Obtener producción actual" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Obtenir la production actuelle" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Aktuelle Produktion abrufen" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ottieni produzione attuale" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Obter produção atual" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "現在の発電量を取得" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "获取当前发电量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "獲取當前發電量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "현재 생산량 가져오기" } }
+      }
+    },
+    "Get Battery Level" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get Battery Level" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Obtener nivel de batería" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Obtenir le niveau de batterie" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Batteriestand abrufen" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ottieni livello batteria" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Obter nível da bateria" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "バッテリーレベルを取得" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "获取电池电量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "獲取電池電量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "배터리 레벨 가져오기" } }
+      }
+    },
+    "Get Today's Production" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get Today's Production" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Obtener producción de hoy" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Obtenir la production du jour" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Heutige Produktion abrufen" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ottieni produzione di oggi" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Obter produção de hoje" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日の発電量を取得" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "获取今日发电量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "獲取今日發電量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "오늘의 생산량 가져오기" } }
+      }
+    },
+    "Get Solar Forecast" : {
+      "comment" : "App Shortcut title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Get Solar Forecast" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Obtener pronóstico solar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Obtenir les prévisions solaires" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Solarvorhersage abrufen" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ottieni previsioni solari" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Obter previsão solar" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "太陽光発電予測を取得" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "获取太阳能预测" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "獲取太陽能預測" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "태양광 예측 가져오기" } }
+      }
+    },
+    "Current Production" : {
+      "comment" : "Shortcut short title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Current Production" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Producción actual" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Production actuelle" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Aktuelle Produktion" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Produzione attuale" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Produção atual" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "現在の発電量" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前发电量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "當前發電量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "현재 생산량" } }
+      }
+    },
+    "Battery Level" : {
+      "comment" : "Shortcut short title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Battery Level" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Nivel de batería" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Niveau de batterie" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Batteriestand" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Livello batteria" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Nível da bateria" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "バッテリーレベル" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "电池电量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "電池電量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "배터리 레벨" } }
+      }
+    },
+    "Today's Production" : {
+      "comment" : "Shortcut short title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today's Production" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Producción de hoy" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Production du jour" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Heutige Produktion" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Produzione di oggi" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Produção de hoje" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日の発電量" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日发电量" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "今日發電量" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "오늘의 생산량" } }
+      }
+    },
+    "Solar Forecast" : {
+      "comment" : "Shortcut short title",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Solar Forecast" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Pronóstico solar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Prévisions solaires" } },
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Solarvorhersage" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Previsioni solari" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Previsão solar" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "太陽光発電予測" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "太阳能预测" } },
+        "zh-Hant" : { "stringUnit" : { "state" : "translated", "value" : "太陽能預測" } },
+        "ko" : { "stringUnit" : { "state" : "translated", "value" : "태양광 예측" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

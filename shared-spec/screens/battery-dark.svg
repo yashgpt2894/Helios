@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="393" height="852" viewBox="0 0 393 852">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#070708"/><stop offset="100%" stop-color="#0b0b0c"/></linearGradient>
+    <linearGradient id="surface" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(26,26,28,0.9)"/><stop offset="100%" stop-color="rgba(15,15,16,0.9)"/></linearGradient>
+  </defs>
+  <rect width="393" height="852" fill="url(#bg)"/>
+  <!-- Header -->
+  <text x="20" y="100" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">ENERGY STORAGE</text>
+  <text x="20" y="130" fill="#efece5" font-family="system-ui" font-size="28" font-weight="500">Battery</text>
+  <text x="20" y="152" fill="#7a7568" font-family="system-ui" font-size="13">13.5 kWh · 312 cycles · 97.4% health</text>
+  <!-- Battery Ring Hero -->
+  <rect x="20" y="170" width="353" height="340" rx="20" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <circle cx="196" cy="310" r="100" fill="none" stroke="rgba(239,236,229,0.06)" stroke-width="2"/>
+  <!-- 62% arc (counterclockwise from top) -->
+  <path d="M 196,210 A 100,100 0 1,0 196,410" fill="none" stroke="#7fb069" stroke-width="3" stroke-linecap="round" stroke-dasharray="389 628"/>
+  <text x="196" y="290" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">STATE OF CHARGE</text>
+  <text x="196" y="330" fill="#efece5" font-family="Georgia, serif" font-size="64" font-weight="300" text-anchor="middle">62</text>
+  <text x="196" y="355" fill="#7fb069" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">CHARGING</text>
+  <rect x="130" y="370" width="132" height="28" rx="14" fill="none" stroke="rgba(239,236,229,0.06)"/>
+  <text x="196" y="388" fill="#dcd6c8" font-family="monospace" font-size="11" text-anchor="middle">8.4 / 13.5 kWh</text>
+  <!-- Stats row -->
+  <line x1="35" y1="420" x2="358" y2="420" stroke="rgba(239,236,229,0.06)"/>
+  <text x="110" y="445" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">POWER</text>
+  <text x="110" y="470" fill="#efece5" font-family="monospace" font-size="15" text-anchor="middle">+1.11 kW</text>
+  <text x="196" y="445" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">TEMP</text>
+  <text x="196" y="470" fill="#efece5" font-family="monospace" font-size="15" text-anchor="middle">26.5°C</text>
+  <text x="283" y="445" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em" text-anchor="middle">CYCLES</text>
+  <text x="283" y="470" fill="#efece5" font-family="monospace" font-size="15" text-anchor="middle">312</text>
+  <!-- Backup readiness -->
+  <text x="20" y="535" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">RESERVE · BACKUP READINESS</text>
+  <rect x="20" y="545" width="353" height="120" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <text x="35" y="585" fill="#efece5" font-family="Georgia, serif" font-size="40" font-weight="300">4</text>
+  <text x="35" y="605" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.15em">HOURS OF ESSENTIALS</text>
+  <text x="340" y="585" fill="#dcd6c8" font-family="monospace" font-size="11" text-anchor="end">8.4 kWh available</text>
+  <text x="340" y="602" fill="#7a7568" font-family="monospace" font-size="10" text-anchor="end">at 3.12 kW current draw</text>
+  <rect x="35" y="625" width="323" height="6" rx="3" fill="#141416"/>
+  <rect x="35" y="625" width="200" height="6" rx="3" fill="#c5a572"/>
+  <!-- Stats grid -->
+  <rect x="20" y="685" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <text x="35" y="710" fill="#7a7568" font-family="monospace" font-size="9" letter-spacing="0.15em">HEALTH</text>
+  <text x="35" y="740" fill="#efece5" font-family="Georgia, serif" font-size="24">97.4</text>
+  <text x="75" y="740" fill="#7a7568" font-family="monospace" font-size="11">%</text>
+  <text x="35" y="760" fill="#7fb069" font-family="monospace" font-size="9">EXCELLENT</text>
+  <rect x="203" y="685" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <text x="218" y="710" fill="#7a7568" font-family="monospace" font-size="9" letter-spacing="0.15em">ROUND-TRIP</text>
+  <text x="218" y="740" fill="#efece5" font-family="Georgia, serif" font-size="24">94.2</text>
+  <text x="258" y="740" fill="#7a7568" font-family="monospace" font-size="11">%</text>
+  <rect x="20" y="800" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <text x="35" y="825" fill="#7a7568" font-family="monospace" font-size="9" letter-spacing="0.15em">CYCLES</text>
+  <text x="35" y="855" fill="#efece5" font-family="Georgia, serif" font-size="24">312</text>
+  <text x="35" y="875" fill="#7a7568" font-family="monospace" font-size="9">OF 6,000 RATED</text>
+  <rect x="203" y="800" width="170" height="100" rx="18" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <text x="218" y="825" fill="#7a7568" font-family="monospace" font-size="9" letter-spacing="0.15em">CELL TEMP</text>
+  <text x="218" y="855" fill="#efece5" font-family="Georgia, serif" font-size="24">26.5</text>
+  <text x="258" y="855" fill="#7a7568" font-family="monospace" font-size="11">°C</text>
+  <!-- Charge mode -->
+  <text x="20" y="930" fill="#7a7568" font-family="monospace" font-size="10" letter-spacing="0.2em">STRATEGY · CHARGE MODE</text>
+  <rect x="20" y="940" width="353" height="70" rx="14" fill="rgba(42,42,45,0.4)" stroke="rgba(239,236,229,0.12)"/>
+  <circle cx="45" cy="975" r="8" fill="none" stroke="#c5a572" stroke-width="2"/><circle cx="45" cy="975" r="3" fill="#c5a572"/>
+  <text x="65" y="965" fill="#efece5" font-family="system-ui" font-size="13" font-weight="500">Self-consumption</text>
+  <text x="65" y="982" fill="#7a7568" font-family="system-ui" font-size="11">Maximize using your own solar first.</text>
+  <text x="330" y="965" fill="#c5a572" font-family="monospace" font-size="9" letter-spacing="0.15em">ACTIVE</text>
+  <rect x="20" y="1020" width="353" height="70" rx="14" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <circle cx="45" cy="1055" r="8" fill="none" stroke="#544f47" stroke-width="2"/>
+  <text x="65" y="1045" fill="#dcd6c8" font-family="system-ui" font-size="13">Time-of-use</text>
+  <rect x="20" y="1100" width="353" height="70" rx="14" fill="url(#surface)" stroke="rgba(239,236,229,0.06)"/>
+  <circle cx="45" cy="1135" r="8" fill="none" stroke="#544f47" stroke-width="2"/>
+  <text x="65" y="1125" fill="#dcd6c8" font-family="system-ui" font-size="13">Backup-only</text>
+  <!-- Annotation -->
+  <line x1="380" y1="310" x2="420" y2="310" stroke="#7fb069" stroke-width="0.5"/>
+  <text x="425" y="313" fill="#7fb069" font-family="monospace" font-size="9">Canvas-drawn battery ring</text>
+  <text x="425" y="325" fill="#7fb069" font-family="monospace" font-size="9">Glow on charge, pulse on discharge</text>
+</svg>

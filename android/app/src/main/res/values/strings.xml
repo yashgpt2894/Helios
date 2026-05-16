@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Helios</string>
+
+    <!-- Status -->
+    <string name="status_producing">Producing</string>
+    <string name="status_standby">Standby</string>
+    <string name="status_curtailed">Curtailed</string>
+    <string name="status_night">Night</string>
+    <string name="status_fault">Fault</string>
+    <string name="status_simulated">Simulated</string>
+    <string name="status_connected">Connected</string>
+
+    <!-- Dashboard -->
+    <string name="live_label">LIVE</string>
+    <string name="kw_unit">kW</string>
+    <string name="kwh_unit">kWh</string>
+    <string name="today_label">Today</string>
+    <string name="self_use_label">Self-use</string>
+    <string name="co2_saved_label">CO₂ saved</string>
+    <string name="kg_today">kg today</string>
+    <string name="solar_label">Solar</string>
+    <string name="home_label">Home</string>
+    <string name="battery_label">Battery</string>
+    <string name="grid_label">Grid</string>
+    <string name="charging_status">Charging</string>
+    <string name="discharging_status">Powering home</string>
+    <string name="idle_status">Idle</string>
+
+    <!-- Sections -->
+    <string name="dashboard_title">Home</string>
+    <string name="production_title">Production</string>
+    <string name="insights_title">Insights</string>
+    <string name="battery_title">Battery</string>
+    <string name="settings_title">Settings</string>
+    <string name="shared_snapshot_title">Shared snapshot</string>
+
+    <!-- Insights -->
+    <string name="insight_positive">Positive</string>
+    <string name="insight_neutral">Neutral</string>
+    <string name="insight_attention">Attention</string>
+    <string name="insight_critical">Critical</string>
+    <string name="insight_category_production">Production</string>
+    <string name="insight_category_consumption">Consumption</string>
+    <string name="insight_category_battery">Battery</string>
+    <string name="insight_category_savings">Savings</string>
+    <string name="insight_category_maintenance">Maintenance</string>
+    <string name="insight_category_forecast">Forecast</string>
+
+    <!-- Battery -->
+    <string name="soc_label">State of charge</string>
+    <string name="power_label">Power</string>
+    <string name="temp_label">Temp</string>
+    <string name="cycles_label">Cycles</string>
+    <string name="health_label">Health</string>
+    <string name="round_trip_label">Round-trip</string>
+    <string name="cell_temp_label">Cell temp</string>
+    <string name="hours_essentials">hours of essentials</string>
+    <string name="backup_readiness_title">Backup readiness</string>
+    <string name="charge_mode_self">Self-consumption</string>
+    <string name="charge_mode_tou">Time-of-use</string>
+    <string name="charge_mode_backup">Backup-only</string>
+    <string name="charge_mode_active">ACTIVE</string>
+
+    <!-- Settings -->
+    <string name="connection_section">CONNECTION</string>
+    <string name="location_section">LOCATION</string>
+    <string name="appearance_section">APPEARANCE</string>
+    <string name="preferences_section">PREFERENCES</string>
+    <string name="theme_dark">Carbon</string>
+    <string name="theme_light">Paper</string>
+    <string name="theme_auto">Auto</string>
+    <string name="test_connection">Test connection</string>
+    <string name="use_my_location">use my location</string>
+    <string name="simulation_mode">Simulation mode</string>
+
+    <!-- Share -->
+    <string name="share_snapshot">Share snapshot</string>
+    <string name="share_copied">Copied</string>
+    <string name="share_shared">Shared</string>
+
+    <!-- Forecast -->
+    <string name="forecast_title">7-day forecast</string>
+    <string name="vs_typical">vs typical</string>
+
+    <!-- Errors / Empty -->
+    <string name="error_invalid_snapshot">Link expired or invalid</string>
+    <string name="error_snapshot_body">This shared snapshot couldn\'t be decoded. The link may have been truncated.</string>
+    <string name="empty_insights">No additional advisories. Your system is operating cleanly.</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_solar_node">Solar producing %1$s kilowatts</string>
+    <string name="a11y_home_node">Home using %1$s kilowatts</string>
+    <string name="a11y_battery_node">Battery %1$s, %2$s kilowatts</string>
+    <string name="a11y_grid_node">Grid %1$s kilowatts</string>
+    <string name="a11y_peak_production">Peak production today at %1$s</string>
+    <string name="a11y_current_production">Current production %1$s kilowatts</string>
+
+    <!-- App Actions shortcuts -->
+    <string name="shortcut_production">Solar production</string>
+    <string name="shortcut_production_long">Check solar production</string>
+    <string name="shortcut_battery">Battery level</string>
+    <string name="shortcut_battery_long">Check battery level</string>
+    <string name="thing_solar_production">solar production</string>
+    <string name="thing_battery_level">battery level</string>
+</resources>

@@ -1,0 +1,458 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "platforms": ["ios", "android"],
+    "colorSpace": "display-p3",
+    "grid": 4
+  },
+  "color": {
+    "hues": {
+      "solar": {
+        "name": "Solar",
+        "description": "Sunlight, production, peak energy. Warm at low brightness, golden at peak.",
+        "light": {
+          "50":  "#FFF9E6",
+          "100": "#FFEFC2",
+          "200": "#FFE094",
+          "300": "#F0C674",
+          "400": "#D4A843",
+          "500": "#B88A2E",
+          "600": "#9A6E1F",
+          "700": "#7C5518",
+          "800": "#5E3F12",
+          "900": "#422C0C",
+          "950": "#2A1B06"
+        },
+        "dark": {
+          "50":  "#2A1B06",
+          "100": "#422C0C",
+          "200": "#5E3F12",
+          "300": "#7C5518",
+          "400": "#9A6E1F",
+          "500": "#B88A2E",
+          "600": "#D4A843",
+          "700": "#F0C674",
+          "800": "#FFE094",
+          "900": "#FFEFC2",
+          "950": "#FFF9E6"
+        }
+      },
+      "flow": {
+        "name": "Flow",
+        "description": "Healthy energy, self-consumption, home load. Desaturated mint at low, vibrant at high.",
+        "light": {
+          "50":  "#E8F5E9",
+          "100": "#C8E6C9",
+          "200": "#A5D6A7",
+          "300": "#7FB069",
+          "400": "#5E9A4E",
+          "500": "#4A7F3C",
+          "600": "#3A6630",
+          "700": "#2B4D24",
+          "800": "#1E3819",
+          "900": "#132510",
+          "950": "#0A1508"
+        },
+        "dark": {
+          "50":  "#0A1508",
+          "100": "#132510",
+          "200": "#1E3819",
+          "300": "#2B4D24",
+          "400": "#3A6630",
+          "500": "#4A7F3C",
+          "600": "#5E9A4E",
+          "700": "#7FB069",
+          "800": "#A5D6A7",
+          "900": "#C8E6C9",
+          "950": "#E8F5E9"
+        }
+      },
+      "grid": {
+        "name": "Grid",
+        "description": "Grid import = attention; export = abundance. Orange for import, blue for export.",
+        "import": {
+          "light": {
+            "50": "#FFF3E0",
+            "100": "#FFE0B2",
+            "200": "#FFCC80",
+            "300": "#FFB74D",
+            "400": "#FFA726",
+            "500": "#F57C00",
+            "600": "#E65100",
+            "700": "#BF360C",
+            "800": "#8D2808",
+            "900": "#5C1A05",
+            "950": "#380F03"
+          },
+          "dark": {
+            "50": "#380F03",
+            "100": "#5C1A05",
+            "200": "#8D2808",
+            "300": "#BF360C",
+            "400": "#E65100",
+            "500": "#F57C00",
+            "600": "#FFA726",
+            "700": "#FFB74D",
+            "800": "#FFCC80",
+            "900": "#FFE0B2",
+            "950": "#FFF3E0"
+          }
+        },
+        "export": {
+          "light": {
+            "50": "#E3F2FD",
+            "100": "#BBDEFB",
+            "200": "#90CAF9",
+            "300": "#5D8AA8",
+            "400": "#4A7A9E",
+            "500": "#3D6584",
+            "600": "#2F4F6A",
+            "700": "#223B50",
+            "800": "#172A38",
+            "900": "#0D1A22",
+            "950": "#060E13"
+          },
+          "dark": {
+            "50": "#060E13",
+            "100": "#0D1A22",
+            "200": "#172A38",
+            "300": "#223B50",
+            "400": "#2F4F6A",
+            "500": "#3D6584",
+            "600": "#4A7A9E",
+            "700": "#5D8AA8",
+            "800": "#90CAF9",
+            "900": "#BBDEFB",
+            "950": "#E3F2FD"
+          }
+        }
+      },
+      "battery": {
+        "name": "Battery",
+        "description": "Battery SoC. Desaturated mint at low SoC, vibrant at high. Bronze tone for warmth.",
+        "light": {
+          "50":  "#F5F0E6",
+          "100": "#E6DCC8",
+          "200": "#D4C5A2",
+          "300": "#C5A572",
+          "400": "#A68A52",
+          "500": "#856B32",
+          "600": "#6B5426",
+          "700": "#523F1C",
+          "800": "#3A2D14",
+          "900": "#251D0D",
+          "950": "#151006"
+        },
+        "dark": {
+          "50":  "#151006",
+          "100": "#251D0D",
+          "200": "#3A2D14",
+          "300": "#523F1C",
+          "400": "#6B5426",
+          "500": "#856B32",
+          "600": "#A68A52",
+          "700": "#C5A572",
+          "800": "#D4C5A2",
+          "900": "#E6DCC8",
+          "950": "#F5F0E6"
+        }
+      },
+      "alert": {
+        "name": "Alert",
+        "description": "Faults, connection failures, critical warnings. Warm coral.",
+        "light": {
+          "50":  "#FBEAE4",
+          "100": "#F5CDBF",
+          "200": "#EDAB94",
+          "300": "#D97757",
+          "400": "#C45E3D",
+          "500": "#A8492A",
+          "600": "#8A381F",
+          "700": "#6D2A16",
+          "800": "#501E10",
+          "900": "#36140B",
+          "950": "#1F0A06"
+        },
+        "dark": {
+          "50":  "#1F0A06",
+          "100": "#36140B",
+          "200": "#501E10",
+          "300": "#6D2A16",
+          "400": "#8A381F",
+          "500": "#A8492A",
+          "600": "#C45E3D",
+          "700": "#D97757",
+          "800": "#EDAB94",
+          "900": "#F5CDBF",
+          "950": "#FBEAE4"
+        }
+      },
+      "neutral": {
+        "name": "Neutral",
+        "description": "Carbon backgrounds and bone text. Warm grayscale with no blue cast.",
+        "light": {
+          "50":  "#F8F6F0",
+          "100": "#F4F1EA",
+          "200": "#EFECE5",
+          "300": "#E8E4DB",
+          "400": "#DCD6C8",
+          "500": "#BDB6A6",
+          "600": "#A59F90",
+          "700": "#7A7568",
+          "800": "#544F47",
+          "900": "#2A2A2D",
+          "950": "#0B0B0C"
+        },
+        "dark": {
+          "50":  "#070708",
+          "100": "#0B0B0C",
+          "200": "#0F0F10",
+          "300": "#141416",
+          "400": "#1A1A1C",
+          "500": "#1C1C1E",
+          "600": "#2A2A2D",
+          "700": "#3A3A3E",
+          "800": "#544F47",
+          "900": "#A59F90",
+          "950": "#F4F1EA"
+        }
+      },
+      "brand": {
+        "name": "Brand",
+        "description": "Dynamic accent slot for white-labeling. Falls back to Solar when brand is helios.",
+        "light": {
+          "50":  "{{brand.accentLight}} at 10%",
+          "100": "{{brand.accentLight}} at 20%",
+          "200": "{{brand.accentLight}} at 35%",
+          "300": "{{brand.accentLight}}",
+          "400": "{{brand.accent}} at 85%",
+          "500": "{{brand.accent}}",
+          "600": "{{brand.accent}} at 90% darkened",
+          "700": "{{brand.accent}} at 75% darkened",
+          "800": "{{brand.accent}} at 60% darkened",
+          "900": "{{brand.accent}} at 45% darkened",
+          "950": "{{brand.accent}} at 30% darkened"
+        },
+        "dark": {
+          "50":  "{{brand.accent}} at 30% darkened",
+          "100": "{{brand.accent}} at 45% darkened",
+          "200": "{{brand.accent}} at 60% darkened",
+          "300": "{{brand.accent}} at 75% darkened",
+          "400": "{{brand.accent}} at 90% darkened",
+          "500": "{{brand.accent}}",
+          "600": "{{brand.accent}} at 85%",
+          "700": "{{brand.accentLight}}",
+          "800": "{{brand.accentLight}} at 35%",
+          "900": "{{brand.accentLight}} at 20%",
+          "950": "{{brand.accentLight}} at 10%"
+        }
+      }
+    },
+    "semantic": {
+      "background": {
+        "primary": { "light": "neutral.50", "dark": "neutral.50" },
+        "secondary": { "light": "neutral.100", "dark": "neutral.100" },
+        "tertiary": { "light": "neutral.200", "dark": "neutral.200" },
+        "elevated": { "light": "neutral.50@95%", "dark": "neutral.400@90%" }
+      },
+      "text": {
+        "primary": { "light": "neutral.950", "dark": "neutral.950" },
+        "secondary": { "light": "neutral.800", "dark": "neutral.800" },
+        "tertiary": { "light": "neutral.700", "dark": "neutral.700" },
+        "quaternary": { "light": "neutral.600", "dark": "neutral.600" }
+      },
+      "separator": {
+        "hairline": { "light": "neutral.950@6%", "dark": "neutral.950@6%" },
+        "strong": { "light": "neutral.950@15%", "dark": "neutral.950@15%" }
+      }
+    }
+  },
+  "typography": {
+    "ios": {
+      "family": {
+        "display": "SF Pro Display",
+        "text": "SF Pro Text",
+        "rounded": "SF Pro Rounded",
+        "mono": "SF Mono"
+      },
+      "scale": [
+        { "token": "hero", "size": 56, "weight": 300, "lineHeight": 56, "tracking": -0.02, "opticalSize": 56, "font": "display" },
+        { "token": "title-1", "size": 34, "weight": 400, "lineHeight": 40, "tracking": -0.01, "opticalSize": 34, "font": "display" },
+        { "token": "title-2", "size": 28, "weight": 400, "lineHeight": 34, "tracking": -0.01, "opticalSize": 28, "font": "display" },
+        { "token": "title-3", "size": 22, "weight": 400, "lineHeight": 28, "tracking": -0.01, "opticalSize": 22, "font": "display" },
+        { "token": "headline", "size": 17, "weight": 600, "lineHeight": 22, "tracking": -0.01, "opticalSize": 17, "font": "text" },
+        { "token": "body", "size": 16, "weight": 400, "lineHeight": 22, "tracking": -0.01, "opticalSize": 16, "font": "text" },
+        { "token": "callout", "size": 14, "weight": 400, "lineHeight": 20, "tracking": -0.01, "opticalSize": 14, "font": "text" },
+        { "token": "subheadline", "size": 13, "weight": 400, "lineHeight": 18, "tracking": -0.01, "opticalSize": 13, "font": "text" },
+        { "token": "caption", "size": 11, "weight": 400, "lineHeight": 14, "tracking": 0.01, "opticalSize": 11, "font": "text" },
+        { "token": "caption-2", "size": 10, "weight": 500, "lineHeight": 12, "tracking": 0.06, "opticalSize": 10, "font": "text" }
+      ],
+      "numeric": {
+        "body": { "fontVariant": "proportional-oldstyle-figures" },
+        "chartAxis": { "fontVariant": "tabular-lining-figures" },
+        "liveTicker": { "fontVariant": "tabular-lining-figures" }
+      }
+    },
+    "android": {
+      "family": {
+        "display": "Roboto Flex",
+        "text": "Roboto Flex",
+        "rounded": "Roboto Flex",
+        "mono": "Roboto Mono"
+      },
+      "scale": [
+        { "token": "hero", "size": 56, "weight": 300, "lineHeight": 56, "tracking": -0.02, "grade": 0, "font": "display" },
+        { "token": "title-1", "size": 34, "weight": 400, "lineHeight": 40, "tracking": -0.01, "grade": 0, "font": "display" },
+        { "token": "title-2", "size": 28, "weight": 400, "lineHeight": 34, "tracking": -0.01, "grade": 0, "font": "display" },
+        { "token": "title-3", "size": 22, "weight": 400, "lineHeight": 28, "tracking": -0.01, "grade": 0, "font": "display" },
+        { "token": "headline", "size": 17, "weight": 600, "lineHeight": 22, "tracking": -0.01, "grade": 0, "font": "text" },
+        { "token": "body", "size": 16, "weight": 400, "lineHeight": 22, "tracking": -0.01, "grade": 0, "font": "text" },
+        { "token": "callout", "size": 14, "weight": 400, "lineHeight": 20, "tracking": -0.01, "grade": 0, "font": "text" },
+        { "token": "subheadline", "size": 13, "weight": 400, "lineHeight": 18, "tracking": -0.01, "grade": 0, "font": "text" },
+        { "token": "caption", "size": 11, "weight": 400, "lineHeight": 14, "tracking": 0.01, "grade": 0, "font": "text" },
+        { "token": "caption-2", "size": 10, "weight": 500, "lineHeight": 12, "tracking": 0.06, "grade": 0, "font": "text" }
+      ]
+    }
+  },
+  "spacing": {
+    "scale": {
+      "0": 0,
+      "1": 4,
+      "2": 8,
+      "3": 12,
+      "4": 16,
+      "5": 20,
+      "6": 24,
+      "7": 28,
+      "8": 32,
+      "9": 36,
+      "10": 40,
+      "11": 44,
+      "12": 48,
+      "14": 56,
+      "16": 64,
+      "20": 80,
+      "24": 96
+    },
+    "safeArea": {
+      "top": "env(safe-area-inset-top)",
+      "bottom": "env(safe-area-inset-bottom)",
+      "horizontal": 20
+    }
+  },
+  "radius": {
+    "none": 0,
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 22,
+    "2xl": 28,
+    "full": 9999
+  },
+  "elevation": {
+    "level-0": {
+      "ios": "none",
+      "android": "0dp"
+    },
+    "level-1": {
+      "ios": { "shadow": [{ "color": "#000000", "opacity": 0.08, "radius": 4, "y": 2 }, { "color": "#000000", "opacity": 0.04, "radius": 8, "y": 4 }] },
+      "android": "1dp"
+    },
+    "level-2": {
+      "ios": { "shadow": [{ "color": "#000000", "opacity": 0.12, "radius": 8, "y": 4 }, { "color": "#000000", "opacity": 0.06, "radius": 16, "y": 8 }] },
+      "android": "3dp"
+    },
+    "level-3": {
+      "ios": { "shadow": [{ "color": "#000000", "opacity": 0.16, "radius": 16, "y": 8 }, { "color": "#000000", "opacity": 0.08, "radius": 32, "y": 16 }] },
+      "android": "6dp"
+    },
+    "level-4": {
+      "ios": { "shadow": [{ "color": "#000000", "opacity": 0.24, "radius": 24, "y": 12 }, { "color": "#000000", "opacity": 0.12, "radius": 48, "y": 24 }] },
+      "android": "8dp"
+    },
+    "level-5": {
+      "ios": { "shadow": [{ "color": "#000000", "opacity": 0.32, "radius": 32, "y": 16 }, { "color": "#000000", "opacity": 0.16, "radius": 64, "y": 32 }] },
+      "android": "12dp"
+    }
+  },
+  "material": {
+    "ios": {
+      "regular": { "material": "regularMaterial", "tint": "neutral.400@10%" },
+      "thin": { "material": "thinMaterial", "tint": "neutral.400@6%" },
+      "innerStroke": { "color": "neutral.950@6%", "width": 0.5 }
+    },
+    "android": {
+      "regular": { "tonalElevation": 3, "color": "neutral.400@90%" },
+      "thin": { "tonalElevation": 1, "color": "neutral.400@85%" },
+      "innerStroke": { "color": "neutral.950@4%", "width": 0.5 }
+    }
+  },
+  "motion": {
+    "springPresets": {
+      "gentle": {
+        "ios": { "mass": 1, "stiffness": 120, "damping": 24 },
+        "android": { "dampingRatio": 0.85, "stiffness": 120 }
+      },
+      "default": {
+        "ios": { "mass": 1, "stiffness": 200, "damping": 26 },
+        "android": { "dampingRatio": 0.8, "stiffness": 200 }
+      },
+      "snappy": {
+        "ios": { "mass": 1, "stiffness": 380, "damping": 32 },
+        "android": { "dampingRatio": 0.7, "stiffness": 380 }
+      },
+      "bouncy": {
+        "ios": { "mass": 1.2, "stiffness": 280, "damping": 14 },
+        "android": { "dampingRatio": 0.5, "stiffness": 280 }
+      }
+    },
+    "duration": {
+      "instant": 0,
+      "fast": 0.15,
+      "normal": 0.25,
+      "slow": 0.4,
+      "deliberate": 0.6,
+      "draw": 0.6
+    },
+    "stagger": {
+      "tight": 0.03,
+      "normal": 0.05,
+      "loose": 0.08
+    }
+  },
+  "haptics": {
+    "ios": {
+      "selection": { "generator": "UISelectionFeedbackGenerator", "trigger": "selectionChanged()" },
+      "light": { "generator": "UIImpactFeedbackGenerator(style: .light)", "trigger": "impactOccurred()" },
+      "medium": { "generator": "UIImpactFeedbackGenerator(style: .medium)", "trigger": "impactOccurred()" },
+      "heavy": { "generator": "UIImpactFeedbackGenerator(style: .heavy)", "trigger": "impactOccurred()" },
+      "success": { "generator": "UINotificationFeedbackGenerator", "trigger": "notificationOccurred(.success)" },
+      "warning": { "generator": "UINotificationFeedbackGenerator", "trigger": "notificationOccurred(.warning)" },
+      "error": { "generator": "UINotificationFeedbackGenerator", "trigger": "notificationOccurred(.error)" },
+      "continuous": { "generator": "CoreHaptics (CHHapticEngine)", "pattern": "continuous texture with intensity modulation" }
+    },
+    "android": {
+      "selection": { "constant": "HapticFeedbackConstants.CLOCK_TICK" },
+      "light": { "constant": "HapticFeedbackConstants.CONTEXT_CLICK" },
+      "medium": { "constant": "HapticFeedbackConstants.VIRTUAL_KEY" },
+      "heavy": { "constant": "HapticFeedbackConstants.LONG_PRESS" },
+      "success": { "constant": "HapticFeedbackConstants.CONFIRM" },
+      "warning": { "constant": "HapticFeedbackConstants.REJECT" },
+      "error": { "constant": "HapticFeedbackConstants.REJECT" },
+      "continuous": { "api31": "VibrationEffect.Composition with PRIMITIVE_TICK and scaleIntensity" }
+    },
+    "mapping": {
+      "tileTap": "light",
+      "pickerScrub": "selection",
+      "primaryCTA": "medium",
+      "shareCopy": "success",
+      "faultState": "warning",
+      "connectionFailure": "error",
+      "batteryThreshold80": "light",
+      "batteryThreshold50": "medium",
+      "batteryThreshold20": "heavy",
+      "longPressTexture": "continuous"
+    }
+  }
+}

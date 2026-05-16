@@ -1,0 +1,21 @@
+/* Helios iOS Localization — Arabic (stub, RTL) */
+"status_producing" = "إنتاج";
+"status_standby" = "استعداد";
+"status_curtailed" = "محدود";
+"status_night" = "ليل";
+"status_fault" = "عطل";
+"live_label" = "مباشر";
+"kw_unit" = "كيلوواط";
+"kwh_unit" = "كيلوواط ساعة";
+"today_label" = "اليوم";
+"self_use_label" = "الاستهلاك الذاتي";
+"co2_saved_label" = "ثاني أكسيد الكربون المُوفَّر";
+"solar_label" = "طاقة شمسية";
+"home_label" = "المنزل";
+"battery_label" = "البطارية";
+"grid_label" = "الشبكة";
+"dashboard_title" = "الرئيسية";
+"production_title" = "الإنتاج";
+"insights_title" = "التحليلات";
+"battery_title" = "البطارية";
+"settings_title" = "الإعدادات";
