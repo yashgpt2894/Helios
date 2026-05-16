@@ -1,9 +1,19 @@
+---
+mission_id: helios-store-launch
+objective: Ship Helios to the App Store and Google Play Store on version 1.0.0
+created: 2026-05-16
+mode: checkpoint
+deploy_policy: never
+target_branch: main
+status: deferred
+---
+
 # Mission: Helios Store Launch
 
-status: pending
 owner: yashgupta
-created: 2026-05-16
 predecessor: `.factory/missions/helios-native-apps.md` (complete)
+
+> **Status: Deferred** — PWA-first strategy adopted on 2026-05-16. Native store launch will be resumed after the PWA is live and validated. All native app code (iOS + Android) remains in the repo and is feature-complete.
 
 ## 0. Context
 
@@ -23,19 +33,26 @@ Ship Helios to the App Store and Google Play Store on the open trunk version `1.
 
 ## 2. Decomposition
 
-| # | Milestone | Depends on | Type | Acceptance |
-|---|-----------|------------|------|------------|
-| L0 | Developer-account prerequisites | — | human | Apple Developer + Google Play accounts active, signing certs generated |
-| L1 | Xcode target wiring | L0 | mixed | All 5 iOS extension targets compile in Xcode 16; App Group capability configured |
-| L2 | Android module wiring | L0 | mixed | `wear` module included in `settings.gradle.kts`, Gradle sync succeeds, all variants build |
-| L3 | Asset generation | L0 | mixed | App icon PNGs at all required sizes; marketing screenshots captured from running apps |
-| L4 | Accessibility integration | L1, L2 | builder-droid | VoiceOver/TalkBack labels wired into every interactive view |
-| L5 | Translation pass | L1, L2 | human or translator-service | 21 remaining language stubs replaced with professional translations |
-| L6 | Device QA | L1, L2, L3, L4 | human | Physical-device test pass on iPhone 15 Pro, iPhone SE, iPad Pro, Pixel 8, Pixel Fold, Galaxy Tab |
-| L7 | TestFlight rollout | L6 | mixed | Internal build accepted by App Store Connect, distributed to internal group |
-| L8 | Play Internal Testing rollout | L6 | mixed | Closed AAB uploaded to Internal track, 5+ testers added |
-| L9 | Store submission | L7, L8 | human | App Store and Play Store apps accepted by review teams |
-| L10 | Production launch | L9 | human | Rollout 100% on both stores; smoke-test in-store install on real device |
+| # | Milestone | Depends on | Type | Status | Acceptance |
+|---|-----------|------------|------|--------|------------|
+| L0 | Developer-account prerequisites | — | human | active | Apple Developer + Google Play accounts active, signing certs generated |
+| L1 | Xcode target wiring | L0 | mixed | pending | All 5 iOS extension targets compile in Xcode 16; App Group capability configured |
+| L2 | Android module wiring | L0 | mixed | pending | `wear` module included in `settings.gradle.kts`, Gradle sync succeeds, all variants build |
+| L3 | Asset generation | L0 | mixed | pending | App icon PNGs at all required sizes; marketing screenshots captured from running apps |
+| L4 | Accessibility integration | L1, L2 | builder-droid | pending | VoiceOver/TalkBack labels wired into every interactive view |
+| L5 | Translation pass | L1, L2 | human or translator-service | pending | 21 remaining language stubs replaced with professional translations |
+| L6 | Device QA | L1, L2, L3, L4 | human | pending | Physical-device test pass on iPhone 15 Pro, iPhone SE, iPad Pro, Pixel 8, Pixel Fold, Galaxy Tab |
+| L7 | TestFlight rollout | L6 | mixed | pending | Internal build accepted by App Store Connect, distributed to internal group |
+| L8 | Play Internal Testing rollout | L6 | mixed | pending | Closed AAB uploaded to Internal track, 5+ testers added |
+| L9 | Store submission | L7, L8 | human | pending | App Store and Play Store apps accepted by review teams |
+| L10 | Production launch | L9 | human | pending | Rollout 100% on both stores; smoke-test in-store install on real device |
+
+## Progress
+
+### L0 — Developer-account prerequisites — active
+- started: 2026-05-16
+- current sub-step: Human owner must complete Apple Developer enrollment and Google Play Console setup
+- notes: Checkpoint surfaced to human owner. L1, L2, L4 queued for builder droid once unblocked.
 
 ## 3. Detailed sub-step ledger
 
