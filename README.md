@@ -22,6 +22,8 @@ helios° is a Progressive Web App that turns raw inverter telemetry into somethi
 
 It is **mobile-first but renders cleanly on desktop browsers** — the app shell is centered in a precision-instrument frame at wider breakpoints rather than stretched across the viewport.
 
+> **PWA-first, native apps deferred.** Native iOS (Swift) and Android (Kotlin) code lives in `ios/` and `android/` and is feature-complete, but the current focus is shipping the PWA. Store launch will resume once the PWA is live and validated.
+
 ## Highlights
 
 - **Live energy-flow visualization** — animated solar → home ↔ battery ↔ grid hub with live wattages.
@@ -64,8 +66,8 @@ Add `?brand=<id>` to any URL for white-labeling. Out of the box: `helios`, `volt
 Requires Node 18+.
 
 ```bash
-git clone https://github.com/<your-username>/helios-app.git
-cd helios-app
+git clone https://github.com/yashgpt2894/Helios.git
+cd Helios
 npm install
 npm run dev      # http://localhost:5173
 ```
@@ -107,31 +109,21 @@ The brand persists into share-snapshot URLs so customers see the installer's bra
 ## Project structure
 
 ```
-helios-app/
-├── src/
+Helios/
+├── src/                         # React + TypeScript PWA
 │   ├── App.tsx                  # router (/, /app, /share/:payload)
 │   ├── MainApp.tsx              # main app shell with desktop frame
-│   ├── pages/
-│   │   ├── Landing.tsx          # marketing page
-│   │   ├── Dashboard.tsx        # live energy flow, today's curve
-│   │   ├── Production.tsx       # per-string + inverter telemetry
-│   │   ├── Insights.tsx         # AI advisories + 7-day forecast
-│   │   ├── Battery.tsx          # SOC ring, charge mode
-│   │   ├── Settings.tsx         # connection, theme, location
-│   │   └── SharedView.tsx       # read-only /share/:payload view
+│   ├── pages/                   # Dashboard, Production, Insights, Battery, Settings, Landing, SharedView
 │   ├── components/              # EnergyFlow, ProductionChart, ShareButton, ...
-│   ├── services/
-│   │   ├── sunspec.ts           # mock Modbus reader
-│   │   ├── weather.ts           # Open-Meteo forecast
-│   │   ├── aiInsights.ts        # live-telemetry rules
-│   │   ├── forecastInsights.ts  # multi-day rules
-│   │   ├── brand.ts             # white-label registry
-│   │   └── share.ts             # snapshot encode/decode
+│   ├── services/                # sunspec, weather, aiInsights, brand, share
 │   ├── store/useStore.ts        # Zustand
 │   ├── lib/                     # theme, format helpers
 │   ├── types/index.ts           # SolarTelemetry, Brand, SnapshotPayload, ...
 │   └── index.css                # CSS variables, theme overrides
 ├── public/                      # PWA icons, favicon
+├── ios/                         # Swift iOS app + WidgetKit / LiveActivity / Watch (deferred)
+├── android/                     # Kotlin Android app + Glance / Wear OS (deferred)
+├── .factory/missions/           # project missions (store launch deferred)
 ├── vite.config.ts               # PWA manifest, font caching
 └── tailwind.config.ts           # carbon/bone palette
 ```
