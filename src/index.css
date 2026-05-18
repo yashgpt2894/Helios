@@ -246,3 +246,46 @@ body {
 [data-theme='light'] .ring-signal-solar\/40 { --tw-ring-color: rgba(184, 134, 46, 0.5); }
 [data-theme='light'] .ring-bone-700\/40 { --tw-ring-color: rgba(11, 11, 12, 0.18); }
 [data-theme='light'] .ring-signal-alert\/50 { --tw-ring-color: rgba(168, 73, 42, 0.5); }
+
+@layer components {
+  .text-behind {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(5rem, 14vw, 12rem);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-300);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  .text-front {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: var(--text-100);
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 10;
+    margin-top: -0.45em;
+  }
+
+  .dotted-rule {
+    border-top: 1px dashed var(--hairline);
+  }
+
+  .editorial-pad {
+    padding-top: clamp(4rem, 10vh, 8rem);
+    padding-bottom: clamp(4rem, 10vh, 8rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer {
+    animation: none;
+  }
+
+  .flow-dot {
+    animation: none;
+  }
+}
