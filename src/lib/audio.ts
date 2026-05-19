@@ -123,6 +123,36 @@ class AudioEngine {
     }
   }
 
+  adjustHum(powerPercent: number) {
+    if (!this.isHumming || !this.ctx || !this.humGain) return;
+    try {
+      const now = this.ctx.currentTime;
+      const targetVolume = 0.005 + powerPercent * 0.025;
+      this.humGain.gain.cancelScheduledValues(now);
+      this.humGain.gain.setValueAtTime(this.humGain.gain.value, now);
+      this.humGain.gain.linearRampToValueAtTime(targetVolume, now + 0.25);
+
+      const baseFreq = 60 + powerPercent * 10; // range 60Hz to 70Hz
+      if (this.humOscs[0]) {
+        this.humOscs[0].frequency.cancelScheduledValues(now);
+        this.humOscs[0].frequency.setValueAtTime(this.humOscs[0].frequency.value, now);
+        this.humOscs[0].frequency.linearRampToValueAtTime(baseFreq, now + 0.25);
+      }
+      if (this.humOscs[1]) {
+        this.humOscs[1].frequency.cancelScheduledValues(now);
+        this.humOscs[1].frequency.setValueAtTime(this.humOscs[1].frequency.value, now);
+        this.humOscs[1].frequency.linearRampToValueAtTime(baseFreq * 2, now + 0.25);
+      }
+      if (this.humOscs[2]) {
+        this.humOscs[2].frequency.cancelScheduledValues(now);
+        this.humOscs[2].frequency.setValueAtTime(this.humOscs[2].frequency.value, now);
+        this.humOscs[2].frequency.linearRampToValueAtTime(baseFreq * 3, now + 0.25);
+      }
+    } catch (e) {
+      console.warn('Failed to adjust hum:', e);
+    }
+  }
+
   stopHum() {
     if (!this.isHumming || !this.humGain || !this.ctx) return;
     try {

@@ -219,6 +219,45 @@ body {
   .animate-marquee {
     animation: marquee 25s linear infinite;
   }
+
+  /* Animated SVG telemetry flow paths */
+  .telemetry-flow-path {
+    stroke-dasharray: 6 6;
+    animation: flow-dash 1s linear infinite;
+  }
+
+  /* Sweeping conic border glow utility */
+  .glow-border-sweep {
+    position: relative;
+  }
+  
+  .glow-border-sweep::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 40%, var(--signal-solar) 50%, transparent 60%);
+    border-radius: inherit;
+    animation: sweep 8s linear infinite;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.25;
+  }
+
+  @keyframes flow-dash {
+    to {
+      stroke-dashoffset: -12;
+    }
+  }
+
+  @keyframes sweep {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @keyframes marquee {
