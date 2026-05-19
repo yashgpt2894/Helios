@@ -646,7 +646,7 @@ export function Landing() {
                 <h1 className="text-5xl md:text-6xl font-bold font-mono tracking-tighter leading-none uppercase">
                   <span className="text-outline">LOCAL FIRST</span>
                   <br />
-                  <span className="text-shimmer italic font-display lowercase font-normal leading-[0.8] block mb-2">grid telemetry.</span>
+                  <span className="text-shimmer font-extrabold tracking-tight lowercase block mb-1">grid telemetry.</span>
                   <span>SUNSPEC CORE</span>
                 </h1>
               </div>
@@ -710,7 +710,7 @@ export function Landing() {
           <div className="max-w-4xl mx-auto text-center space-y-12">
             <span className="label-cap text-bone-500">Telemetry Philosophy</span>
             <h2 className="text-3xl md:text-5xl font-mono uppercase tracking-tight leading-[1.0] text-bone-100 max-w-2xl mx-auto">
-              Open standards yield <span className="text-shimmer italic font-display lowercase font-normal">absolute sovereign metrics.</span>
+              Open standards yield <span className="text-shimmer font-bold tracking-tight lowercase">absolute sovereign metrics.</span>
             </h2>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 font-mono">

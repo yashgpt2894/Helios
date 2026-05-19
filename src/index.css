@@ -105,7 +105,7 @@ html, body, #root {
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-100);
@@ -160,9 +160,9 @@ body {
   }
 
   .num-display {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-feature-settings: 'tnum' 1, 'ss01' 1;
-    letter-spacing: -0.02em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.04em;
   }
 
   .num-mono {
@@ -320,8 +320,9 @@ body {
 
 @layer components {
   .text-behind {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-size: clamp(5rem, 14vw, 12rem);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(4rem, 12vw, 10rem);
     line-height: 0.85;
     color: transparent;
     -webkit-text-stroke: 1px var(--text-300);
@@ -330,15 +331,15 @@ body {
   }
 
   .text-front {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
     font-size: clamp(1.5rem, 4vw, 3rem);
     line-height: 1.1;
     color: var(--text-100);
     letter-spacing: -0.02em;
     position: relative;
     z-index: 10;
-    margin-top: -0.45em;
+    margin-top: -0.1em;
   }
 
   .dotted-rule {
