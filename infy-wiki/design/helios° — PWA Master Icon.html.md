@@ -1,0 +1,281 @@
+# Helios° — PWA Master Icon
+
+```html
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///Users/yash.gupta03/Downloads/pwa-icon.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>helios° — PWA Master Icon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./helios° — PWA Master Icon_files/css2" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1c1c1e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    font-family: "JetBrains Mono", monospace;
+    color: #efece5;
+    gap: 32px;
+  }
+
+  .header {
+    text-align: center;
+    opacity: 0.7;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .header strong { color: #efece5; opacity: 1; font-weight: 400; }
+  .header .sep { margin: 0 12px; opacity: 0.4; }
+
+  /* The actual icon — 1024 master, displayed scaled to fit screen */
+  .icon-master {
+    width: min(560px, 90vw);
+    aspect-ratio: 1;
+    position: relative;
+  }
+
+  /* Preview row showing different mask shapes */
+  .preview-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .preview .shell {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    background: #0b0b0c;
+  }
+  .preview .shell svg { width: 100%; height: 100%; display: block; }
+  .preview.circle .shell { border-radius: 50%; }
+  .preview.squircle .shell { border-radius: 28%; }
+  .preview.rounded .shell { border-radius: 18%; }
+  .preview.square .shell { border-radius: 0; }
+  .preview .cap {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .footnote {
+    max-width: 560px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.05em;
+    opacity: 0.55;
+  }
+  .footnote a { color: #efece5; }
+
+  .tip {
+    margin-top: 8px;
+    padding: 12px 18px;
+    border: 1px solid rgba(239,236,229,0.15);
+    border-radius: 4px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <strong>helios°</strong>
+    <span class="sep">·</span>
+    PWA Master Icon
+    <span class="sep">·</span>
+    1024 × 1024
+    <span class="sep">·</span>
+    Maskable Safe Zone
+  </div>
+
+  <!-- ===========================================================
+       MASTER ICON — 1024×1024 SVG.
+       Carbon background fills the full square (so it works as
+       maskable). The mark is sized to ~70% of the canvas, well
+       inside the 80% safe zone Progressier / PWA maskables require.
+       =========================================================== -->
+  <div class="icon-master">
+    <svg id="masterIcon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;border-radius:18%;">
+      <defs>
+        <!-- Background gradient — subtle vignette so it doesn't read flat -->
+        <radialgradient id="bgGrad" cx="50%" cy="38%" r="75%">
+          <stop offset="0%" stop-color="#1a1a1c"></stop>
+          <stop offset="60%" stop-color="#0f0f10"></stop>
+          <stop offset="100%" stop-color="#070708"></stop>
+        </radialgradient>
+
+        <!-- Blade gradient — paper to bone, top to bottom -->
+        <lineargradient id="bladeGrad" x1="0" y1="-92" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#f4f1ea"></stop>
+          <stop offset="55%" stop-color="#dcd6c8"></stop>
+          <stop offset="100%" stop-color="#a59f90"></stop>
+        </lineargradient>
+
+        <!-- Iris gradient -->
+        <radialgradient id="irisGrad" cx="50%" cy="32%" r="70%">
+          <stop offset="0%" stop-color="#1d1d1f"></stop>
+          <stop offset="100%" stop-color="#0a0a0b"></stop>
+        </radialgradient>
+
+        <!-- Center node glow -->
+        <radialgradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#f4f1ea"></stop>
+          <stop offset="55%" stop-color="rgba(244,241,234,0.4)"></stop>
+          <stop offset="100%" stop-color="rgba(244,241,234,0)"></stop>
+        </radialgradient>
+
+        <clippath id="ringClip">
+          <circle cx="0" cy="0" r="92"></circle>
+        </clippath>
+
+        <g id="blade">
+          <polygon points="0,-92 78,-46 0,0"></polygon>
+        </g>
+        <g id="bladeEngraving">
+          <line x1="6" y1="-78" x2="62" y2="-44" stroke-width="0.6" stroke-opacity="0.22"></line>
+          <line x1="12" y1="-66" x2="50" y2="-36" stroke-width="0.6" stroke-opacity="0.16"></line>
+          <line x1="18" y1="-54" x2="38" y2="-28" stroke-width="0.6" stroke-opacity="0.10"></line>
+        </g>
+      </defs>
+
+      <!-- Background fills entire 1024 square -->
+      <rect width="1024" height="1024" fill="url(#bgGrad)"></rect>
+
+      <!-- Subtle grain overlay -->
+      <rect width="1024" height="1024" fill="url(#bgGrad)" opacity="0"></rect>
+
+      <!-- Mark group — translated to center, scaled to fit safe zone -->
+      <!-- Safe zone for maskable = inner 80% (819px). Mark diameter ~720px = 70% of canvas. -->
+      <g transform="translate(512 512) scale(3.6)">
+
+        <!-- compass ticks outside main ring -->
+        <g stroke="#efece5" stroke-width="0.8" opacity="0.32">
+          <line x1="0" y1="-104" x2="0" y2="-99"></line>
+          <g transform="rotate(30)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(60)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(90)"><line x1="0" y1="-104" x2="0" y2="-99"></line></g>
+          <g transform="rotate(120)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(150)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(180)"><line x1="0" y1="-104" x2="0" y2="-99"></line></g>
+          <g transform="rotate(210)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(240)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(270)"><line x1="0" y1="-104" x2="0" y2="-99"></line></g>
+          <g transform="rotate(300)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+          <g transform="rotate(330)"><line x1="0" y1="-104" x2="0" y2="-101"></line></g>
+        </g>
+
+        <!-- outer rings -->
+        <circle cx="0" cy="0" r="98" fill="none" stroke="#efece5" stroke-width="0.6" opacity="0.35"></circle>
+        <circle cx="0" cy="0" r="92" fill="none" stroke="#efece5" stroke-width="1.6"></circle>
+
+        <!-- 8 blades, gradient filled -->
+        <g clip-path="url(#ringClip)">
+          <g fill="url(#bladeGrad)" stroke="#efece5" stroke-width="0.4" stroke-linejoin="miter">
+            <use href="#blade"></use>
+            <g transform="rotate(45)"><use href="#blade"></use></g>
+            <g transform="rotate(90)"><use href="#blade"></use></g>
+            <g transform="rotate(135)"><use href="#blade"></use></g>
+            <g transform="rotate(180)"><use href="#blade"></use></g>
+            <g transform="rotate(225)"><use href="#blade"></use></g>
+            <g transform="rotate(270)"><use href="#blade"></use></g>
+            <g transform="rotate(315)"><use href="#blade"></use></g>
+          </g>
+
+          <!-- engraving cuts on blades -->
+          <g stroke="#0b0b0c" fill="none">
+            <use href="#bladeEngraving"></use>
+            <g transform="rotate(45)"><use href="#bladeEngraving"></use></g>
+            <g transform="rotate(90)"><use href="#bladeEngraving"></use></g>
+            <g transform="rotate(135)"><use href="#bladeEngraving"></use></g>
+            <g transform="rotate(180)"><use href="#bladeEngraving"></use></g>
+            <g transform="rotate(225)"><use href="#bladeEngraving"></use></g>
+            <g transform="rotate(270)"><use href="#bladeEngraving"></use></g>
+            <g transform="rotate(315)"><use href="#bladeEngraving"></use></g>
+          </g>
+
+          <!-- radial seam hairlines between blades -->
+          <g stroke="#0b0b0c" stroke-width="0.7" opacity="0.45">
+            <line x1="0" y1="0" x2="0" y2="-92"></line>
+            <g transform="rotate(45)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+            <g transform="rotate(90)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+            <g transform="rotate(135)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+            <g transform="rotate(180)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+            <g transform="rotate(225)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+            <g transform="rotate(270)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+            <g transform="rotate(315)"><line x1="0" y1="0" x2="0" y2="-92"></line></g>
+          </g>
+        </g>
+
+        <!-- inner iris -->
+        <circle cx="0" cy="0" r="26" fill="url(#irisGrad)"></circle>
+        <circle cx="0" cy="0" r="26" fill="none" stroke="#efece5" stroke-width="1.2"></circle>
+        <circle cx="0" cy="0" r="22" fill="none" stroke="#efece5" stroke-width="0.4" opacity="0.5"></circle>
+
+        <!-- center node with glow -->
+        <circle cx="0" cy="0" r="14" fill="url(#nodeGlow)" opacity="0.35"></circle>
+        <circle cx="0" cy="0" r="5" fill="#efece5"></circle>
+        <circle cx="-1.6" cy="-1.8" r="1.4" fill="#0b0b0c" opacity="0.4"></circle>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Preview of how it looks in different OS mask shapes -->
+  <div class="preview-row">
+    <div class="preview circle">
+      <div class="shell">
+        <svg viewBox="0 0 1024 1024"><use href="#masterIcon"></use></svg>
+      </div>
+      <span class="cap">Android · Circle</span>
+    </div>
+    <div class="preview squircle">
+      <div class="shell">
+        <svg viewBox="0 0 1024 1024"><use href="#masterIcon"></use></svg>
+      </div>
+      <span class="cap">iOS · Squircle</span>
+    </div>
+    <div class="preview rounded">
+      <div class="shell">
+        <svg viewBox="0 0 1024 1024"><use href="#masterIcon"></use></svg>
+      </div>
+      <span class="cap">Web · Rounded</span>
+    </div>
+    <div class="preview square">
+      <div class="shell">
+        <svg viewBox="0 0 1024 1024"><use href="#masterIcon"></use></svg>
+      </div>
+      <span class="cap">Raw · Square</span>
+    </div>
+  </div>
+
+  <div class="footnote">
+    Right-click the master icon above → <em>Save Image As…</em> to export the SVG.
+    Drop it straight into Progressier's icon uploader — it'll generate every size,
+    splash screen, and maskable variant automatically.
+  </div>
+
+  <div class="tip">
+    Mark sits at 70% — safely inside the 80% maskable zone
+  </div>
+
+
+
+</body></html>
+```
