@@ -1,0 +1,333 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-09-16T11:39:52+00:00",
+ "title": "Design System: helios°",
+ "extensions": {
+  "colorMeta": {
+   "signal-solar": {
+    "role": "primary",
+    "displayName": "Signal Solar",
+    "canonical": "#f0c674",
+    "tonalRamp": [
+     "#3c321d",
+     "#78633a",
+     "#b49457",
+     "#f0c674",
+     "#f5d9a3",
+     "#f8e6c2",
+     "#fbefd8",
+     "#fcf5e8"
+    ]
+   },
+   "signal-flow": {
+    "role": "secondary",
+    "displayName": "Signal Flow",
+    "canonical": "#7fb069",
+    "tonalRamp": [
+     "#202c1a",
+     "#405834",
+     "#5f844f",
+     "#7fb069",
+     "#aacb9c",
+     "#c7dcbd",
+     "#dbe9d5",
+     "#eaf2e6"
+    ]
+   },
+   "signal-grid": {
+    "role": "secondary",
+    "displayName": "Signal Grid",
+    "canonical": "#5d8aa8",
+    "tonalRamp": [
+     "#17222a",
+     "#2e4554",
+     "#46687e",
+     "#5d8aa8",
+     "#94b1c5",
+     "#b8ccd9",
+     "#d2dee7",
+     "#e4ebf0"
+    ]
+   },
+   "signal-battery": {
+    "role": "secondary",
+    "displayName": "Signal Battery",
+    "canonical": "#c5a572",
+    "tonalRamp": [
+     "#31291c",
+     "#625239",
+     "#947c56",
+     "#c5a572",
+     "#d9c3a2",
+     "#e6d8c1",
+     "#efe6d8",
+     "#f5f0e7"
+    ]
+   },
+   "signal-alert": {
+    "role": "secondary",
+    "displayName": "Signal Alert",
+    "canonical": "#d97757",
+    "tonalRamp": [
+     "#361e16",
+     "#6c3c2c",
+     "#a35941",
+     "#d97757",
+     "#e6a590",
+     "#eec4b6",
+     "#f4d9d0",
+     "#f9e8e3"
+    ]
+   },
+   "carbon-ground": {
+    "role": "neutral",
+    "displayName": "Carbon Ground",
+    "canonical": "#070708",
+    "tonalRamp": [
+     "#070708",
+     "#0b0b0c",
+     "#0f0f10",
+     "#141416",
+     "#1a1a1c",
+     "#1c1c1e",
+     "#2a2a2d",
+     "#3a3a3e"
+    ]
+   },
+   "bone-100": {
+    "role": "neutral",
+    "displayName": "Bone",
+    "canonical": "#efece5",
+    "tonalRamp": [
+     "#544f47",
+     "#7a7568",
+     "#a59f90",
+     "#bdb6a6",
+     "#dcd6c8",
+     "#efece5",
+     "#f4f1ea",
+     "#f8f6f0"
+    ]
+   },
+   "paper-ground": {
+    "role": "neutral",
+    "displayName": "Paper Ground (light theme)",
+    "canonical": "#f4f1ea",
+    "tonalRamp": [
+     "#0b0b0c",
+     "#1a1a1c",
+     "#2a2a2d",
+     "#544f47",
+     "#6b665a",
+     "#a59f90",
+     "#efece5",
+     "#f4f1ea"
+    ]
+   }
+  },
+  "typographyMeta": {
+   "display": {
+    "displayName": "Display",
+    "purpose": "One statement per page; H1 with two-tone second line."
+   },
+   "headline": {
+    "displayName": "Headline",
+    "purpose": "Section openers and the featured insight title."
+   },
+   "numeral": {
+    "displayName": "Numeral",
+    "purpose": "The live kW reading and battery percentage; the brightest element on its view."
+   },
+   "mono": {
+    "displayName": "Mono",
+    "purpose": "Every measured value, register point, delta, clock and fact; tabular figures."
+   },
+   "label": {
+    "displayName": "Label",
+    "purpose": "The app's label-cap: 10px mono uppercase at 0.3em."
+   }
+  },
+  "shadows": [
+   {
+    "name": "surface-raised",
+    "value": "0 24px 48px -16px rgba(0,0,0,0.6), inset 0 1px 0 0 rgba(239,236,229,0.06)",
+    "purpose": "Raised cards: insight card, path nodes, dashboard card (light: 0 12px 28px -12px rgba(11,11,12,0.12), inset 0 1px 0 0 rgba(255,255,255,0.6))."
+   },
+   {
+    "name": "surface-inner",
+    "value": "inset 0 1px 0 0 rgba(239,236,229,0.04)",
+    "purpose": "Flat surfaces; the 1px top highlight that reads as a plate edge."
+   },
+   {
+    "name": "device-frame",
+    "value": "0 48px 96px -32px rgba(0,0,0,0.7), 0 0 0 1px var(--hairline)",
+    "purpose": "The phone frame only."
+   }
+  ],
+  "motion": [
+   {
+    "name": "ease-expo-out",
+    "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "purpose": "The ledger tick: connector redraw and insight swap, 550ms; zero duration under reduced motion."
+   },
+   {
+    "name": "poll-arc",
+    "value": "linear 2000ms forwards",
+    "purpose": "The 14px arc that fills between reads; restarts on every tick; static under reduced motion."
+   },
+   {
+    "name": "flow-dot",
+    "value": "linear 2200ms infinite",
+    "purpose": "The EnergyFlow dots riding offset-path; paused under reduced motion."
+   },
+   {
+    "name": "day-stroke",
+    "value": "scroll-linked pathLength 0→1 between viewport 80% and 20%",
+    "purpose": "The production stroke lights as the field enters; fully drawn under reduced motion."
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "sm",
+    "value": "640px"
+   },
+   {
+    "name": "md",
+    "value": "768px"
+   },
+   {
+    "name": "lg",
+    "value": "1024px"
+   }
+  ]
+ },
+ "components": [
+  {
+   "name": "Primary Button",
+   "kind": "button",
+   "refersTo": "button-primary",
+   "description": "The one action: Open the app. Bone fill, carbon text, pill.",
+   "html": "<a class=\"ds-btn-primary\" href=\"#\">Open the app <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+   "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:8px; height:48px; padding:0 24px; border-radius:9999px; background:var(--text-100, #efece5); color:var(--bg-base, #070708); font: 500 15px/1 'Plus Jakarta Sans', Inter, system-ui, sans-serif; text-decoration:none; transition: opacity .2s; } .ds-btn-primary:hover { opacity:.85; } .ds-btn-primary:focus-visible { outline:2px solid var(--signal-solar, #f0c674); outline-offset:3px; }"
+  },
+  {
+   "name": "Secondary Button",
+   "kind": "button",
+   "refersTo": "button-secondary",
+   "description": "Hairline pill for the second action.",
+   "html": "<a class=\"ds-btn-secondary\" href=\"#\">How it connects</a>",
+   "css": ".ds-btn-secondary { display:inline-flex; align-items:center; height:48px; padding:0 20px; border-radius:9999px; border:1px solid var(--hairline-strong, rgba(239,236,229,0.15)); color:var(--text-200, #dcd6c8); font: 400 15px/1 'Plus Jakarta Sans', Inter, system-ui, sans-serif; text-decoration:none; transition: color .2s, border-color .2s; } .ds-btn-secondary:hover { color:var(--text-100, #efece5); border-color:var(--text-500, #918c7d); } .ds-btn-secondary:focus-visible { outline:2px solid var(--signal-solar, #f0c674); outline-offset:3px; }"
+  },
+  {
+   "name": "Brand Chip",
+   "kind": "chip",
+   "refersTo": "chip",
+   "description": "White-label switcher; a brand dot leads the name; selected fills ground-3.",
+   "html": "<span class=\"ds-chip\"><span class=\"ds-chip-dot\" style=\"background:#f0c674\"></span>helios°</span> <span class=\"ds-chip ds-chip-selected\"><span class=\"ds-chip-dot\" style=\"background:#a78bfa\"></span>Voltcraft</span>",
+   "css": ".ds-chip { display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px; border-radius:9999px; border:1px solid var(--hairline, rgba(239,236,229,0.06)); color:var(--text-300, #bdb6a6); font: 400 12.5px/1 'Plus Jakarta Sans', Inter, system-ui, sans-serif; transition: color .2s, border-color .2s; } .ds-chip:hover { color:var(--text-100, #efece5); border-color:var(--hairline-strong, rgba(239,236,229,0.15)); } .ds-chip-selected { background:var(--bg-3, #141416); border-color:var(--hairline-strong, rgba(239,236,229,0.15)); color:var(--text-100, #efece5); } .ds-chip-dot { width:8px; height:8px; border-radius:9999px; }"
+  },
+  {
+   "name": "Raised Surface",
+   "kind": "card",
+   "refersTo": "card-surface-raised",
+   "description": "The insight card and dashboard card: gradient plate, hairline, offset shadow, 1px inner highlight.",
+   "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Peak production window</h3><p class=\"ds-card-body\">Producing 8.28 kW at 872 W/m². Run high-load appliances now.</p><div class=\"ds-card-foot\"><span class=\"ds-card-metric\">8.28 kW</span><span class=\"ds-card-delta\">+8% vs typical</span></div></div>",
+   "css": ".ds-card { background: linear-gradient(180deg, var(--surface-raised-from, rgba(36,36,39,0.9)) 0%, var(--surface-raised-to, rgba(20,20,22,0.9)) 100%); border:1px solid var(--hairline, rgba(239,236,229,0.06)); border-radius:20px; box-shadow: var(--surface-shadow, 0 24px 48px -16px rgba(0,0,0,0.6), inset 0 1px 0 0 rgba(239,236,229,0.06)); padding:24px; color:var(--text-100, #efece5); max-width:32rem; } .ds-card-title { margin:0; font: 700 1.85rem/1.02 'Plus Jakarta Sans', Inter, system-ui, sans-serif; letter-spacing:-0.03em; text-wrap:balance; } .ds-card-body { margin:16px 0 0; font: 400 16px/1.6 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color:var(--text-300, #bdb6a6); } .ds-card-foot { display:flex; gap:20px; align-items:baseline; margin-top:24px; padding-top:16px; border-top:1px solid var(--hairline, rgba(239,236,229,0.06)); } .ds-card-metric { font: 400 22px/1 'JetBrains Mono', ui-monospace, monospace; font-feature-settings:'tnum' 1,'zero' 1; } .ds-card-delta { font: 400 11px/1 'JetBrains Mono', ui-monospace, monospace; letter-spacing:.3em; text-transform:uppercase; color:var(--text-500, #918c7d); }"
+  },
+  {
+   "name": "Register Row",
+   "kind": "custom",
+   "refersTo": "",
+   "description": "One 48px ledger row: model·point, label, raw register, decoded reading with the change since the last read. Hot rows carry the amber dot and ground-3 fill.",
+   "html": "<ol class=\"ds-ledger\"><li class=\"ds-row ds-row-hot\"><span class=\"ds-row-point\"><span class=\"ds-row-dot\"></span><span><span class=\"ds-row-model\">101·</span>W</span></span><span class=\"ds-row-label\">AC power out</span><span class=\"ds-row-raw\">8 283</span><span class=\"ds-row-reading\"><span>8.28 <small>kW</small></span><span class=\"ds-row-delta\">+0.12</span></span></li><li class=\"ds-row\"><span class=\"ds-row-point\"><span class=\"ds-row-dot\" style=\"background:transparent\"></span><span><span class=\"ds-row-model\">101·</span>Hz</span></span><span class=\"ds-row-label\">Line frequency</span><span class=\"ds-row-raw\">5 998</span><span class=\"ds-row-reading\"><span>59.98 <small>Hz</small></span><span class=\"ds-row-delta\">−0.01</span></span></li></ol>",
+   "css": ".ds-ledger { list-style:none; margin:0; padding:0; border-top:1px solid var(--hairline, rgba(239,236,229,0.06)); border-bottom:1px solid var(--hairline, rgba(239,236,229,0.06)); max-width:480px; } .ds-row { display:grid; grid-template-columns:5.5rem minmax(0,1fr) 2.75rem minmax(0,6.75rem); align-items:center; column-gap:12px; height:48px; padding:0 12px 0 8px; border-top:1px solid var(--hairline, rgba(239,236,229,0.06)); font: 400 11px/1 'JetBrains Mono', ui-monospace, monospace; font-feature-settings:'tnum' 1,'zero' 1; color:var(--text-300, #bdb6a6); transition: background-color .5s; } .ds-row:first-child { border-top:0; } .ds-row-hot { background:var(--bg-3, #141416); color:var(--text-100, #efece5); } .ds-row-point { display:flex; align-items:center; gap:8px; } .ds-row-dot { width:6px; height:6px; border-radius:9999px; background:var(--signal-solar, #f0c674); flex:none; } .ds-row-model { color:var(--text-500, #918c7d); } .ds-row-label { font: 400 12px/1 'Plus Jakarta Sans', Inter, system-ui, sans-serif; color:var(--text-500, #918c7d); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .ds-row-raw { text-align:right; color:var(--text-400, #a59f90); } .ds-row-reading { display:flex; flex-direction:column; align-items:flex-end; gap:4px; font-size:13px; } .ds-row-reading small { font-size:10px; color:var(--text-500, #918c7d); } .ds-row-delta { font-size:10px; color:var(--text-500, #918c7d); }"
+  },
+  {
+   "name": "Icon Control",
+   "kind": "button",
+   "refersTo": "control-icon",
+   "description": "36px hairline circle for the theme toggle; ::after extends the hit area to 52px.",
+   "html": "<button class=\"ds-icon-btn\" aria-label=\"Switch theme\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z\"/></svg></button>",
+   "css": ".ds-icon-btn { position:relative; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:9999px; border:1px solid var(--hairline, rgba(239,236,229,0.06)); background:transparent; color:var(--text-300, #bdb6a6); cursor:pointer; transition: color .2s; } .ds-icon-btn::after { content:''; position:absolute; inset:-8px; } .ds-icon-btn:hover { color:var(--text-100, #efece5); } .ds-icon-btn:focus-visible { outline:2px solid var(--signal-solar, #f0c674); outline-offset:3px; }"
+  },
+  {
+   "name": "Sticky Navigation",
+   "kind": "nav",
+   "refersTo": "",
+   "description": "64px bar: mark + wordmark, section links, theme toggle, compact primary.",
+   "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-brand\"><span class=\"ds-nav-mark\"></span>helios°</span><span class=\"ds-nav-links\"><a href=\"#\">One day</a><a href=\"#\">The instrument</a><a href=\"#\">How it connects</a></span><a class=\"ds-nav-cta\" href=\"#\">Open the app</a></nav>",
+   "css": ".ds-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px; padding:0 32px; background:var(--bg-base, #070708); border-bottom:1px solid var(--hairline, rgba(239,236,229,0.06)); font-family:'Plus Jakarta Sans', Inter, system-ui, sans-serif; } .ds-nav-brand { display:flex; align-items:center; gap:10px; font-size:15px; font-weight:500; letter-spacing:-0.01em; color:var(--text-100, #efece5); } .ds-nav-mark { width:30px; height:30px; border-radius:9999px; background: conic-gradient(from 0deg, var(--signal-solar, #f0c674) 0 12.5%, transparent 12.5% 25%, var(--signal-solar, #f0c674) 25% 37.5%, transparent 37.5% 50%, var(--signal-solar, #f0c674) 50% 62.5%, transparent 62.5% 75%, var(--signal-solar, #f0c674) 75% 87.5%, transparent 87.5%); mask: radial-gradient(circle, transparent 40%, #000 41%); } .ds-nav-links { display:flex; gap:28px; } .ds-nav-links a { font-size:13px; color:var(--text-400, #a59f90); text-decoration:none; transition: color .2s; } .ds-nav-links a:hover { color:var(--text-100, #efece5); } .ds-nav-cta { display:inline-flex; align-items:center; height:36px; padding:0 16px; border-radius:9999px; background:var(--text-100, #efece5); color:var(--bg-base, #070708); font-size:13px; font-weight:500; text-decoration:none; } .ds-nav-cta:hover { opacity:.85; }"
+  },
+  {
+   "name": "Text Input",
+   "kind": "input",
+   "refersTo": "",
+   "description": "The app's Settings field: carbon fill, hairline, 8px radius, mono.",
+   "html": "<input class=\"ds-input\" value=\"192.168.1.42\" aria-label=\"Inverter host\">",
+   "css": ".ds-input { height:36px; padding:0 12px; border-radius:8px; border:1px solid var(--hairline, rgba(239,236,229,0.06)); background: rgba(11,11,12,0.8); color:var(--text-100, #efece5); font: 400 13px/1 'JetBrains Mono', ui-monospace, monospace; transition: border-color .2s; } .ds-input:focus { outline:none; border-color: rgba(84,79,71,0.4); } .ds-input:focus-visible { outline:2px solid var(--signal-solar, #f0c674); outline-offset:3px; }"
+  }
+ ],
+ "narrative": {
+  "northStar": "The Instrument Panel at Night",
+  "overview": "helios° looks like a precision instrument read in low light: a near-black carbon ground, warm bone text, and one amber signal that means \"the sun is doing something\". Density is high but ordered; every measured value is set in tabular JetBrains Mono so columns of numbers line up and a change since the last read is legible at a glance. Display type is Plus Jakarta Sans at 700–800 with tight tracking, used sparingly for one statement per view. The system was established by the app's Dashboard (`/app`) and the landing page inherits it whole; the landing added composition, not identity.\n\nThe world is honest by construction. Demonstration data is labeled simulated; the only colors besides carbon and bone are the five signals (solar, flow, grid, battery, alert), each bound to a physical meaning; nothing is decorated for its own sake. The previous landing's vocabulary — preloader, 3D device, marquee, shimmer text, invented testimonials — is the confirmed anti-reference.",
+  "keyCharacteristics": [
+   "One brightest element per view (the live reading); everything else steps down through bone-200 → bone-500.",
+   "Measured values always in mono with `tnum`; prose never carries a number that the mono column could.",
+   "Amber is a signal, not a theme: it owns exactly one page-scale field (the peak-sun passage) and otherwise appears as dots, arcs and connector strokes.",
+   "A visible 24px dot grid is the armature; ledger rows are 48px (two cells).",
+   "Motion is functional: the two-second poll tick and a scroll-lit day stroke. Nothing is hidden behind an entrance."
+  ],
+  "rules": [
+   {
+    "name": "The One Signal Rule",
+    "body": "Amber appears at page scale exactly once per page (the peak-sun field); everywhere else it is a dot, a 1.25px stroke, or a single word. Its rarity is what makes the field land.",
+    "section": "colors"
+   },
+   {
+    "name": "The Meaning-Bound Hue Rule",
+    "body": "Flow, grid, battery and alert are never used decoratively; a colored element must be about the thing the color names.",
+    "section": "colors"
+   },
+   {
+    "name": "The Field Contrast Rule",
+    "body": "On any brand accent field, body text is ink at ≥76% mix and headlines are pure ink; this holds ≥4.9:1 on all four shipped brands.",
+    "section": "colors"
+   },
+   {
+    "name": "The Measured-Means-Mono Rule",
+    "body": "Any value that came from a register, a clock or a calculation is set in JetBrains Mono with tabular figures; prose never restates it.",
+    "section": "typography"
+   },
+   {
+    "name": "The Tracking Floor Rule",
+    "body": "Display tracking is −0.03em and numerals −0.04em; nothing goes tighter.",
+    "section": "typography"
+   },
+   {
+    "name": "The Plate Not Glow Rule",
+    "body": "Shadows always have a vertical offset and a blur larger than the offset; no symmetric glows, no zero-offset halos.",
+    "section": "elevation"
+   },
+   {
+    "name": "The Hairline Rule",
+    "body": "Dividers are 1px at 6% bone (15% for strong); never a 2px or solid-gray line.",
+    "section": "elevation"
+   }
+  ],
+  "dos": [
+   "Do keep one brightest element per view and step everything else down the bone ramp.",
+   "Do set every measured value in JetBrains Mono with `tnum`, and show change as a signed delta in the same column.",
+   "Do anchor layouts to the 24px dot grid: 48px rows, 24px multiples for internal spacing, 1px hairlines.",
+   "Do use offset + blurred shadows (the Surface raised token) and 1px hairlines for depth; use tonal steps before shadows.",
+   "Do label simulated data in the frame that shows it (\"simulated\", \"Simulated 9.6 kW system\").",
+   "Do respect `prefers-reduced-motion`: the final state is static and stepping is manual."
+  ],
+  "donts": [
+   "Don't use signal hues decoratively; each of flow/grid/battery/alert must name the thing it colors.",
+   "Don't put amber on more than one page-scale region per page.",
+   "Don't use gradient text, glass or blur as decoration, glyph icons in place of the aperture mark, or a preloader.",
+   "Don't invent claims: no testimonials, customer names, counts, benchmarks, prices or store badges (the honest maximum is \"iOS and Android apps are in development\").",
+   "Don't set body text wider than ~34rem or display tracking tighter than −0.04em."
+  ]
+ }
+}

@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -81,7 +83,7 @@
   --grid-dot: rgba(11, 11, 12, 0.05);
 
   --signal-solar: #b8862e;
-  --signal-flow: #4f7c4a;
+  --signal-flow: #467142;
   --signal-grid: #3d6584;
   --signal-battery: #856b32;
   --signal-alert: #a8492a;
@@ -179,92 +181,12 @@ body {
     border: 1px solid var(--hairline);
   }
 
-  .text-shimmer {
-    background: linear-gradient(90deg, var(--text-400) 0%, var(--signal-solar) 50%, var(--text-400) 100%);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 3s linear infinite;
-  }
-
   .aurora {
     background:
       radial-gradient(ellipse 80% 50% at 50% -10%, var(--aurora-top), transparent 60%),
       radial-gradient(ellipse 60% 40% at 50% 110%, var(--aurora-bottom), transparent 60%);
   }
-
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-
-  .text-outline {
-    -webkit-text-stroke: 1px var(--text-500);
-    color: transparent;
-  }
-
-  .text-outline-strong {
-    -webkit-text-stroke: 1.5px var(--text-100);
-    color: transparent;
-  }
-
-  .animate-marquee {
-    animation: marquee 25s linear infinite;
-  }
-
-  /* Animated SVG telemetry flow paths */
-  .telemetry-flow-path {
-    stroke-dasharray: 6 6;
-    animation: flow-dash 1s linear infinite;
-  }
-
-  /* Sweeping conic border glow utility */
-  .glow-border-sweep {
-    position: relative;
-  }
-  
-  .glow-border-sweep::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: conic-gradient(from 0deg at 50% 50%, transparent 40%, var(--signal-solar) 50%, transparent 60%);
-    border-radius: inherit;
-    animation: sweep 8s linear infinite;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: xor;
-    pointer-events: none;
-    z-index: 10;
-    opacity: 0.25;
-  }
-
-  @keyframes flow-dash {
-    to {
-      stroke-dashoffset: -12;
-    }
-  }
-
-  @keyframes sweep {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 }
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
 
 [data-theme='light'] .bg-carbon-950 { background-color: var(--bg-base); }
 [data-theme='light'] .bg-carbon-900 { background-color: var(--bg-1); }
@@ -318,46 +240,126 @@ body {
 [data-theme='light'] .ring-bone-700\/40 { --tw-ring-color: rgba(11, 11, 12, 0.18); }
 [data-theme='light'] .ring-signal-alert\/50 { --tw-ring-color: rgba(168, 73, 42, 0.5); }
 
+@media (prefers-reduced-motion: reduce) {
+  .flow-dot {
+    animation: none;
+  }
+}
+
 @layer components {
-  .text-behind {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    font-size: clamp(4rem, 12vw, 10rem);
-    line-height: 0.85;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--text-300);
-    letter-spacing: -0.04em;
-    user-select: none;
-  }
-
-  .text-front {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  .display {
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
     font-weight: 700;
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    line-height: 1.1;
-    color: var(--text-100);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .lp {
+    /* Landing-only lift of the quietest text token so 10–13px labels clear 4.5:1
+       on every landing surface (base, bg-3, raised gradient top). The app keeps its own value. */
+    --text-500: #918c7d;
+    /* The 24px dot grid is the landing's visible armature, so its dots sit above texture level. */
+    --grid-dot: rgba(239, 236, 229, 0.1);
+  }
+
+  :root[data-theme='light'] .lp {
+    --text-500: #6b665a;
+    --grid-dot: rgba(11, 11, 12, 0.11);
+  }
+
+  /* The connector language: 2px dash, 5px gap, one hairline, in the signal color. */
+  .dash-h {
+    height: 1px;
+    background-image: repeating-linear-gradient(90deg, var(--signal-solar) 0 2px, transparent 2px 7px);
+  }
+
+  .dash-v {
+    width: 1px;
+    background-image: repeating-linear-gradient(180deg, var(--signal-solar) 0 2px, transparent 2px 7px);
+  }
+
+  .lp :focus-visible {
+    outline: 2px solid var(--signal-solar);
+    outline-offset: 3px;
+  }
+
+  /* Hit-area expansion for compact controls: visual stays small, target reaches 44px. */
+  .tap,
+  .tap-lg {
     position: relative;
-    z-index: 10;
-    margin-top: -0.1em;
   }
 
-  .dotted-rule {
-    border-top: 1px dashed var(--hairline);
+  .tap::after,
+  .tap-lg::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
   }
 
-  .editorial-pad {
-    padding-top: clamp(4rem, 10vh, 8rem);
-    padding-bottom: clamp(4rem, 10vh, 8rem);
+  .tap-lg::after {
+    inset: -12px;
+  }
+
+  .lp ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-text);
+  }
+
+  .lp a,
+  .lp button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .field {
+    background: var(--field);
+    color: var(--on-field);
+    --field-ink-2: color-mix(in srgb, var(--on-field) 76%, var(--field));
+    --field-ink-3: color-mix(in srgb, var(--on-field) 58%, var(--field));
+    --field-line: color-mix(in srgb, var(--on-field) 20%, var(--field));
+    --field-wash: color-mix(in srgb, var(--on-field) 7%, var(--field));
+    --field-wash-strong: color-mix(in srgb, var(--on-field) 12%, var(--field));
+  }
+
+  .field ::selection {
+    background: var(--on-field);
+    color: var(--field);
+  }
+
+  .field :focus-visible {
+    outline-color: var(--on-field);
+  }
+
+  .poll-arc {
+    animation: poll-arc 2s linear forwards;
+  }
+
+  @keyframes poll-arc {
+    from { stroke-dashoffset: var(--circ); }
+    to { stroke-dashoffset: 0; }
+  }
+
+  .row-hot {
+    background: var(--bg-3);
+  }
+
+  .phone-frame {
+    box-shadow: 0 48px 96px -32px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--hairline);
+  }
+
+  :root[data-theme='light'] .phone-frame {
+    box-shadow: 0 32px 64px -28px rgba(11, 11, 12, 0.35), 0 0 0 1px var(--hairline-strong);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .text-shimmer {
+  .poll-arc {
     animation: none;
+    stroke-dashoffset: 0;
   }
 
-  .flow-dot {
+  .lp .animate-flow,
+  .lp .animate-pulse-soft {
     animation: none;
   }
 }

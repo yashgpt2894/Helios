@@ -30,6 +30,33 @@ export default {
           grid: '#5d8aa8',
           battery: '#c5a572',
           alert: '#d97757'
+        },
+        ink: {
+          100: 'var(--text-100)',
+          200: 'var(--text-200)',
+          300: 'var(--text-300)',
+          400: 'var(--text-400)',
+          500: 'var(--text-500)',
+          600: 'var(--text-600)'
+        },
+        ground: {
+          base: 'var(--bg-base)',
+          1: 'var(--bg-1)',
+          2: 'var(--bg-2)',
+          3: 'var(--bg-3)',
+          4: 'var(--bg-4)',
+          6: 'var(--bg-6)'
+        },
+        line: {
+          DEFAULT: 'var(--hairline)',
+          strong: 'var(--hairline-strong)'
+        },
+        sig: {
+          solar: 'var(--signal-solar)',
+          flow: 'var(--signal-flow)',
+          grid: 'var(--signal-grid)',
+          battery: 'var(--signal-battery)',
+          alert: 'var(--signal-alert)'
         }
       },
       fontFamily: {

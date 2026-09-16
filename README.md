@@ -40,7 +40,7 @@ It is **mobile-first but renders cleanly on desktop browsers** — the app shell
 
 | Path                | Purpose                                                                 |
 |---------------------|-------------------------------------------------------------------------|
-| `/`                 | Marketing landing page — hero, features, CTA.                           |
+| `/`                 | Landing page — live register→insight ledger, one simulated day, the app on demo data. |
 | `/app`              | Full PWA experience (dashboard, production, insights, battery, settings). |
 | `/share/:payload`   | Read-only shared snapshot — `:payload` is base64url JSON, decoded client-side. |
 
