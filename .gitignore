@@ -5,3 +5,7 @@ dist-ssr
 *.local
 .vite
 .env
+
+# Development-only design evidence (captures, build state). The brief and DESIGN.md sidecar stay tracked.
+.impeccable/review/
+.impeccable/build/

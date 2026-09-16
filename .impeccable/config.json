@@ -1,0 +1,62 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/landing.css"
+        ],
+        "createdAt": "2026-09-16T14:30:59.994Z",
+        "reason": "The sheet ramp is documented as fluid clamps in DESIGN.md typography; the detector reads clamp endpoints as off-ramp, which a clamp-based ramp cannot express."
+      },
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-16T14:31:00.162Z",
+        "reason": "Incumbent app body face, unchanged by this work; DESIGN.md scopes the .pc landing sheet only."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "plus jakarta sans",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-16T14:31:00.247Z",
+        "reason": "Incumbent app body face, unchanged by this work; DESIGN.md scopes the .pc landing sheet only."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "jetbrains mono",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-16T14:31:00.330Z",
+        "reason": "Incumbent app technical face (.num-mono); the app system is documented separately from the landing sheet."
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-16T14:31:00.411Z",
+        "reason": "App surface radii (3px scrollbar, 18px and 20px panels), outside the landing sheet square-corner system."
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-09-16T14:31:09.456Z",
+        "reason": "The app's .label-cap is a 10px tracked-caps label device owned by the app system; the landing DESIGN.md does not govern src/index.css."
+      }
+    ]
+  }
+}

@@ -27,6 +27,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // The two dashboard captures in public/ are referenced nowhere in src/, so a visitor who
+        // installs the app must not precache ~1 MB of them. They stay deployed, just not precached.
+        globIgnores: ['**/mobile-dashboard-*.png'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,

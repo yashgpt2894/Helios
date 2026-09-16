@@ -1,0 +1,1371 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T14:23:46Z",
+  "title": "Design System: helios\u00b0 landing sheet",
+  "extensions": {
+    "colorMeta": {
+      "field": {
+        "role": "primary",
+        "displayName": "Sheeting Yellow",
+        "canonical": "#efc400",
+        "oklch": "oklch(83.4% 0.171 92.8)",
+        "tonalRamp": [
+          "#120a00",
+          "#2f2400",
+          "#514000",
+          "#755f01",
+          "#9c7f00",
+          "#c5a106",
+          "#f0c503",
+          "#ffeeb9"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-field": {
+        "role": "primary",
+        "displayName": "Night Field",
+        "canonical": "#0a0a0b",
+        "oklch": "oklch(14.5% 0.002 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeef0"
+        ],
+        "state": "headlamp"
+      },
+      "field-2": {
+        "role": "primary",
+        "displayName": "Sheeting Yellow, Shaded",
+        "canonical": "#e5bb00",
+        "oklch": "oklch(80.6% 0.165 92.5)",
+        "tonalRamp": [
+          "#120a00",
+          "#2f2400",
+          "#514000",
+          "#755f00",
+          "#9d7f00",
+          "#c5a104",
+          "#efc521",
+          "#ffeeb9"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-field-2": {
+        "role": "primary",
+        "displayName": "Night Field, Raised",
+        "canonical": "#0f0f10",
+        "oklch": "oklch(16.9% 0.002 286.2)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeef0"
+        ],
+        "state": "headlamp"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Silkscreen Black",
+        "canonical": "#14120a",
+        "oklch": "oklch(18.2% 0.016 95.8)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251c",
+          "#444239",
+          "#646157",
+          "#858278",
+          "#a8a59a",
+          "#ccc9be",
+          "#f1efe3"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-ink": {
+        "role": "neutral",
+        "displayName": "Blaze Bone",
+        "canonical": "#f4f1ea",
+        "oklch": "oklch(95.9% 0.010 87.5)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272520",
+          "#44423c",
+          "#63615b",
+          "#85827c",
+          "#a8a59e",
+          "#ccc9c2",
+          "#f1eee7"
+        ],
+        "state": "headlamp"
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Printed Grey",
+        "canonical": "#463f2a",
+        "oklch": "oklch(36.9% 0.035 91.8)",
+        "tonalRamp": [
+          "#100a00",
+          "#2b2510",
+          "#49422c",
+          "#68614b",
+          "#8a826b",
+          "#ada58d",
+          "#d1c9b0",
+          "#f7eed5"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-ink-2": {
+        "role": "neutral",
+        "displayName": "Bone, Printed",
+        "canonical": "#dcd6c8",
+        "oklch": "oklch(87.7% 0.020 87.5)",
+        "tonalRamp": [
+          "#0f0b03",
+          "#29251a",
+          "#464236",
+          "#666155",
+          "#878275",
+          "#aaa597",
+          "#cfc9bb",
+          "#f4eee0"
+        ],
+        "state": "headlamp"
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "#524a2f",
+        "oklch": "oklch(41.0% 0.043 93.5)",
+        "tonalRamp": [
+          "#110a00",
+          "#2c240a",
+          "#4a4227",
+          "#696145",
+          "#8b8265",
+          "#aea587",
+          "#d2c9aa",
+          "#f8efcf"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-ink-3": {
+        "role": "neutral",
+        "displayName": "Bone, Faded",
+        "canonical": "#a59f90",
+        "oklch": "oklch(70.3% 0.022 88.8)",
+        "tonalRamp": [
+          "#0f0b02",
+          "#292518",
+          "#474235",
+          "#666153",
+          "#888273",
+          "#aba596",
+          "#cfc9b9",
+          "#f4eede"
+        ],
+        "state": "headlamp"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule Black",
+        "canonical": "#14120a",
+        "oklch": "oklch(18.2% 0.016 95.8)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251c",
+          "#444239",
+          "#646157",
+          "#858278",
+          "#a8a59a",
+          "#ccc9be",
+          "#f1efe3"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-rule": {
+        "role": "neutral",
+        "displayName": "Rule Bone",
+        "canonical": "#f4f1ea",
+        "oklch": "oklch(95.9% 0.010 87.5)",
+        "tonalRamp": [
+          "#0d0b07",
+          "#272520",
+          "#44423c",
+          "#63615b",
+          "#85827c",
+          "#a8a59e",
+          "#ccc9c2",
+          "#f1eee7"
+        ],
+        "state": "headlamp"
+      },
+      "rule-quiet": {
+        "role": "neutral",
+        "displayName": "Ink Wash",
+        "canonical": "rgba(20, 18, 10, 0.24)",
+        "tonalRamp": [
+          "rgba(20, 18, 10, 0.08)",
+          "rgba(20, 18, 10, 0.20)",
+          "rgba(20, 18, 10, 0.32)",
+          "rgba(20, 18, 10, 0.44)",
+          "rgba(20, 18, 10, 0.56)",
+          "rgba(20, 18, 10, 0.68)",
+          "rgba(20, 18, 10, 0.80)",
+          "rgba(20, 18, 10, 0.92)"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-rule-quiet": {
+        "role": "neutral",
+        "displayName": "Ink Wash, Night",
+        "canonical": "rgba(239, 236, 229, 0.16)",
+        "tonalRamp": [
+          "rgba(239, 236, 229, 0.08)",
+          "rgba(239, 236, 229, 0.20)",
+          "rgba(239, 236, 229, 0.32)",
+          "rgba(239, 236, 229, 0.44)",
+          "rgba(239, 236, 229, 0.56)",
+          "rgba(239, 236, 229, 0.68)",
+          "rgba(239, 236, 229, 0.80)",
+          "rgba(239, 236, 229, 0.92)"
+        ],
+        "state": "headlamp"
+      },
+      "blaze": {
+        "role": "tertiary",
+        "displayName": "Daylight Blaze",
+        "canonical": "rgba(255, 249, 214, 0.62)",
+        "tonalRamp": [
+          "rgba(255, 249, 214, 0.08)",
+          "rgba(255, 249, 214, 0.20)",
+          "rgba(255, 249, 214, 0.32)",
+          "rgba(255, 249, 214, 0.44)",
+          "rgba(255, 249, 214, 0.56)",
+          "rgba(255, 249, 214, 0.68)",
+          "rgba(255, 249, 214, 0.80)",
+          "rgba(255, 249, 214, 0.92)"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-blaze": {
+        "role": "tertiary",
+        "displayName": "Headlamp Blaze",
+        "canonical": "rgba(245, 197, 24, 0.18)",
+        "tonalRamp": [
+          "rgba(245, 197, 24, 0.08)",
+          "rgba(245, 197, 24, 0.20)",
+          "rgba(245, 197, 24, 0.32)",
+          "rgba(245, 197, 24, 0.44)",
+          "rgba(245, 197, 24, 0.56)",
+          "rgba(245, 197, 24, 0.68)",
+          "rgba(245, 197, 24, 0.80)",
+          "rgba(245, 197, 24, 0.92)"
+        ],
+        "state": "headlamp"
+      },
+      "plate": {
+        "role": "secondary",
+        "displayName": "Plate Black",
+        "canonical": "#14120a",
+        "oklch": "oklch(18.2% 0.016 95.8)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251c",
+          "#444239",
+          "#646157",
+          "#858278",
+          "#a8a59a",
+          "#ccc9be",
+          "#f1efe3"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-plate": {
+        "role": "secondary",
+        "displayName": "Plate Black, Night",
+        "canonical": "#121215",
+        "oklch": "oklch(18.4% 0.006 285.8)",
+        "tonalRamp": [
+          "#0b0b0e",
+          "#252528",
+          "#414245",
+          "#616165",
+          "#828286",
+          "#a4a4a9",
+          "#c8c9cd",
+          "#eeeef2"
+        ],
+        "state": "headlamp"
+      },
+      "plate-ink": {
+        "role": "secondary",
+        "displayName": "Retro Amber",
+        "canonical": "#f6d64a",
+        "oklch": "oklch(87.9% 0.156 96.0)",
+        "tonalRamp": [
+          "#110a00",
+          "#2e2400",
+          "#4f4100",
+          "#736000",
+          "#998102",
+          "#c1a300",
+          "#e8c837",
+          "#ffefae"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-plate-ink": {
+        "role": "secondary",
+        "displayName": "Lamp Amber",
+        "canonical": "#f5c518",
+        "oklch": "oklch(84.2% 0.168 90.4)",
+        "tonalRamp": [
+          "#120a00",
+          "#2f2300",
+          "#524000",
+          "#775e01",
+          "#9f7e00",
+          "#c8a006",
+          "#f3c312",
+          "#ffeebe"
+        ],
+        "state": "headlamp"
+      },
+      "plate-ink-2": {
+        "role": "secondary",
+        "displayName": "Amber Print, Dimmed",
+        "canonical": "#c9b478",
+        "oklch": "oklch(77.4% 0.082 90.9)",
+        "tonalRamp": [
+          "#120a00",
+          "#302300",
+          "#524000",
+          "#735f23",
+          "#958146",
+          "#b8a368",
+          "#ddc88b",
+          "#ffeebc"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-plate-ink-2": {
+        "role": "secondary",
+        "displayName": "Amber Print, Dimmed (Night)",
+        "canonical": "#bdb6a6",
+        "oklch": "oklch(77.8% 0.024 87.2)",
+        "tonalRamp": [
+          "#0f0a02",
+          "#2a2418",
+          "#474134",
+          "#676152",
+          "#888273",
+          "#aba495",
+          "#d0c9b8",
+          "#f5eedd"
+        ],
+        "state": "headlamp"
+      },
+      "plate-rule": {
+        "role": "secondary",
+        "displayName": "Plate Hairline",
+        "canonical": "rgba(246, 214, 74, 0.34)",
+        "tonalRamp": [
+          "rgba(246, 214, 74, 0.08)",
+          "rgba(246, 214, 74, 0.20)",
+          "rgba(246, 214, 74, 0.32)",
+          "rgba(246, 214, 74, 0.44)",
+          "rgba(246, 214, 74, 0.56)",
+          "rgba(246, 214, 74, 0.68)",
+          "rgba(246, 214, 74, 0.80)",
+          "rgba(246, 214, 74, 0.92)"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-plate-rule": {
+        "role": "secondary",
+        "displayName": "Plate Hairline, Night",
+        "canonical": "rgba(245, 197, 24, 0.28)",
+        "tonalRamp": [
+          "rgba(245, 197, 24, 0.08)",
+          "rgba(245, 197, 24, 0.20)",
+          "rgba(245, 197, 24, 0.32)",
+          "rgba(245, 197, 24, 0.44)",
+          "rgba(245, 197, 24, 0.56)",
+          "rgba(245, 197, 24, 0.68)",
+          "rgba(245, 197, 24, 0.80)",
+          "rgba(245, 197, 24, 0.92)"
+        ],
+        "state": "headlamp"
+      },
+      "danger": {
+        "role": "tertiary",
+        "displayName": "Danger Red",
+        "canonical": "#c8102e",
+        "oklch": "oklch(53.0% 0.207 22.3)",
+        "tonalRamp": [
+          "#220000",
+          "#4e0008",
+          "#800017",
+          "#b80026",
+          "#e43845",
+          "#ff7172",
+          "#feb2af",
+          "#fee9e7"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-danger": {
+        "role": "tertiary",
+        "displayName": "Danger Red, Night",
+        "canonical": "#d9302f",
+        "oklch": "oklch(57.9% 0.205 26.7)",
+        "tonalRamp": [
+          "#220000",
+          "#4e0002",
+          "#81000a",
+          "#b80013",
+          "#e33b38",
+          "#ff7368",
+          "#feb3aa",
+          "#fee9e6"
+        ],
+        "state": "headlamp"
+      },
+      "danger-ink": {
+        "role": "tertiary",
+        "displayName": "Reversed White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-danger-ink": {
+        "role": "tertiary",
+        "displayName": "Reversed White, Night",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "state": "headlamp"
+      },
+      "warning": {
+        "role": "tertiary",
+        "displayName": "Warning Orange",
+        "canonical": "#e2711d",
+        "oklch": "oklch(66.9% 0.165 50.6)",
+        "tonalRamp": [
+          "#1d0200",
+          "#401800",
+          "#6a2e00",
+          "#994600",
+          "#ca5f00",
+          "#f48134",
+          "#ffb68d",
+          "#feeadf"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-warning": {
+        "role": "tertiary",
+        "displayName": "Warning Orange, Night",
+        "canonical": "#f08a24",
+        "oklch": "oklch(72.9% 0.162 58.8)",
+        "tonalRamp": [
+          "#1a0400",
+          "#3c1b00",
+          "#653300",
+          "#914d00",
+          "#c06901",
+          "#ed8820",
+          "#ffb87f",
+          "#feeadb"
+        ],
+        "state": "headlamp"
+      },
+      "warning-ink": {
+        "role": "tertiary",
+        "displayName": "Reversed Black",
+        "canonical": "#14120a",
+        "oklch": "oklch(18.2% 0.016 95.8)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251c",
+          "#444239",
+          "#646157",
+          "#858278",
+          "#a8a59a",
+          "#ccc9be",
+          "#f1efe3"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-warning-ink": {
+        "role": "tertiary",
+        "displayName": "Reversed Black, Night",
+        "canonical": "#0a0a0b",
+        "oklch": "oklch(14.5% 0.002 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeef0"
+        ],
+        "state": "headlamp"
+      },
+      "caution": {
+        "role": "tertiary",
+        "displayName": "Caution Ground",
+        "canonical": "#14120a",
+        "oklch": "oklch(18.2% 0.016 95.8)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251c",
+          "#444239",
+          "#646157",
+          "#858278",
+          "#a8a59a",
+          "#ccc9be",
+          "#f1efe3"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-caution": {
+        "role": "tertiary",
+        "displayName": "Caution Ground, Night",
+        "canonical": "#f5c518",
+        "oklch": "oklch(84.2% 0.168 90.4)",
+        "tonalRamp": [
+          "#120a00",
+          "#2f2300",
+          "#524000",
+          "#775e01",
+          "#9f7e00",
+          "#c8a006",
+          "#f3c312",
+          "#ffeebe"
+        ],
+        "state": "headlamp"
+      },
+      "caution-ink": {
+        "role": "tertiary",
+        "displayName": "Caution Yellow",
+        "canonical": "#efc400",
+        "oklch": "oklch(83.4% 0.171 92.8)",
+        "tonalRamp": [
+          "#120a00",
+          "#2f2400",
+          "#514000",
+          "#755f01",
+          "#9c7f00",
+          "#c5a106",
+          "#f0c503",
+          "#ffeeb9"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-caution-ink": {
+        "role": "tertiary",
+        "displayName": "Caution Word, Night",
+        "canonical": "#0a0a0b",
+        "oklch": "oklch(14.5% 0.002 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeef0"
+        ],
+        "state": "headlamp"
+      },
+      "notice": {
+        "role": "tertiary",
+        "displayName": "Notice Blue",
+        "canonical": "#0b5da7",
+        "oklch": "oklch(47.6% 0.138 252.4)",
+        "tonalRamp": [
+          "#000a25",
+          "#00254c",
+          "#00427d",
+          "#1462ad",
+          "#3c85d2",
+          "#60a9f9",
+          "#a3cdfe",
+          "#e3f0ff"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-notice": {
+        "role": "tertiary",
+        "displayName": "Notice Blue, Night",
+        "canonical": "#2f72ce",
+        "oklch": "oklch(55.8% 0.158 257.3)",
+        "tonalRamp": [
+          "#00052f",
+          "#002255",
+          "#003e8a",
+          "#195eb8",
+          "#3e81df",
+          "#67a6ff",
+          "#a8cbff",
+          "#e5efff"
+        ],
+        "state": "headlamp"
+      },
+      "notice-ink": {
+        "role": "tertiary",
+        "displayName": "Notice White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-notice-ink": {
+        "role": "tertiary",
+        "displayName": "Notice White, Night",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "state": "headlamp"
+      },
+      "guide": {
+        "role": "tertiary",
+        "displayName": "Safety Green",
+        "canonical": "#146b3a",
+        "oklch": "oklch(46.6% 0.111 152.9)",
+        "tonalRamp": [
+          "#001103",
+          "#002e13",
+          "#005027",
+          "#1f7341",
+          "#469562",
+          "#6ab983",
+          "#8fdfa7",
+          "#c7ffd5"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-guide": {
+        "role": "tertiary",
+        "displayName": "Safety Green, Night",
+        "canonical": "#1e8e54",
+        "oklch": "oklch(57.2% 0.132 154.8)",
+        "tonalRamp": [
+          "#001103",
+          "#002e16",
+          "#00502a",
+          "#027541",
+          "#2e995e",
+          "#57bd80",
+          "#7de2a3",
+          "#c5ffd7"
+        ],
+        "state": "headlamp"
+      },
+      "guide-ink": {
+        "role": "tertiary",
+        "displayName": "Guide White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-guide-ink": {
+        "role": "tertiary",
+        "displayName": "Guide Ink, Night",
+        "canonical": "#0a0a0b",
+        "oklch": "oklch(14.5% 0.002 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeef0"
+        ],
+        "state": "headlamp"
+      },
+      "solar": {
+        "role": "tertiary",
+        "displayName": "Solar Amber",
+        "canonical": "#f0c674",
+        "oklch": "oklch(84.6% 0.111 82.9)",
+        "tonalRamp": [
+          "#140800",
+          "#322200",
+          "#563d00",
+          "#7d5b00",
+          "#a37b24",
+          "#c79e4c",
+          "#edc371",
+          "#ffecca"
+        ],
+        "state": "daylight"
+      },
+      "flow": {
+        "role": "tertiary",
+        "displayName": "Flow Green",
+        "canonical": "#7fb069",
+        "oklch": "oklch(70.5% 0.112 136.5)",
+        "tonalRamp": [
+          "#001000",
+          "#0e2d00",
+          "#224e02",
+          "#416f2a",
+          "#62924c",
+          "#84b56e",
+          "#a7da91",
+          "#cfffbb"
+        ],
+        "state": "daylight"
+      },
+      "grid": {
+        "role": "tertiary",
+        "displayName": "Grid Blue",
+        "canonical": "#5d8aa8",
+        "oklch": "oklch(61.3% 0.067 238.5)",
+        "tonalRamp": [
+          "#000d1c",
+          "#00283f",
+          "#194762",
+          "#3a6783",
+          "#5b88a6",
+          "#7eaccb",
+          "#a1d0f0",
+          "#dff2ff"
+        ],
+        "state": "daylight"
+      },
+      "battery": {
+        "role": "tertiary",
+        "displayName": "Battery Tan",
+        "canonical": "#c5a572",
+        "oklch": "oklch(73.9% 0.077 78.8)",
+        "tonalRamp": [
+          "#150800",
+          "#342100",
+          "#583c02",
+          "#795c29",
+          "#9b7d4b",
+          "#bfa06d",
+          "#e5c490",
+          "#ffeccf"
+        ],
+        "state": "daylight"
+      },
+      "mark-ink": {
+        "role": "tertiary",
+        "displayName": "Mark Ink",
+        "canonical": "#14120a",
+        "oklch": "oklch(18.2% 0.016 95.8)",
+        "tonalRamp": [
+          "#0d0b05",
+          "#27251c",
+          "#444239",
+          "#646157",
+          "#858278",
+          "#a8a59a",
+          "#ccc9be",
+          "#f1efe3"
+        ],
+        "state": "daylight"
+      },
+      "headlamp-mark-ink": {
+        "role": "tertiary",
+        "displayName": "Mark Ink, Night",
+        "canonical": "#0a0a0b",
+        "oklch": "oklch(14.5% 0.002 286.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#252526",
+          "#424243",
+          "#616162",
+          "#828283",
+          "#a5a5a6",
+          "#c9c9ca",
+          "#eeeef0"
+        ],
+        "state": "headlamp"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The single h1 line of field 01. Nothing else reaches this size."
+      },
+      "statement": {
+        "displayName": "Statement",
+        "purpose": "The second sentence of the first viewport, under the h1."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The six field titles; one per field."
+      },
+      "plate-state": {
+        "displayName": "Plate State",
+        "purpose": "The inverter's own word (NIGHT, STANDBY, PRODUCING, CURTAILED) inside the instrument plate."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The one explanatory paragraph of the sheet, capped at 58ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Label-tile prose, operating steps and the honest list; 66ch."
+      },
+      "note": {
+        "displayName": "Note",
+        "purpose": "Caveats and the simulated-data disclosures, in the quietest ink."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field ids, tags, hour stamps, notice deltas, unit lines. The sheet's smallest type at 12px."
+      },
+      "measurement": {
+        "displayName": "Measurement",
+        "purpose": "Readouts in Plate Mono with tabular figures: kW, kWh, V, A, \u00b0C, clock stamps."
+      }
+    },
+    "shadows": [
+      {
+        "name": "amendment-contact",
+        "value": "0 3px 7px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.24)",
+        "purpose": "The system's only elevation shadow. Used once, on the amendment sticker in field 01, because the sticker is pasted over the printed sheet."
+      },
+      {
+        "name": "brand-ring",
+        "value": "inset 0 0 0 2px #14120a (daylight) / inset 0 0 0 2px #f4f1ea (headlamp, via var(--pc-ink))",
+        "purpose": "Inset printed ring on the label sheet's brand swatch marks and on the issuer strip's brand flag stripe, so a supplied accent keeps an edge against the field."
+      },
+      {
+        "name": "chip-keyline",
+        "value": "inset 0 0 0 1px rgba(20, 18, 10, 0.24)",
+        "purpose": "Inset hairline ring around the label sheet id chips (L-01). A printed stroke, not elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "pc-ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The sheet's single easing curve: button colour flips (160ms), the position rule's name fade (220ms), the blaze layer's transition (420ms)."
+      },
+      {
+        "name": "ballistics-spring",
+        "value": "stiffness 210 \u00b7 damping 26 \u00b7 frame-clamped dt <= 0.05s",
+        "purpose": "Every moving reading on the plate, the band and the conductor rows is integrated as a spring so it leans and overshoots once, like a needle (src/hooks/useBallistics.ts). Settles inside 0.0006 and stops the rAF loop."
+      },
+      {
+        "name": "blaze-follow",
+        "value": "--pc-lamp-x / --pc-lamp-y written from pointermove, throttled by requestAnimationFrame",
+        "purpose": "The retroreflective response of the sheeting. Decorative only."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Springs are set instantly, the blaze layer stops following the pointer, transitions collapse to 0.001ms and smooth scroll is disabled. Content is unchanged."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sheet-mobile-density",
+        "value": "max-width: 719px"
+      },
+      {
+        "name": "string-row-grid",
+        "value": "min-width: 720px"
+      },
+      {
+        "name": "notice-columns",
+        "value": "min-width: 760px"
+      },
+      {
+        "name": "totals-four-columns",
+        "value": "min-width: 780px"
+      },
+      {
+        "name": "steps-three-columns",
+        "value": "min-width: 800px"
+      },
+      {
+        "name": "danger-columns",
+        "value": "min-width: 820px"
+      },
+      {
+        "name": "honest-two-columns",
+        "value": "min-width: 900px"
+      },
+      {
+        "name": "hero-two-columns",
+        "value": "min-width: 1040px"
+      },
+      {
+        "name": "labels-twelve-columns",
+        "value": "min-width: 1080px"
+      },
+      {
+        "name": "labels-two-columns",
+        "value": "min-width: 700px"
+      }
+    ],
+    "accessibility": {
+      "measuredIn": "contrast between the shipped token values over the colours that actually sit behind them (WCAG relative luminance over the composited colour), taken in real Chrome against computed styles and re-checked against src/landing.css",
+      "contrast": [
+        {
+          "state": "daylight",
+          "pair": "ink on field",
+          "ratio": "11.21:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "ink-2 on field",
+          "ratio": "6.27:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "ink-3 on field",
+          "ratio": "5.28:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "plate-ink on plate",
+          "ratio": "13.06:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "plate-ink-2 on plate",
+          "ratio": "9.18:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "danger band",
+          "ratio": "5.88:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "warning band",
+          "ratio": "5.90:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "caution band",
+          "ratio": "11.21:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "notice band",
+          "ratio": "6.69:1"
+        },
+        {
+          "state": "daylight",
+          "pair": "guide band",
+          "ratio": "6.57:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "ink on field",
+          "ratio": "17.54:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "ink-2 on field",
+          "ratio": "13.66:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "ink-3 on field",
+          "ratio": "7.50:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "plate-ink on plate",
+          "ratio": "11.47:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "plate-ink-2 on plate",
+          "ratio": "9.27:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "danger band",
+          "ratio": "4.76:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "warning band",
+          "ratio": "7.88:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "caution band",
+          "ratio": "12.14:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "notice band",
+          "ratio": "4.75:1"
+        },
+        {
+          "state": "headlamp",
+          "pair": "guide band",
+          "ratio": "4.76:1"
+        },
+        {
+          "state": "worst case, blaze composited over the ground",
+          "pair": "headlamp ink-3",
+          "ratio": "5.27:1 measured (5.28:1 recomputed)"
+        },
+        {
+          "state": "worst case, blaze composited over the ground",
+          "pair": "daylight ink-3",
+          "ratio": "6.96:1 recomputed at the shipped daylight blaze of 0.62 (the earlier Chrome pass recorded 6.73:1 at 0.55)"
+        }
+      ],
+      "notes": [
+        "Disabled control text uses ink-3, so the composited floor above is the number a disabled label must clear.",
+        "No text anywhere on the sheet renders below 12px.",
+        "Focus is one rule: 3px ink outline at 3px offset on :focus-visible, on every focusable element.",
+        "The hour control is a real range input with a label and aria-valuetext; the sheet position rule is aria-hidden and pointer-inert.",
+        "The blaze alphas are capped by measurement rather than taste: at 0.22 on the night ground the quietest text token measures 4.73:1, so the shipped night alpha is 0.18.",
+        "Daylight caution prints its word on the ink ground, so the measured pair is the yellow-on-ink 11.21:1 rather than an ink-on-yellow band."
+      ]
+    },
+    "provenance": {
+      "build": "code-led; no comp and no photography, because this machine has no image generation. The world is drawn in CSS, inline SVG pictograms and real CSS-pixel geometry.",
+      "fonts": "Self-hosted woff2 in public/fonts/, retrieved from Google Fonts for this build in the latin subset only: barlow-condensed-500/600/700.woff2, barlow-400/500/600.woff2, jetbrains-mono-var.woff2. Declared with font-display: swap and latin unicode-range; no CDN request at runtime.",
+      "reviewCaptures": ".impeccable/review/desktop.png, desktop-daylight.png, mobile.png, mobile-daylight.png, state-daylight-caution.png, state-headlamp-caution.png, state-headlamp-night.png"
+    },
+    "unusedOrDrift": [
+      "Dead tokens named by the documenter and removed after the review: --pc-field-gap (declared, referenced nowhere) and --pc-brand-accent (read by no rule). Neither exists in src/landing.css now.",
+      "The document-level ground (html.pc-root, html.pc-root body, the document scrollbar) sits outside the .pc scope where the tokens live, so it declares its own --pc-doc-ground / --pc-doc-thumb per state. That is one declaration per state, not a second copy of every token."
+    ]
+  },
+  "components": [
+    {
+      "name": "Placard Sheet Ground",
+      "kind": "custom",
+      "refersTo": "placard-ground",
+      "description": "The sheet itself: one drenched signal-yellow field, black silkscreen ink, 3px field rules, no card and no radius.",
+      "html": "<main class=\"ds-sheet\">\n  <div class=\"ds-sheet__inner\">\n    <section class=\"ds-field ds-field--first\">\n      <span class=\"ds-field__id\">02 \u00b7 The day</span>\n      <h2 class=\"ds-display\">One roof, one day, quarter-hour by quarter-hour</h2>\n      <p class=\"ds-body\">Output is within 8% of array rating. Heavy loads run cheapest on direct solar right now.</p>\n    </section>\n  </div>\n</main>",
+      "css": ".ds-sheet {\n  --ds-field: #efc400; --ds-ink: #14120a; --ds-ink-2: #463f2a; --ds-rule: 3px;\n  background: var(--ds-field); color: var(--ds-ink);\n  font-family: 'Barlow Signage', 'Helvetica Neue', Arial, sans-serif;\n  font-size: 16px; line-height: 1.55; overflow-x: hidden;\n  padding: 16px clamp(18px, 4.6vw, 76px) clamp(56px, 8vw, 120px);\n}\n.ds-sheet__inner { max-width: 1440px; margin: 0 auto; }\n.ds-field { border-top: var(--ds-rule) solid var(--ds-ink); padding: clamp(30px, 4.4vw, 62px) 0 clamp(34px, 4.6vw, 66px); }\n.ds-field--first { border-top: 0; }\n.ds-field__id {\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 700;\n  letter-spacing: 0.14em; text-transform: uppercase; background: var(--ds-ink); color: var(--ds-field);\n  padding: 4px 9px 3px; white-space: nowrap;\n}\n.ds-display {\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-weight: 700;\n  font-size: clamp(1.85rem, 4vw, 3.1rem); line-height: 0.95; letter-spacing: -0.005em;\n  text-transform: uppercase; margin: 12px 0 0;\n}\n.ds-body { color: var(--ds-ink-2); max-width: 66ch; margin: 10px 0 0; }\n.ds-sheet ::selection { background: var(--ds-ink); color: var(--ds-field); }"
+    },
+    {
+      "name": "Signal Band",
+      "kind": "custom",
+      "refersTo": "signal-band",
+      "description": "The sheet's top band: a signal word reversed out of its own register colour beside a mono metadata line, inside a 3px rule.",
+      "html": "<div class=\"ds-signal\">\n  <span class=\"ds-signal__word\">Notice</span>\n  <span class=\"ds-signal__text\">\n    <span>Photovoltaic system present</span><span>\u00b7</span><span>Dual supply</span><span>\u00b7</span><span>Marked at the utility wall</span>\n  </span>\n</div>",
+      "css": ".ds-signal {\n  display: flex; flex-wrap: wrap; align-items: stretch;\n  border: 3px solid #14120a; margin-bottom: clamp(24px, 3.4vw, 46px);\n}\n.ds-signal__word {\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;\n  font-size: clamp(1.35rem, 2.6vw, 2.05rem); font-weight: 700; text-transform: uppercase;\n  letter-spacing: 0.02em; line-height: 1; padding: 12px 20px 10px;\n  background: #0b5da7; color: #ffffff; display: flex; align-items: center;\n}\n.ds-signal__text {\n  flex: 1 1 320px; padding: 12px 20px 10px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px;\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px;\n  letter-spacing: 0.14em; text-transform: uppercase; color: #14120a;\n  border-left: 1px solid rgba(20, 18, 10, 0.24);\n}"
+    },
+    {
+      "name": "Field Header with Id Chip",
+      "kind": "custom",
+      "refersTo": "field-header",
+      "description": "Every field opens on a 3px rule with a numbered id chip, a display-face title and a right-aligned mono aside that carries the reading's source and time.",
+      "html": "<div class=\"ds-fieldhead\">\n  <span class=\"ds-fieldhead__id\">04 \u00b7 Notice set</span>\n  <h2 class=\"ds-fieldhead__title\">Notices, not charts</h2>\n  <p class=\"ds-fieldhead__aside\">Read at 13:00 \u00b7 3 raised</p>\n</div>",
+      "css": ".ds-fieldhead {\n  display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px clamp(14px, 2.4vw, 30px);\n  border-top: 3px solid #14120a; padding-top: clamp(20px, 2.6vw, 34px); margin-bottom: clamp(20px, 2.6vw, 34px);\n}\n.ds-fieldhead__id {\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 700;\n  letter-spacing: 0.14em; text-transform: uppercase; background: #14120a; color: #efc400; padding: 4px 9px 3px;\n  white-space: nowrap;\n}\n.ds-fieldhead__title {\n  flex: 1 1 260px; margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;\n  font-weight: 700; font-size: clamp(1.85rem, 4vw, 3.1rem); line-height: 0.95; letter-spacing: -0.005em;\n  text-transform: uppercase;\n}\n.ds-fieldhead__aside {\n  margin: 0 0 0 auto; text-align: right; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace;\n  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #524a2f;\n}"
+    },
+    {
+      "name": "Primary Button (Filled)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The mandated action line's button: an ink block with field-coloured type, square, inverting on hover and focus with a 3px square focus ring at 3px offset.",
+      "html": "<a class=\"ds-btn\" href=\"/app\">Open the dashboard</a>",
+      "css": ".ds-btn {\n  display: inline-flex; align-items: center; gap: 10px;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;\n  font-size: 1.12rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;\n  padding: 13px 22px 12px; border: 3px solid #14120a; background: #14120a; color: #efc400;\n  border-radius: 0; text-decoration: none; cursor: pointer;\n  transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1);\n}\n.ds-btn:hover { background: #efc400; color: #14120a; }\n.ds-btn:focus-visible { background: #efc400; color: #14120a; outline: 3px solid #14120a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The same button unfilled: transparent with an ink border, inverting to an ink block on hover. Used for the secondary action and the sheet-light pair.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"https://github.com/yashgpt2894/Helios\">Read the source</a>",
+      "css": ".ds-btn-ghost {\n  display: inline-flex; align-items: center; gap: 10px;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;\n  font-size: 1.12rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;\n  padding: 13px 22px 12px; border: 3px solid #14120a; background: transparent; color: #14120a;\n  border-radius: 0; text-decoration: none; cursor: pointer;\n  transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1);\n}\n.ds-btn-ghost:hover { background: #14120a; color: #efc400; }\n.ds-btn-ghost:focus-visible { background: #14120a; color: #efc400; outline: 3px solid #14120a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Action Line",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The action row bolted to the sheet's 3px rule: primary action, secondary control and a mono guarantee pushed right. Nothing floats in the viewport.",
+      "html": "<div class=\"ds-actline\">\n  <a class=\"ds-btn\" href=\"/app\">Open the dashboard</a>\n  <button class=\"ds-btn-ghost\" type=\"button\">Add to home screen</button>\n  <p class=\"ds-guarantee\">No account \u00b7 no server \u00b7 readings stay on the device</p>\n</div>",
+      "css": ".ds-actline {\n  display: flex; flex-wrap: wrap; align-items: center; gap: clamp(14px, 2.4vw, 30px);\n  margin-top: clamp(30px, 4vw, 54px); padding-top: clamp(18px, 2.4vw, 28px); border-top: 3px solid #14120a;\n}\n.ds-guarantee {\n  margin: 0 0 0 auto; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace;\n  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #463f2a;\n}\n.ds-btn, .ds-btn-ghost {\n  display: inline-flex; align-items: center; gap: 10px; border: 3px solid #14120a; border-radius: 0;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 1.12rem; font-weight: 700;\n  letter-spacing: 0.03em; text-transform: uppercase; padding: 13px 22px 12px; cursor: pointer; text-decoration: none;\n  transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms cubic-bezier(0.16, 1, 0.3, 1);\n}\n.ds-btn { background: #14120a; color: #efc400; }\n.ds-btn:hover, .ds-btn:focus-visible { background: #efc400; color: #14120a; }\n.ds-btn-ghost { background: transparent; color: #14120a; }\n.ds-btn-ghost:hover, .ds-btn-ghost:focus-visible { background: #14120a; color: #efc400; }\n.ds-btn:focus-visible, .ds-btn-ghost:focus-visible { outline: 3px solid #14120a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Instrument Plate",
+      "kind": "card",
+      "refersTo": "instrument-plate",
+      "description": "The black instrument window: inverter state in the display face, the AC readout at measurement size, the printed range marking with 12 ticks and a sliding index, then a 2x2 hairline cell grid.",
+      "html": "<div class=\"ds-plate\">\n  <div class=\"ds-plate__head\"><span>NOW \u00b7 13:00</span><span>SIMULATED \u00b7 30 s</span></div>\n  <p class=\"ds-plate__state\">Producing</p>\n  <p class=\"ds-plate__sub\">Inverter state \u00b7 reference system</p>\n  <div class=\"ds-plate__readout\"><span class=\"ds-plate__value\">7.89</span><span class=\"ds-plate__unit\">kW AC</span></div>\n  <p class=\"ds-plate__sub\">Output right now</p>\n  <div class=\"ds-scale\">\n    <div class=\"ds-scale__track\">\n      <span class=\"ds-scale__ticks\"></span>\n      <span class=\"ds-scale__fill\" style=\"width:82%\"></span>\n      <span class=\"ds-scale__mark\" style=\"left:81%\"></span>\n    </div>\n    <div class=\"ds-scale__legend\"><span>0</span><span>array rating 9.6 kW</span><span>9.6</span></div>\n  </div>\n  <dl class=\"ds-grid4\">\n    <div><dt>DC array</dt><dd>8.19 <em>kW</em></dd></div>\n    <div><dt>House</dt><dd>1.81 <em>kW</em></dd></div>\n    <div><dt>Battery 78%</dt><dd>5.00 <em>CHARGE</em></dd></div>\n    <div><dt>Utility</dt><dd>1.09 <em>EXPORT</em></dd></div>\n  </dl>\n</div>",
+      "css": ".ds-plate {\n  --ds-plate: #14120a; --ds-ink: #f6d64a; --ds-ink-2: #c9b478; --ds-hair: rgba(246, 214, 74, 0.34);\n  background: var(--ds-plate); color: var(--ds-ink); border-radius: 0;\n  padding: clamp(14px, 1.8vw, 22px) clamp(15px, 1.9vw, 24px) clamp(14px, 1.8vw, 20px);\n}\n.ds-plate__head {\n  display: flex; justify-content: space-between; gap: 14px; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace;\n  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid var(--ds-hair);\n}\n.ds-plate__head span:last-child { color: var(--ds-ink-2); }\n.ds-plate__state {\n  margin: 11px 0 2px; font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;\n  font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 700; line-height: 1; text-transform: uppercase;\n}\n.ds-plate__sub { margin: 0; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ds-ink-2); }\n.ds-plate__readout { display: flex; align-items: flex-end; gap: 12px; margin: clamp(10px, 1.4vw, 16px) 0 10px; }\n.ds-plate__value { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-weight: 700; font-size: clamp(2.4rem, 5.4vw, 3.6rem); line-height: 0.9; letter-spacing: -0.02em; }\n.ds-plate__unit { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 1.05rem; font-weight: 500; padding-bottom: 4px; }\n.ds-scale__track { position: relative; height: 30px; border-bottom: 1px solid var(--ds-hair); }\n.ds-scale__ticks { position: absolute; inset: 0 0 auto 0; height: 9px; background-image: repeating-linear-gradient(to right, var(--ds-hair) 0 1px, transparent 1px calc(100% / 12)); }\n.ds-scale__fill { position: absolute; left: 0; bottom: 0; height: 5px; background: var(--ds-ink); }\n.ds-scale__mark { position: absolute; bottom: -4px; width: 2px; height: 15px; background: var(--ds-ink); }\n.ds-scale__legend { display: flex; justify-content: space-between; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ds-ink-2); padding-top: 8px; }\n.ds-grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--ds-hair); border: 1px solid var(--ds-hair); margin: 12px 0 0; }\n.ds-grid4 > div { background: var(--ds-plate); padding: 9px 11px 10px; }\n.ds-grid4 dt { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ds-ink-2); margin: 0 0 6px; }\n.ds-grid4 dd { margin: 0; display: flex; align-items: baseline; gap: 7px; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-size: 1.06rem; font-weight: 500; }\n.ds-grid4 dd em { font-style: normal; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ds-ink-2); }"
+    },
+    {
+      "name": "Reading Selector",
+      "kind": "input",
+      "refersTo": "reading-selector",
+      "description": "The sheet's one control: a real range input restyled with 24 printed hour ticks, a rectangular thumb taller than its track, a tabular clock value and the follow/return button.",
+      "html": "<div class=\"ds-selector\">\n  <span class=\"ds-selector__label\" id=\"ds-hour-label\">Reading selector</span>\n  <input class=\"ds-range\" type=\"range\" min=\"0\" max=\"96\" step=\"1\" value=\"52\" aria-labelledby=\"ds-hour-label\" aria-valuetext=\"13:00\" />\n  <span class=\"ds-range__value\">13:00</span>\n  <button class=\"ds-btn-ghost ds-btn--small\" type=\"button\" disabled>Following now</button>\n</div>",
+      "css": ".ds-selector { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 18px; }\n.ds-selector__label { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #524a2f; }\n.ds-range {\n  -webkit-appearance: none; appearance: none; flex: 1 1 200px; min-width: 0; width: 100%; height: 26px;\n  background: transparent; cursor: ew-resize; margin: 0;\n}\n.ds-range::-webkit-slider-runnable-track {\n  height: 26px; border-top: 1px solid rgba(20, 18, 10, 0.24); border-bottom: 1px solid rgba(20, 18, 10, 0.24);\n  background-image: repeating-linear-gradient(to right, rgba(20, 18, 10, 0.24) 0 1px, transparent 1px 4.1667%);\n}\n.ds-range::-moz-range-track {\n  height: 26px; border-top: 1px solid rgba(20, 18, 10, 0.24); border-bottom: 1px solid rgba(20, 18, 10, 0.24);\n  background-image: repeating-linear-gradient(to right, rgba(20, 18, 10, 0.24) 0 1px, transparent 1px 4.1667%);\n}\n.ds-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 12px; height: 34px; margin-top: -4px; background: #14120a; border: 0; border-radius: 0; }\n.ds-range::-moz-range-thumb { width: 12px; height: 34px; background: #14120a; border: 0; border-radius: 0; }\n.ds-range:focus-visible { outline: 3px solid #14120a; outline-offset: 3px; }\n.ds-range__value { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-size: 1.05rem; font-weight: 500; min-width: 5.4ch; }\n.ds-btn-ghost {\n  display: inline-flex; align-items: center; border: 3px solid #14120a; border-radius: 0; background: transparent; color: #14120a;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 1.12rem; font-weight: 700;\n  letter-spacing: 0.03em; text-transform: uppercase; padding: 13px 22px 12px; cursor: pointer;\n}\n.ds-btn--small { padding: 7px 12px 6px; font-size: 0.86rem; }\n.ds-btn-ghost:hover:not(:disabled) { background: #14120a; color: #efc400; }\n.ds-btn-ghost:focus-visible { outline: 3px solid #14120a; outline-offset: 3px; }\n.ds-btn-ghost:disabled { cursor: default; background: transparent; color: #524a2f; border-color: #524a2f; }"
+    },
+    {
+      "name": "Day Band",
+      "kind": "custom",
+      "refersTo": "day-band",
+      "description": "One day of the reference array drawn in real CSS pixels: production as a filled area, load as a line, surplus and deficit as two hatch directions, hour rules, sunrise/noon/sunset marks, a sliding readout chip, a labelled legend and four totals.",
+      "html": "<figure class=\"ds-band\" aria-label=\"Production and house load across the day, read at 13:00\">\n  <div class=\"ds-band__plot\">\n    <svg viewBox=\"0 0 1000 220\" width=\"100%\" height=\"220\" role=\"img\">\n      <defs>\n        <pattern id=\"ds-hatch-surplus\" width=\"8\" height=\"8\" patternUnits=\"userSpaceOnUse\" patternTransform=\"rotate(45)\">\n          <line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"8\" stroke=\"#14120a\" stroke-width=\"3.4\" />\n        </pattern>\n        <pattern id=\"ds-hatch-deficit\" width=\"8\" height=\"8\" patternUnits=\"userSpaceOnUse\" patternTransform=\"rotate(-45)\">\n          <line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"8\" stroke=\"#14120a\" stroke-width=\"2.2\" />\n        </pattern>\n      </defs>\n        <line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"125\" y1=\"0\" x2=\"125\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"250\" y1=\"0\" x2=\"250\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"375\" y1=\"0\" x2=\"375\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"500\" y1=\"0\" x2=\"500\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"625\" y1=\"0\" x2=\"625\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"750\" y1=\"0\" x2=\"750\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"875\" y1=\"0\" x2=\"875\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"1000\" y1=\"0\" x2=\"1000\" y2=\"220\" stroke=\"rgba(20,18,10,0.18)\" stroke-width=\"1\" />\n        <line x1=\"258\" y1=\"0\" x2=\"258\" y2=\"220\" stroke=\"rgba(20,18,10,0.42)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\" />\n        <line x1=\"542\" y1=\"0\" x2=\"542\" y2=\"220\" stroke=\"rgba(20,18,10,0.42)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\" />\n        <line x1=\"825\" y1=\"0\" x2=\"825\" y2=\"220\" stroke=\"rgba(20,18,10,0.42)\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\" />\n      <path d=\"M0,206 L42,206 L83,206 L125,206 L167,206 L208,206 L250,206 L292,198 L333,180 L375,154 L417,123 L458,93 L500,67 L542,50 L583,80 L625,112 L667,143 L708,169 L750,188 L792,201 L833,206 L875,206 L917,206 L958,206 L1000,206 L1000,206 L0,206 Z\" fill=\"#14120a\" fill-opacity=\"0.92\" />\n      <path d=\"M375,154 L417,123 L458,93 L500,67 L542,50 L583,80 L625,112 L667,143 L667,170 L625,173 L583,171 L542,170 L500,171 L458,174 L417,174 L375,159 Z\" fill=\"url(#ds-hatch-surplus)\" />\n      <path d=\"M0,191 L42,191 L83,191 L125,191 L167,190 L208,186 L250,166 L292,136 L333,133 L333,180 L292,198 L250,206 L208,206 L167,206 L125,206 L83,206 L42,206 L0,206 Z M708,152 L750,121 L792,106 L833,125 L875,160 L917,182 L958,189 L1000,191 L1000,206 L958,206 L917,206 L875,206 L833,206 L792,201 L750,188 L708,169 Z\" fill=\"url(#ds-hatch-deficit)\" />\n      <path d=\"M0,191 L42,191 L83,191 L125,191 L167,190 L208,186 L250,166 L292,136 L333,133 L375,159 L417,174 L458,174 L500,171 L542,170 L583,171 L625,173 L667,170 L708,152 L750,121 L792,106 L833,125 L875,160 L917,182 L958,189 L1000,191\" fill=\"none\" stroke=\"#14120a\" stroke-width=\"2.4\" />\n    </svg>\n    <span class=\"ds-band__label\" style=\"top:6px; left:25.8%\">SUNRISE 06:12</span>\n    <span class=\"ds-band__label\" style=\"top:6px; left:54.2%\">SOLAR NOON 13:00</span>\n    <span class=\"ds-band__label\" style=\"top:6px; left:82.5%\">SUNSET 19:48</span>\n    <span class=\"ds-band__label ds-band__label--low\" style=\"left:0\">00</span>\n    <span class=\"ds-band__label ds-band__label--low\" style=\"left:50%\">12</span>\n    <span class=\"ds-band__label ds-band__label--low\" style=\"left:100%; transform:translateX(-100%)\">24</span>\n    <span class=\"ds-band__mark\" style=\"left:54.2%\"></span>\n    <span class=\"ds-band__readout\" style=\"left:54.2%\">13:00 \u00b7 7.89 kW</span>\n  </div>\n  <div class=\"ds-band__legend\">\n    <span class=\"ds-legend\"><i class=\"ds-legend__mark ds-legend__mark--solid\"></i>Solar produced</span>\n    <span class=\"ds-legend\"><i class=\"ds-legend__mark ds-legend__mark--line\"></i>House load</span>\n    <span class=\"ds-legend\"><i class=\"ds-legend__mark ds-legend__mark--surplus\"></i>Surplus, to battery and grid</span>\n    <span class=\"ds-legend\"><i class=\"ds-legend__mark ds-legend__mark--deficit\"></i>From the grid</span>\n  </div>\n  <dl class=\"ds-band__totals\">\n    <div><dt>Generated</dt><dd>46.3 <span>kWh</span></dd></div>\n    <div><dt>Used in the house</dt><dd>49.3 <span>kWh</span></dd></div>\n    <div><dt>Bought from grid</dt><dd>10.6 <span>kWh</span></dd></div>\n    <div><dt>Exported to grid</dt><dd>14.5 <span>kWh</span></dd></div>\n  </dl>\n</figure>",
+      "css": ".ds-band__plot {\n  position: relative; border-top: 1px solid rgba(20, 18, 10, 0.24); border-bottom: 1px solid rgba(20, 18, 10, 0.24);\n  color: #14120a; background: #efc400;\n}\n.ds-band__plot svg { display: block; width: 100%; height: clamp(150px, 20vw, 250px); }\n.ds-band__label { position: absolute; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #463f2a; pointer-events: none; }\n.ds-band__label--low { bottom: 4px; transform: translateX(-50%); }\n.ds-band__mark { position: absolute; top: 0; bottom: 0; width: 2px; background: #14120a; pointer-events: none; }\n.ds-band__readout {\n  position: absolute; top: 10px; transform: translateX(-50%); background: #14120a; color: #efc400;\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.08em;\n  text-transform: uppercase; padding: 5px 9px 4px; white-space: nowrap; pointer-events: none;\n}\n.ds-band__legend { display: flex; flex-wrap: wrap; gap: 10px clamp(14px, 2.4vw, 30px); margin-top: clamp(14px, 1.8vw, 22px); padding-top: 14px; border-top: 1px solid rgba(20, 18, 10, 0.24); }\n.ds-legend { display: flex; align-items: baseline; gap: 8px; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #463f2a; }\n.ds-legend__mark { display: inline-block; width: 28px; height: 14px; }\n.ds-legend__mark--solid { background: #14120a; }\n.ds-legend__mark--line { height: 3px; background: #14120a; }\n.ds-legend__mark--surplus { background-image: repeating-linear-gradient(45deg, #14120a 0 3.4px, transparent 3.4px 8px); }\n.ds-legend__mark--deficit { background-image: repeating-linear-gradient(-45deg, #14120a 0 2.2px, transparent 2.2px 8px); }\n.ds-band__totals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(20, 18, 10, 0.24); border: 1px solid rgba(20, 18, 10, 0.24); margin: clamp(20px, 2.6vw, 30px) 0 0; }\n@media (min-width: 780px) { .ds-band__totals { grid-template-columns: repeat(4, minmax(0, 1fr)); } }\n.ds-band__totals > div { background: #efc400; padding: 14px 16px 16px; }\n.ds-band__totals dt { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #524a2f; margin: 0 0 8px; }\n.ds-band__totals dd { margin: 0; display: flex; align-items: baseline; gap: 6px; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 500; color: #14120a; }\n.ds-band__totals dd span { font-size: 0.8rem; letter-spacing: 0.06em; color: #524a2f; }"
+    },
+    {
+      "name": "Conductor Node",
+      "kind": "card",
+      "refersTo": "conductor-node-source",
+      "description": "A node of the one-line diagram: square, 3px-outlined for a source, ink plate for a device. Every value carries its unit and its room chip.",
+      "html": "<ol class=\"ds-line\">\n  <li class=\"ds-node ds-node--source\">\n    <span class=\"ds-node__id\">PV array</span>\n    <span class=\"ds-node__spec\">24 modules \u00b7 3 strings \u00b7 9.6 kW DC</span>\n    <span class=\"ds-values\">\n      <span class=\"ds-values__item\"><span class=\"ds-val\">8.19</span><span class=\"ds-val--unit\">kW</span></span>\n      <span class=\"ds-values__item\"><span class=\"ds-val ds-val--s\">946</span><span class=\"ds-val--unit\">W/m\u00b2</span></span>\n    </span>\n  </li>\n  <li class=\"ds-node ds-node--device\">\n    <span class=\"ds-node__id\">HX-9.6 hybrid</span>\n    <span class=\"ds-node__spec\">0.964 DC to AC \u00b7 fw 4.12.1 \u00b7 HX-9.6 HYBRID</span>\n    <span class=\"ds-values\">\n      <span class=\"ds-values__item\"><span class=\"ds-val\">7.89</span><span class=\"ds-val--unit\">kW AC</span></span>\n      <span class=\"ds-values__item\"><span class=\"ds-val ds-val--s\">45.6</span><span class=\"ds-val--unit\">\u00b0C heatsink</span></span>\n    </span>\n  </li>\n</ol>",
+      "css": ".ds-line { list-style: none; margin: 0; padding: 0; }\n.ds-node {\n  display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;\n  border: 1px solid rgba(20, 18, 10, 0.24); padding: 12px 16px 13px; border-radius: 0; background: #efc400; color: #14120a;\n}\n.ds-node--source { border: 3px solid #14120a; }\n.ds-node--device { border: 3px solid #14120a; background: #14120a; color: #f6d64a; }\n.ds-node--device .ds-node__spec, .ds-node--device .ds-val--unit { color: #c9b478; }\n.ds-node__id { font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 1.32rem; font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em; }\n.ds-node__spec { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #524a2f; }\n.ds-values { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px clamp(14px, 2.4vw, 30px); margin-left: auto; }\n.ds-values__item { display: flex; align-items: baseline; gap: 7px; }\n.ds-val { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-size: 1.12rem; font-weight: 500; }\n.ds-val--s { font-size: 0.94rem; }\n.ds-val--unit { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 0.86rem; letter-spacing: 0.06em; color: #463f2a; }"
+    },
+    {
+      "name": "Link Rail",
+      "kind": "custom",
+      "refersTo": "link-rail",
+      "description": "The conductor between two nodes: a 3px rail with a chevron at line weight, or a right-angle elbow for a branch. The direction is also printed as a word.",
+      "html": "<div class=\"ds-linkrow\">\n  <span class=\"ds-linkrow__rail\" aria-hidden=\"true\">\n    <i></i>\n    <svg viewBox=\"0 0 24 20\" width=\"22\" height=\"18\"><path d=\"M12 18 L2 2 L22 2 Z\" fill=\"#14120a\" /></svg>\n    <i></i>\n  </span>\n  <span class=\"ds-linkrow__meta\">\n    <span class=\"ds-chip ds-chip--battery\">Battery</span>\n    <span class=\"ds-val\">5.00</span><span class=\"ds-val--unit\">kW</span>\n    <span class=\"ds-val ds-val--s\">CHARGING</span>\n    <span class=\"ds-val--unit\">78% of 13.5 kWh</span>\n  </span>\n</div>\n<div class=\"ds-linkrow ds-linkrow--branch\">\n  <span class=\"ds-linkrow__rail ds-linkrow__rail--elbow\" aria-hidden=\"true\"><span class=\"ds-linkrow__elbow\"></span></span>\n  <span class=\"ds-linkrow__meta\">\n    <span class=\"ds-chip ds-chip--grid\">Utility</span>\n    <span class=\"ds-val\">1.09</span><span class=\"ds-val--unit\">kW</span>\n    <span class=\"ds-val ds-val--s\">EXPORTING</span>\n  </span>\n</div>",
+      "css": ".ds-linkrow { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: clamp(12px, 2vw, 26px); align-items: center; }\n.ds-linkrow__rail { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 62px; }\n.ds-linkrow__rail i { display: block; width: 3px; flex: 1 1 auto; background: #14120a; }\n.ds-linkrow__rail--elbow { align-items: stretch; }\n.ds-linkrow__elbow { display: block; flex: 1 1 auto; border-left: 3px solid #14120a; border-bottom: 3px solid #14120a; }\n.ds-linkrow__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px clamp(14px, 2.4vw, 26px); }\n.ds-chip { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px 2px; white-space: nowrap; }\n.ds-chip--battery { background: #c5a572; color: #14120a; }\n.ds-chip--grid { background: #5d8aa8; color: #14120a; }\n.ds-val { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-size: 1.12rem; font-weight: 500; color: #14120a; }\n.ds-val--s { font-size: 0.94rem; }\n.ds-val--unit { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 0.86rem; letter-spacing: 0.06em; color: #463f2a; }"
+    },
+    {
+      "name": "Notice Row",
+      "kind": "custom",
+      "refersTo": "notice-word-warning",
+      "description": "One raised notice: a signal word reversed out of its own register, a display-face title, a body sentence, and a metric column held by a 3px rule with a value, a delta and an action.",
+      "html": "<ul class=\"ds-notices\">\n  <li class=\"ds-notice\">\n    <span class=\"ds-notice__word ds-notice__word--warning\">Warning</span>\n    <span>\n      <h3 class=\"ds-notice__title\">String output imbalance</h3>\n      <p class=\"ds-notice__body\">One string is producing well below its peers. Possible shading, soiling, or a degraded panel.</p>\n    </span>\n    <span class=\"ds-notice__metric\">\n      <span class=\"ds-notice__value\">31<span>%</span></span>\n      <p class=\"ds-notice__delta\">SPREAD ACROSS STRINGS</p>\n      <a class=\"ds-notice__action\" href=\"/app\">Inspect after sunset</a>\n    </span>\n  </li>\n</ul>",
+      "css": ".ds-notices { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(20, 18, 10, 0.24); }\n.ds-notice {\n  display: grid; gap: 10px clamp(16px, 2.6vw, 34px); grid-template-columns: minmax(0, 1fr);\n  padding: clamp(18px, 2.4vw, 26px) 0; border-bottom: 1px solid rgba(20, 18, 10, 0.24);\n}\n@media (min-width: 760px) { .ds-notice { grid-template-columns: 128px minmax(0, 1fr) minmax(0, 210px); } }\n.ds-notice__word {\n  justify-self: start; align-self: start; display: inline-block;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 1.28rem; font-weight: 700;\n  letter-spacing: 0.02em; line-height: 1; text-transform: uppercase; padding: 6px 11px 5px; border-radius: 0;\n}\n.ds-notice__word--warning { background: #e2711d; color: #14120a; }\n.ds-notice__word--notice { background: #0b5da7; color: #ffffff; }\n.ds-notice__word--caution { background: #14120a; color: #efc400; }\n.ds-notice__word--guide { background: #146b3a; color: #ffffff; }\n.ds-notice__word--danger { background: #c8102e; color: #ffffff; }\n.ds-notice__title { margin: 0 0 7px; font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: clamp(1.28rem, 2vw, 1.6rem); font-weight: 600; line-height: 1; text-transform: uppercase; }\n.ds-notice__body { margin: 0; font-size: 0.97rem; line-height: 1.5; color: #463f2a; max-width: 60ch; }\n.ds-notice__metric { border-left: 3px solid #14120a; padding-left: 14px; }\n.ds-notice__value { display: flex; align-items: baseline; gap: 6px; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-variant-numeric: tabular-nums; font-size: 1.9rem; font-weight: 500; line-height: 1; }\n.ds-notice__value span { font-size: 0.82rem; }\n.ds-notice__delta { margin: 7px 0 0; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #524a2f; }\n.ds-notice__action { display: inline-block; margin: 9px 0 0; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #14120a; text-decoration: none; border-bottom: 2px solid #14120a; padding-bottom: 2px; }\n.ds-notice__action:focus-visible { outline: 3px solid #14120a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Danger Field",
+      "kind": "custom",
+      "refersTo": "notice-word-danger",
+      "description": "The one permanent hazard on the sheet: a full-width danger register block with reversed white type, a mono provenance line and the authored 4px-stroke hazard pictogram. Appears once.",
+      "html": "<div class=\"ds-danger\">\n  <p class=\"ds-danger__word\">Danger</p>\n  <div>\n    <p class=\"ds-danger__body\"><strong>Array DC conductors stay live whenever the modules see light</strong> \u2014 including when the AC disconnect is off, and including when this house is dark. That is why a photovoltaic system is marked at all.</p>\n    <p class=\"ds-danger__note\">13:00 \u00b7 marked supply: photovoltaic \u00b7 second supply: utility</p>\n  </div>\n  <svg class=\"ds-danger__pict\" viewBox=\"0 0 120 120\" role=\"img\" aria-label=\"Electrical hazard mark\" fill=\"none\">\n    <path d=\"M60 8 L112 106 L8 106 Z\" stroke=\"#ffffff\" stroke-width=\"6\" stroke-linejoin=\"miter\" fill=\"#ffffff\" fill-opacity=\"0.08\" />\n    <path d=\"M66 34 L44 70 L60 70 L54 96 L78 58 L62 58 Z\" fill=\"#ffffff\" stroke=\"#ffffff\" stroke-width=\"4\" stroke-linejoin=\"miter\" />\n  </svg>\n</div>",
+      "css": ".ds-danger {\n  display: grid; gap: clamp(14px, 2vw, 28px); grid-template-columns: minmax(0, 1fr); align-items: center;\n  background: #c8102e; color: #ffffff; padding: clamp(18px, 2.4vw, 28px); margin-bottom: clamp(22px, 3vw, 36px); border-radius: 0;\n}\n@media (min-width: 820px) { .ds-danger { grid-template-columns: 128px minmax(0, 1fr) minmax(0, 0.62fr); } }\n.ds-danger__word { margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; line-height: 1; text-transform: uppercase; }\n.ds-danger__body { margin: 0; font-size: 1.02rem; line-height: 1.45; max-width: 46ch; }\n.ds-danger__body strong { font-weight: 600; }\n.ds-danger__note { margin: 12px 0 0; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.92; }\n.ds-danger__pict { width: 112px; height: 112px; justify-self: start; }\n@media (min-width: 820px) { .ds-danger__pict { justify-self: end; } }"
+    },
+    {
+      "name": "Label Sheet Field",
+      "kind": "card",
+      "refersTo": "label-tile",
+      "description": "One label of the sheet's sibling set: id chip, a mono role line naming the mechanism, a display-face title, body text and an evidence artifact pinned to the bottom rule.",
+      "html": "<article class=\"ds-label\">\n  <div class=\"ds-label__top\">\n    <span class=\"ds-label__id\">L-02</span>\n    <span class=\"ds-label__role\">Open-Meteo \u00b7 no key</span>\n  </div>\n  <h3 class=\"ds-label__title\">Tomorrow, from radiation</h3>\n  <p class=\"ds-label__body\">Shortwave radiation from Open-Meteo, refetched while the app is open. No key and no sign-up.</p>\n  <div class=\"ds-label__artifact\">\n    <span class=\"ds-formula\">EXPECTED kWh = PEAK SUN HOURS \u00d7 9.6 kW \u00d7 0.82</span>\n  </div>\n</article>",
+      "css": ".ds-label {\n  display: flex; flex-direction: column; gap: 12px; background: #efc400; color: #14120a; border-radius: 0;\n  padding: clamp(16px, 2vw, 24px) clamp(16px, 2vw, 24px) clamp(18px, 2.2vw, 26px);\n}\n.ds-label__top { display: flex; align-items: baseline; gap: 10px; }\n.ds-label__id { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 7px 2px; box-shadow: inset 0 0 0 1px rgba(20, 18, 10, 0.24); white-space: nowrap; }\n.ds-label__role { font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #524a2f; }\n.ds-label__title { margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: clamp(1.3rem, 2.1vw, 1.7rem); font-weight: 700; line-height: 1; text-transform: uppercase; }\n.ds-label__body { margin: 0; font-size: 0.97rem; line-height: 1.5; color: #463f2a; max-width: 58ch; }\n.ds-label__artifact { margin-top: auto; border-top: 1px solid rgba(20, 18, 10, 0.24); padding-top: 12px; }\n.ds-formula { display: block; overflow-x: auto; white-space: nowrap; background: #14120a; color: #efc400; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 0.85rem; letter-spacing: 0.02em; padding: 9px 11px 8px; }\n\n.ds-labels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1px; background: rgba(20, 18, 10, 0.24); border: 1px solid rgba(20, 18, 10, 0.24); }\n@media (min-width: 700px) { .ds-labels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }\n@media (min-width: 1080px) { .ds-labels { grid-template-columns: repeat(12, minmax(0, 1fr)); } .ds-label--l02 { grid-column: span 5; } .ds-label--l06 { grid-column: span 12; } }"
+    },
+    {
+      "name": "Amendment Sticker",
+      "kind": "custom",
+      "refersTo": "amendment-sticker",
+      "description": "The one rotated form and the one elevation shadow in the system: a pasted ink sticker that states what the sheet cannot prove.",
+      "html": "<div class=\"ds-amend\">\n  <span class=\"ds-amend__k\">Amendment, pasted over the sign</span>\n  <p class=\"ds-amend__body\">helios\u00b0 is a one-person project, so this is the honest version of it: the readings are simulated, no inverter is connected yet, and there are no customers to quote. <strong>Look it up before you believe a word of it.</strong></p>\n</div>",
+      "css": ".ds-amend {\n  display: inline-block; transform: rotate(-0.55deg); transform-origin: 12% 40%;\n  background: #14120a; color: #efc400; padding: 14px 18px 15px; max-width: 44ch; border-radius: 0;\n  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.24);\n}\n.ds-amend__k { display: block; margin-bottom: 7px; opacity: 0.86; font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }\n.ds-amend__body { margin: 0; font-size: 0.94rem; line-height: 1.45; }\n.ds-amend__body strong { font-weight: 600; }"
+    },
+    {
+      "name": "Sheet Position Rule",
+      "kind": "nav",
+      "refersTo": "sheet-position-rule",
+      "description": "The fixed 26px edge marker: a 3px track, a 3px ink fill for scroll progress and the current field's name reversed out of ink. Pointer-inert and aria-hidden.",
+      "html": "<div class=\"ds-position\" aria-hidden=\"true\">\n  <span class=\"ds-position__track\"></span>\n  <span class=\"ds-position__fill\" style=\"width:38%\"></span>\n  <span class=\"ds-position__name\">The conductors</span>\n</div>",
+      "css": ".ds-position {\n  position: fixed; top: 0; left: 0; right: 0; z-index: 5; height: 26px;\n  display: flex; align-items: center; padding: 0 clamp(18px, 4.6vw, 76px); pointer-events: none;\n}\n.ds-position__track { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: rgba(20, 18, 10, 0.24); }\n.ds-position__fill { position: absolute; top: 0; left: 0; height: 3px; background: #14120a; }\n.ds-position__name {\n  position: relative; margin-left: auto; background: #14120a; color: #efc400; padding: 3px 8px 2px;\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.12em;\n  text-transform: uppercase; transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1); opacity: 1;\n}"
+    },
+    {
+      "name": "Logoblock",
+      "kind": "custom",
+      "refersTo": "logoblock",
+      "description": "The identity tile: a 34px near-black square holding the mark, beside the lowercase wordmark with its degree glyph.",
+      "html": "<span class=\"ds-issuer__brand\">\n  <span class=\"ds-logoblock\" aria-hidden=\"true\">\n    <svg viewBox=\"0 0 24 24\" width=\"26\" height=\"26\" fill=\"none\" stroke=\"#f6d64a\" stroke-width=\"1.8\">\n      <circle cx=\"12\" cy=\"12\" r=\"4.2\" />\n      <path d=\"M12 2.6v3.1M12 18.3v3.1M2.6 12h3.1M18.3 12h3.1M5.4 5.4l2.2 2.2M16.4 16.4l2.2 2.2M18.6 5.4l-2.2 2.2M7.6 16.4l-2.2 2.2\" />\n    </svg>\n  </span>\n  helios\u00b0\n</span>",
+      "css": ".ds-issuer__brand {\n  display: flex; align-items: center; gap: 10px; color: #14120a;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 26px; font-weight: 700;\n  letter-spacing: 0.01em; line-height: 1; text-transform: lowercase;\n}\n.ds-logoblock { display: grid; place-items: center; width: 34px; height: 34px; background: #0b0b0c; flex: none; border-radius: 0; }\n.ds-logoblock svg { width: 26px; height: 26px; }"
+    },
+    {
+      "name": "Mark Chips",
+      "kind": "chip",
+      "refersTo": "mark-chip-solar",
+      "description": "The four room identity marks and the neutral chip: a square 12px mono label that names a room or identifies a field, never a value or a severity.",
+      "html": "<div class=\"ds-chips\">\n  <span class=\"ds-chip ds-chip--solar\">Solar</span>\n  <span class=\"ds-chip ds-chip--flow\">House</span>\n  <span class=\"ds-chip ds-chip--grid\">Utility</span>\n  <span class=\"ds-chip ds-chip--battery\">Battery</span>\n  <span class=\"ds-chip\">07 \u00b7 Step</span>\n</div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 10px; }\n.ds-chip {\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 500;\n  letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px 2px; border-radius: 0; white-space: nowrap;\n  background: #14120a; color: #efc400;\n}\n.ds-chip--solar { background: #f0c674; color: #14120a; }\n.ds-chip--flow { background: #7fb069; color: #14120a; }\n.ds-chip--grid { background: #5d8aa8; color: #14120a; }\n.ds-chip--battery { background: #c5a572; color: #14120a; }"
+    },
+    {
+      "name": "Brand Swatch",
+      "kind": "chip",
+      "refersTo": null,
+      "description": "The white-label identity mark in label L-05: a 26px square carrying the supplied accent behind the brand's monogram, ringed in ink so a light accent keeps its edge. Colour arrives inline (accentLight by day, accent at night) and never carries meaning.",
+      "html": "<span class=\"ds-brand\">\n  <span class=\"ds-brand__mark\" style=\"background: #b8862e; color: #ffffff\" aria-hidden=\"true\">V</span>\n  Voltcraft\n</span>\n<span class=\"ds-brand\">\n  <span class=\"ds-brand__mark\" style=\"background: #38bdf8; color: #ffffff\" aria-hidden=\"true\">S</span>\n  SunWorks\n</span>",
+      "css": ".ds-brand {\n  display: flex; align-items: center; gap: 8px; color: #14120a;\n  font-family: 'Plate Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;\n}\n.ds-brand__mark {\n  display: grid; place-items: center; width: 26px; height: 26px; border-radius: 0;\n  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif; font-size: 15px; font-weight: 700;\n  box-shadow: inset 0 0 0 2px #14120a;\n}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Retroreflective Placard",
+    "overview": "**This file records a scoped surface system, not the app's system.** `helios\u00b0` ships two visual systems side by side and they share no tokens. The app's system is the incumbent one and it stays untouched: the `:root` custom properties in `src/index.css` (carbon and bone ramps, the `--signal-*` marks, the `--surface-*` elevation set), the `carbon` / `bone` / `signal` palette and the Inter, Instrument Serif and JetBrains Mono families in `tailwind.config.js`, and the `.surface` component classes. It owns `/app` and `/share/:payload`. What follows documents the second system: the landing sheet at route `/`, a self-contained world scoped to the `.pc` class, carried by `src/landing.css` (all tokens and every component class, prefix `.pc-`), composed by `src/pages/Landing.tsx` from six components in `src/components/landing/`, and fed by the deterministic site model in `src/lib/placardModel.ts` and the hooks in `src/hooks/`. Apply these rules inside `.pc` and nowhere else. Do not carry a `.pc-*` value into the app, and do not import an app token into the sheet.\n\nThe sheet is a residential photovoltaic installation's marking, not a dashboard. The ground is one saturated signal yellow, the ink is black silkscreen, and every reading on the page is a field printed on that sheet: the selected hour, the AC output, the array's DC power, the heatsink temperature, the four paths of energy, the notice set. Six numbered fields run top to bottom, each opening on a 3px rule, every one of them answering to the single hour control in field 02. Nothing floats above the sheet and nothing is a card inside a card; a figure that has no source and no time stamp does not ship. Severity is named rather than decorated: the sheet borrows the ANSI Z535 signal registers (DANGER, WARNING, CAUTION, NOTICE, GUIDE) and the placard's own conventions, including a rotating beacon of a readout and leader lines that name each path with its unit.\n\nThe material has two states, and they are the same sheet. **Daylight** is the sheeting in sun: `{colors.field}` ground, `{colors.ink}` ink. **Headlamp** is that same sheeting at night with only the lamp's cone lit: near-black ground, retroreflective ink blazing at `{colors.headlamp-ink}`. Both states declare the same token names in two blocks (`.pc` and `[data-theme='dark'] .pc`), so every component is populated twice and nothing is removed at night. The flip is in the ground and the ink, not in the content. The sheet joins the app's existing theme contract (`document.documentElement[data-theme]`, `localStorage['helios-theme']`, `auto | light | dark`) instead of inventing a second one; the two controls in the issuer strip are labelled Daylight and Headlamp, and their state is exposed as `aria-pressed`.\n\n**Font provenance.** The three faces are self-hosted woff2 files in `public/fonts/`, retrieved from Google Fonts for this build in the `latin` subset only: `barlow-condensed-500/600/700.woff2`, `barlow-400/500/600.woff2` and `jetbrains-mono-var.woff2`. `src/landing.css` declares all seven `@font-face` blocks with `font-display: swap` and a latin `unicode-range`; the page makes no font request to a CDN at runtime, which is what the offline-first PWA requires. The annotation face is Barlow renamed to `Barlow Signage` so that it is addressed by its job on the sheet rather than by its foundry name.\n\nThe build is code-led. This machine has no image generation, so there is no comp and no photography, and the world is drawn entirely in CSS, inline SVG pictograms (`src/components/landing/Pictograms.tsx`) and real CSS-pixel geometry: the day band measures its own box with a `ResizeObserver` (`src/hooks/useElementSize.ts`) and draws in those pixels, so the printed hatching stays square at any width and the SVG needs no `preserveAspectRatio` guesswork.",
+    "keyCharacteristics": [
+      "One saturated field owns whole regions. Signal yellow is the ground, not an accent sprinkled on a neutral.",
+      "Exactly two rule weights: 3px for structure, 1px for interiors. No third stroke exists.",
+      "Square corners only. The only radius declarations in the stylesheet are literal `0`.",
+      "Every measurement is Plate Mono with tabular numerals: kW, kWh, V, A, W/m\u00b2, \u00b0C, every clock stamp and every reference line.",
+      "Direction and severity are words first. Colour repeats the word; it never carries meaning alone.",
+      "Flat printed ink. The single non-inset shadow in the system belongs to the amendment sticker, because a pasted sticker physically lifts off the sheeting.",
+      "Two states of one material, Daylight and Headlamp, both fully populated.",
+      "Nothing is legible only because of the blaze layer, and no text renders below 12px."
+    ],
+    "rules": [
+      {
+        "name": "The Drenched Field Rule",
+        "body": "One saturated field owns a whole region. Yellow fills the sheet or a band edge to edge; it is never a thin accent line on a neutral panel, and no register colour appears as a tint, a gradient stop or a small decorated dot.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reversed Signal Rule",
+        "body": "A signal word is always set inside its own register colour with reversed type, at the same size in both light states, and it carries the same meaning in Daylight and Headlamp. The pair may invert where the sheet demands it (Daylight's caution band) but the word stays inside its own colour and the word still carries the severity. If a new severity needs a colour it does not have, it needs a word first.",
+        "section": "colors"
+      },
+      {
+        "name": "The Honest Register Rule",
+        "body": "The top signal band is NOTICE, because information is not a hazard. DANGER is spent once, on the array's DC conductors staying live whenever the modules see light, and nothing else on the sheet may use the danger register.",
+        "section": "colors"
+      },
+      {
+        "name": "The Nothing-Only-By-Blaze Rule",
+        "body": "The sheeting's retroreflective response is decoration. Nothing on the sheet may be legible only because of `{colors.blaze}`; the composite floor above (5.27:1 at night, 6.96:1 by day) is the number to beat before a new ink, ground or blaze alpha ships.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-State Rule",
+        "body": "Every colour token is declared twice, in `.pc` and in `[data-theme='dark'] .pc`. A token defined in one state only is a defect: the night sheet keeps every field, every notice and every label.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Measurement Rule",
+        "body": "If it is a measurement it is Plate Mono with tabular numerals: every kW, kWh, V, A, W/m\u00b2, \u00b0C, every clock stamp and every reference line such as `HX-9.6 HYBRID` or `37.77, -122.42`. A figure set in the display or annotation face is a defect on this sheet; it is how a placard stops being a placard.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printed Caps Rule",
+        "body": "Display, statement, headline and plate-state type is uppercase by class (`text-transform`), never typed in capitals by hand, and never carries sentence punctuation. Annotation and body text is sentence case with real punctuation. A paragraph is never set in the condensed caps.",
+        "section": "typography"
+      },
+      {
+        "name": "The 12px Floor Rule",
+        "body": "No text renders below 12px anywhere on the sheet; 12px mono is the smallest label the system owns. Long prose drops to 0.875rem, never to a smaller label, and nothing shrinks to make a layout fit.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sheet Margin Rule",
+        "body": "The sheet is inset by one margin value, `{spacing.rail}`, and that value is the same at the top, the sides and the fixed position rule. Nothing full-bleed may exceed it except a horizontal rule.",
+        "section": "layout"
+      },
+      {
+        "name": "The Nothing Floats Rule",
+        "body": "Every element sits on the field grid inside a numbered field. There is no sticky bar, no floating card, no overlay panel; the only two fixed layers are the position rule and the decoration of the blaze.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hairline-By-Gap Rule",
+        "body": "A 1px division inside a field is drawn with a 1px grid gap over a `{colors.rule-quiet}` ground, or with a 1px border. It is never a smaller-than-1px line, an opacity trick, or a lighter grey pretending to be a hairline.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "One elevation shadow exists and it belongs to the amendment sticker. Inset rings are printed strokes, not elevation: they are allowed only where a mark would otherwise dissolve into a field of its own colour. A new shadow is a new world; a card with a shadow on this sheet is a defect.",
+        "section": "elevation & depth"
+      },
+      {
+        "name": "The Blaze Is Decoration Rule",
+        "body": "The pointer-driven blaze never carries contrast, meaning or state. It cannot be the reason a value is readable, it is never shown under reduced motion, and it never takes pointer events.",
+        "section": "elevation & depth"
+      },
+      {
+        "name": "The Square Sheet Rule",
+        "body": "Corners are 90\u00b0. No radius, no pill, no circular chip, no clipped arc. Even the pictograms are built from straight strokes \u2014 a house outline, a tilted rail of two rectangles, two supply stubs and a bolt \u2014 so nothing on the sheet reads as a rounded icon.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Two Weights Rule",
+        "body": "Two rule weights, 3px and 1px, and no third. A new divider either carries structure or it does not exist; if it needs to be seen, it is 3px, and if it needs to be felt, it is 1px.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** keep every reading on the sheet grid: it belongs to a numbered field, with a 3px rule above the field and a stated source and time stamp beside it.",
+      "**Do** set every measurement in Plate Mono with tabular numerals, including units, hour stamps and reference lines.",
+      "**Do** state direction and severity as a word first, then let the register colour or the room chip repeat it: `BATTERY \u00b7 3.40 kW \u00b7 CHARGING`, `WARNING \u00b7 String output imbalance`.",
+      "**Do** declare every new colour twice, in `.pc` and in `[data-theme='dark'] .pc`, and check the pair with the blaze composited before shipping it (the worst case recorded is 5.27:1).",
+      "**Do** hold the two rule weights: 3px for structure, 1px for interiors, and draw interior hairlines with a 1px grid gap over a `{colors.rule-quiet}` ground.",
+      "**Do** keep the brand accent on its two identity surfaces only (the issuer flag stripe, the label sheet's brand swatches), passed inline and switched by state (`accentLight` in Daylight, `accent` at night); give each a 2px inset ink ring so a light accent still holds an edge.",
+      "**Do** keep the focus ring on every focusable element: 3px ink outline at 3px offset via `:focus-visible`, and give controls real names (`Reading selector` is the range's label, and its value is exposed as a clock time).",
+      "**Do** label simulated figures as simulated. The plate head prints `SIMULATED \u00b7 30 s` or `SIMULATED \u00b7 HELD`, and every field that shows a reading says so in its aside (`Simulated \u00b7 peak 7.89 kW at 13:00 \u00b7 69% used on site`); a figure that cannot be sourced and time-stamped does not ship.",
+      "**Do** keep both states fully populated, and keep the sheet legible as a static page under `prefers-reduced-motion`: the springs, the blaze and the smooth scroll all switch off, the content does not."
+    ],
+    "donts": [
+      "**Don't** introduce a third rule weight, a border radius, a pill, a circular chip or a second shadow.",
+      "**Don't** use a register colour as an accent sprinkled on a neutral ground, a gradient stop, or a decorative dot. A saturated colour fills a band or a field, or it is not used.",
+      "**Don't** set a number in Barlow Condensed or Barlow Signage, and don't shrink any text below 12px.",
+      "**Don't** encode meaning in colour alone: every path, state and severity carries its own word, and no page meaning may depend on the `?brand=` accent.",
+      "**Don't** outline a signal band. All five registers are filled bands with reversed type; if a band cannot be seen against the field, invert its own pair (as Daylight's caution does) rather than drawing a box around it.",
+      "**Don't** let the blaze layer carry contrast or meaning, don't give it pointer events, and don't render it under reduced motion.",
+      "**Don't** put a floating card, drawer, sticky header or overlay on the sheet, and don't nest a card inside a field.",
+      "**Don't** build `.pc` styles out of the app's tokens (`src/index.css` `:root`, the Tailwind `carbon` / `bone` / `signal` palette, the Inter and Instrument Serif families), and don't push `.pc-*` tokens into `/app` or `/share/:payload`. The two systems stay separate.",
+      "**Don't** fabricate proof. There are no customers, testimonials, press, certifications or prices in this repository; the honest list in field 06 prints the absences instead of padding them, and the mock tariff constants in `aiInsights.ts` stay demo material."
+    ]
+  }
+}
