@@ -101,8 +101,19 @@ $ANDROID_HOME/emulator/emulator -avd helios35 -no-snapshot-load -no-boot-anim \
 $ANDROID_HOME/platform-tools/adb wait-for-device
 ```
 
-`adb` and the emulator must share one adb key, so launch both with the same
-`HOME`/`ANDROID_USER_HOME` (the steps above do).
+`adb` and the emulator must share one adb key, and `/Users/yashgupta/.android`
+is read-only, so give both a writable `ANDROID_USER_HOME` seeded with the key
+that already exists, and restart the adb server with it before booting:
+
+```sh
+export ANDROID_USER_HOME=/tmp/helios-user-home
+mkdir -p "$ANDROID_USER_HOME"
+cp /Users/yashgupta/.android/adbkey /Users/yashgupta/.android/adbkey.pub "$ANDROID_USER_HOME/"
+chmod 600 "$ANDROID_USER_HOME/adbkey"
+$ANDROID_HOME/platform-tools/adb kill-server
+$ANDROID_HOME/platform-tools/adb start-server
+$ANDROID_HOME/platform-tools/adb devices
+```
 
 ## Install, launch, verify
 
