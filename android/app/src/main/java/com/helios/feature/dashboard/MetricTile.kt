@@ -50,6 +50,7 @@ data class MetricTileSpec(
     val label: String,
     val value: String,
     val unit: String = "",
+    val sub: String = "",
     val delta: String? = null,
     val deltaIsGood: Boolean? = null,
     val sparkline: List<Double> = emptyList(),
@@ -136,6 +137,13 @@ fun MetricTile(
                 )
             }
         }
+        if (spec.sub.isNotEmpty()) {
+            Text(
+                text = spec.sub,
+                style = HeliosTypography.caption2,
+                color = colors.textTertiary.copy(alpha = alpha)
+            )
+        }
         if (spec.delta != null) {
             Text(
                 text = spec.delta,
@@ -156,6 +164,32 @@ fun MetricTile(
             )
         }
     }
+}
+
+@Composable
+fun MetricTile(
+    label: String,
+    value: String,
+    modifier: Modifier = Modifier,
+    unit: String? = null,
+    sub: String = "",
+    delta: String? = null,
+    deltaPositive: Boolean = true,
+    sparkline: List<Double> = emptyList(),
+    maxLines: Int = 1
+) {
+    MetricTile(
+        spec = MetricTileSpec(
+            label = label,
+            value = value,
+            unit = unit ?: "",
+            sub = sub,
+            delta = delta,
+            deltaIsGood = deltaPositive,
+            sparkline = sparkline
+        ),
+        modifier = modifier
+    )
 }
 
 /**
