@@ -1,0 +1,57 @@
+# What the captures prove, measured without a vision model.
+# state | pixels | distinct colours (1/6 scale) | mean luminance | background share | rows with content
+# A dark capture must be dark, a light one light, and a blank frame would show ~0 percent content rows.
+battery-applying  1080x2400     2042     18.9      0.412     75.8%
+battery-dark      1080x2400     1569     16.9      0.456     71.8%
+battery-error     1080x2400     1633     15.9      0.671     36.5%
+battery-light     1080x2400     1742    234.9      0.453     71.8%
+battery-offline   1080x2400     1892     18.7      0.373     74.6%
+battery-partial   1080x2400     1823     23.4      0.389     75.1%
+insights-dark     1080x2400     2081     19.6      0.469     77.0%
+insights-empty    1080x2400     1548     15.2      0.479     60.9%
+insights-error    1080x2400     2153     18.8      0.531     57.1%
+insights-feed     1080x2400     2033     18.5      0.423     72.6%
+insights-light    1080x2400     2261    232.5      0.468     77.0%
+insights-long     1080x2400     2073     20.4      0.436     77.0%
+insights-stale    1080x2400     1665     15.7      0.474     61.1%
+
+theme check: battery-dark mean luminance 16.9 < battery-light 234.9 -> pass
+theme check: insights-dark mean luminance 19.6 < insights-light 232.5 -> pass
+
+# Re-measured in this step's capture-set correction pass, for the files that survive:
+# the dark and the light capture of each screen, one empty/error state per screen, plus
+# the partial-reading, feed, stale and long-content shapes.
+#
+# Columns are the ones above. Sizes, distinct colours, mean luminance and background share
+# are the same measurement; 'rows with content' is recomputed with a stricter test (a row
+# must show 12 levels of horizontal luminance variation), so that column reads lower than
+# the block above and the two blocks are not comparable row for row.
+# file | size | distinct colours (1/6 scale) | mean luminance | background share | rows with content
+battery-dark       1080x2400    1569     16.9   0.508   47.4%
+battery-error      1080x2400    1633     16.6   0.692   38.9%
+battery-light      1080x2400    1742    233.3   0.509   48.3%
+battery-partial    1080x2400    1823     22.3   0.430   57.4%
+insights-dark      1080x2400    2081     19.8   0.519   55.1%
+insights-empty     1080x2400    1548     15.4   0.502   37.0%
+insights-error     1080x2400    2153     19.2   0.568   41.8%
+insights-feed      1080x2400    2033     18.5   0.498   44.3%
+insights-light     1080x2400    2261    231.1   0.519   55.1%
+insights-long      1080x2400    2073     20.6   0.498   59.0%
+insights-stale     1080x2400    1665     15.9   0.493   35.4%
+theme check: battery-dark mean luminance 16.9 < battery-light 233.3 -> pass
+theme check: insights-dark mean luminance 19.8 < insights-light 231.1 -> pass
+# Name-to-content check of the surviving captures: the uiautomator dump written beside a
+# PNG must contain the words that name the state in the file name.
+# file | dump bytes | words found | verdict
+battery-dark         12952  4/4  word-for-word match
+battery-light        12952  4/4  word-for-word match
+battery-error         9388  2/2  word-for-word match
+battery-partial      16943  2/2  word-for-word match
+insights-dark        19439  3/3  word-for-word match
+insights-light       19439  3/3  word-for-word match
+insights-empty       16899  3/3  word-for-word match
+insights-error       18720  2/2  word-for-word match
+insights-feed        23221  3/3  word-for-word match
+insights-long        18478  2/2  word-for-word match
+insights-stale       18861  2/2  word-for-word match
+capture set verdict: every file matches its name
