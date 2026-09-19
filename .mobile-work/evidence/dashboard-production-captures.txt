@@ -1,0 +1,97 @@
+Dashboard and Production screens: capture evidence
+==================================================
+
+Host     : emulator-5554 (helios35, 1080x2400 = 411x914 dp at 2.625)
+Host app : com.helios.debug.screens.ScreenCaptureActivity (debug source set only)
+Command  : bash /tmp/helios-s4/capture-screens.sh <worktree> emulator-5554
+Output   : design/captures/<screen>-<state>.png (36 files) + screen-capture.txt log
+
+States captured, dark and light themes plus one failure state per screen:
+  dashboard-dark, dashboard-light, dashboard-offline (F1), dashboard-error (F8 inline),
+  dashboard-stale, dashboard-loading, dashboard-empty, dashboard-partial, dashboard-denied (F9),
+  dashboard-long-content, dashboard-night, dashboard-reduced-motion,
+  dashboard-dark-connected + dashboard-light-connected (the non-simulated path),
+  dashboard-dark-connected-2/-3 (scrolled: forecast strip, curve, totals grid)
+  production-dark, production-light, production-offline, production-error, production-stale,
+  production-loading, production-empty, production-partial, production-long-content,
+  production-night, production-scrub (marker at 15:30), production-reduced-motion,
+  production-dark-connected, production-dark-connected-2 (string cards, week chart),
+  production-dark-connected-3 (inverter identity and the telemetry grid)
+  dashboard-large-text, production-large-text (200 percent system font), plus
+  dashboard-large-text-2/-3 and production-large-text-2 for the sections below the fold
+
+Hero block budget (design/DESIGN.md section 6: TopBar through the ledger inside 430 dp)
+  dashboard-dark-connected            405.5 dp  PASS
+  dashboard-dark                      405.5 dp  PASS
+  dashboard-denied                    405.5 dp  PASS
+  dashboard-empty                     405.5 dp  PASS
+  dashboard-error                     405.5 dp  PASS
+  dashboard-light-connected           405.5 dp  PASS
+  dashboard-light                     405.5 dp  PASS
+  dashboard-loading                   405.5 dp  PASS
+  dashboard-night                     405.5 dp  PASS
+  dashboard-offline                   549.1 dp  over budget
+  dashboard-partial                   405.5 dp  PASS
+  dashboard-reduced-motion            405.5 dp  PASS
+  dashboard-stale                     567.4 dp  over budget
+
+  Every state except the two with a persistent alert row ends at 405 dp, inside the budget,
+  with all four endpoints and the ledger visible without a scroll. In the stale and offline
+  states the ConnectionBanner is drawn above the instrument, which is where the design wants
+  the reason and its recovery actions (C1, C2), and it pushes the ledger to 549 and 567 dp respectively. That trade-off is deliberate:
+  an offline user sees why and what to do before the instrument, and the ledger still sits
+  above the fold of a 914 dp screen.
+
+Energy model conservation, read back from the rendered text of each capture
+  dashboard-dark         solar 4.23 = home 1.73 + battery charging 2.50 + grid 0.00
+  dashboard-light        solar 4.23 = home 1.73 + battery charging 2.50 + grid 0.00
+  dashboard-night        solar 0.00 = home 0.62 + battery discharging -0.62 + grid 0.00
+  dashboard-partial      solar 4.23 = home 1.71 + battery charging 2.52 + grid 0.00
+  dashboard-offline      solar No data, home No data, battery No data, grid No data (F1: never a fabricated 0)
+  dashboard-stale        solar 4.23 = home 1.74 + battery charging 2.49 + grid 0.00
+
+Verification (a uiautomator view dump is taken with every capture and checked):
+  all 36 captures verified: expected text present, bounds inside the screen, no emoji, no blank or wrong-theme image
+
+Checks applied to every capture:
+  - every expected string of that state is present in the view hierarchy
+  - no node's bounds fall outside 0..1080 x 0..2400 (nothing is laid out off-screen)
+  - no rendered string carries a glyph outside plain text (no emoji, no symbol font)
+  - the image is not blank and the theme is the one requested
+  - no magenta page marker, which would mean a container overflowed
+
+Defect found while reviewing these captures and fixed here
+--------------------------------------------------------
+At first render the lower node row (Battery, Grid) was clipped: the instrument's content
+was taller than its box, so the two bottom cards were squeezed to the 48 dp minimum and
+lost their state word. The fix is in EnergyFlow: fixed node-row heights, a hub that takes
+the remaining height, and no decorative mark inside a node. The view dumps above confirm
+all four endpoints with their state words in every state.
+
+Upstream defect this work absorbs, not fixed here (core/data/fixture belongs to another
+step of this plan): FixtureData.daytimeTelemetry hard-codes acPowerW = 4231 W while it
+computes the battery charge and the export from a separately computed AC value, so the
+registers describe about 8.6 kW of flow out of a 4.2 kW array. The hero instrument draws
+DashboardMetrics.flowSample, which makes the four paths conserve energy (home + battery +
+grid = solar) by letting the battery take what the house leaves and the grid carry the
+residual; the raw register is left untouched in the fixture. A genuine fixture fix is two
+lines: acPowerW = ac, and batteryPowerW = (surplus - 1120.0).coerceAtLeast(0.0).
+
+Enlarged text (200 percent system font, adb shell settings put system font_scale 2.0)
+------------------------------------------------------------------------------------
+Measured from the view dumps:
+  - the TopBar stops fitting one row and stacks: the screen name sits below the brand
+    (y 258..326 against y 168..258 for the brand line)
+  - the metric grid collapses to one column: PRODUCED TODAY, HOME USAGE, LIFETIME and
+    TREES EQUIVALENT all start at x = 95 px, stacked vertically
+  - the hero number is capped at 44 sp (LayoutMetrics.heroCapSp) and the instrument grows
+    with the text scale, so all four endpoints keep their reading and their state word
+  - the destination bar keeps all five labels
+  - the font scale was set back to 1.0 after the captures (verified: settings get returns 1.0)
+  One defect this found and fixed: at 200 percent the two bottom node cards had lost their state
+  word, and the per-string card lost its state word out of the values row. Both are fixed
+  (row heights derive from the text scale; the string state word sits under the string name),
+  and the large-text captures above are the evidence that nothing is clipped now.
+
+Defect found while reviewing these captures and fixed here
+--------------------------------------------------------

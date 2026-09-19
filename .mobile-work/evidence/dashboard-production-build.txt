@@ -1,0 +1,41 @@
+Dashboard and Production screens: build and test evidence
+=========================================================
+
+Environment
+-----------
+Worktree : /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s4-v1
+Host     : macOS arm64, JDK /opt/homebrew/opt/openjdk@17
+SDK      : /opt/homebrew/share/android-commandlinetools (android/local.properties, gitignored)
+Emulator : helios35 (attached as emulator-5554), shared /tmp/helios-emulator.lock
+
+Commands and results
+--------------------
+1. cd android && ./gradlew :app:compileDebugKotlin      -> BUILD SUCCESSFUL, exit 0
+   (required exit criterion of this step; 0 Kotlin errors)
+2. cd android && ./gradlew :app:compileDebugKotlin :app:testDebugUnitTest -> BUILD SUCCESSFUL, exit 0
+   36 tests completed, 0 failed. New tests:
+     app/src/test/java/com/helios/feature/dashboard/DashboardStateTest.kt
+     app/src/test/java/com/helios/feature/production/ProductionStateTest.kt
+   Test report: android/app/build/reports/tests/testDebugUnitTest/index.html
+   (36 | 0 | 0 | 0.116s)
+3. cd android && ./gradlew :app:assembleDebug            -> BUILD SUCCESSFUL, exit 0
+   APK: android/app/build/outputs/apk/debug/app-debug.apk
+4. Re-run after the layout fixes at the end of the step (--rerun):
+   ./gradlew :app:testDebugUnitTest :app:compileDebugKotlin --rerun -> BUILD SUCCESSFUL, exit 0
+   Test suites: com.helios.core.data.FixtureStateCoverageTest tests=6 failures=0 errors=0; com.helios.core.data.SnapshotParityTest tests=5 failures=0 errors=0; com.helios.core.designsystem.TokensMatchJsonTest tests=6 failures=0 errors=0; com.helios.feature.dashboard.DashboardStateTest tests=12 failures=0 errors=0; com.helios.feature.production.ProductionStateTest tests=8 failures=0 errors=0
+   Where the two new suites live:
+     app/src/test/java/com/helios/feature/dashboard/DashboardStateTest.kt
+     app/src/test/java/com/helios/feature/production/ProductionStateTest.kt
+
+What the new tests assert (state, not pixels)
+---------------------------------------------
+- every FixtureScenario maps to the status word, freshness band and surface state it promises
+- a simulated reading never reads "Live" and always carries the "Demo data" qualifier
+- advice is suppressed (placeholder) for stale and offline readings, never run on stale data
+- the offline scenario carries the classified reason (F1, with the host and attempt count)
+- a register that did not report renders "No data", never 0 and never "NaN"
+- the night state, the partial state and the long-content state keep their own values
+- motion: token durations survive the Reduce Motion path (200 ms cross-fade) and scale with
+  the device animator duration scale
+- chart summary and flow summary name the values they describe; scrub selection is part of state
+- no rendered string carries a non-plain glyph (no emoji) in any scenario

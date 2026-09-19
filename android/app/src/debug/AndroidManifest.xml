@@ -8,6 +8,13 @@
             android:exported="true"
             android:label="Helios component gallery"
             android:theme="@style/Theme.Helios" />
+
+        <!-- Debug-only screen host: one screen, one declared state, one capture. -->
+        <activity
+            android:name="com.helios.debug.screens.ScreenCaptureActivity"
+            android:exported="true"
+            android:label="Helios screen capture"
+            android:theme="@style/Theme.Helios" />
     </application>
 
 </manifest>

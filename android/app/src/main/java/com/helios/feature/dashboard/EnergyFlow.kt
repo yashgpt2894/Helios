@@ -7,221 +7,558 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.drawText
-import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.helios.core.designsystem.color.HeliosStatusKind
 import com.helios.core.designsystem.color.LocalHeliosSemanticColors
+import com.helios.core.designsystem.component.HeliosMark
+import com.helios.core.designsystem.component.SurfaceState
+import com.helios.core.designsystem.layout.HeliosSpacing
+import com.helios.core.designsystem.motion.HeliosMotion
+import com.helios.core.designsystem.shape.HeliosElevation
+import com.helios.core.designsystem.shape.HeliosShape
+import com.helios.core.designsystem.type.HeliosTypography
 import com.helios.core.format.HeliosFormat
 import kotlin.math.abs
+import kotlin.math.roundToInt
+
+/** The four endpoints of the energy model, in the order the design lists them. */
+enum class EnergyNode(val label: String) {
+    SOLAR("Solar"),
+    HOME("Home"),
+    BATTERY("Battery"),
+    GRID("Grid")
+}
+
+/** One cell of the three-cell ledger under the flow diagram. */
+data class EnergyLedgerCell(
+    val label: String,
+    val value: String,
+    val qualifier: String? = null
+)
 
 /**
- * The four-node live energy model: Solar above, Home in the centre, Battery and Grid
- * below.
+ * The signature instrument: four endpoints around the live output, with the energy moving
+ * between them drawn as it moves.
  *
- * States: live, night (no solar dots), stale (trails stop, nodes dimmed), reduced motion
- * (static arrows instead of moving dots), offline (no trails at all, last known values
- * labelled by the caller).
+ * Reading order is the plant's own: solar top-left, home top-right, battery bottom-left,
+ * grid bottom-right, and the live AC output in the middle as the hero number.
  *
- * Dot density and dot speed both follow the wattage on that path, and battery charging
- * and grid export reverse the direction (motion-language section 4.2). The canvas carries
- * one text equivalent that summarises all four paths, because a picture of energy is not
- * readable by a screen reader.
+ * Motion (`motion-language.md` section 4, tokens from `design/tokens.json`):
+ *  - each spoke carries one dot per kilowatt, moving at a speed set by the magnitude, so a
+ *    light load reads slower than a heavy one without a label saying so;
+ *  - dots travel in the direction the energy actually goes, which is why a discharging
+ *    battery and an importing grid are drawn as separate directions, not separate colours;
+ *  - when the reading is stale or the link is down the dots stop and a static arrow shows
+ *    the last known direction (DESIGN.md section 10 risk 3: never animate a lie);
+ *  - under Reduce Motion the dots are replaced by the same static arrows, and the loop is
+ *    not started at all.
+ *
+ * Accessibility: the Canvas is one node whose description is the text equivalent of all
+ * four paths ([energyFlowSummary]). Each endpoint is a separate 48 dp control with its own
+ * name and value, so the diagram is never the only way to reach a number.
+ *
+ * Height: [flowHeight] is the whole instrument — two node rows and the hub between them. The
+ * Dashboard passes the height that keeps its hero block inside the 430 dp budget of
+ * `design/DESIGN.md` section 6, which is why the default is 240 dp and not the 300 dp a
+ * full-screen version of the diagram would take.
  */
 @Composable
 fun EnergyFlow(
+    hubValue: Double,
+    hubUnit: String,
+    hubLabel: String,
     solarW: Double,
+    homeW: Double,
     batteryW: Double,
     gridW: Double,
-    homeW: Double,
     modifier: Modifier = Modifier,
-    stale: Boolean = false,
-    offline: Boolean = false,
-    reducedMotion: Boolean = false,
-    height: androidx.compose.ui.unit.Dp = 240.dp
+    state: SurfaceState = SurfaceState.READY,
+    motion: HeliosMotionSettings = HeliosMotionSettings.Default,
+    liveState: LiveNumberState = LiveNumberState.UPDATING,
+    flowHeight: Dp = 240.dp,
+    onNodeClick: ((EnergyNode) -> Unit)? = null
 ) {
     val colors = LocalHeliosSemanticColors.current
-    val running = !stale && !offline && !reducedMotion
-    val dimFactor = if (stale || offline) 0.6f else 1f
+    val dimmed = state == SurfaceState.STALE || state == SurfaceState.ERROR
+    val animating = motion.animates() && !dimmed
+    val detailAlpha = if (dimmed) 0.6f else 1f
 
-    val transition = rememberInfiniteTransition(label = "energyFlowAnim")
-    val progress by transition.animateFloat(
+    val transition = rememberInfiniteTransition(label = "energyFlow")
+    val phase by transition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(
-                durationMillis = flowDurationMs(solarW, batteryW, gridW),
+                durationMillis = motion.durationMs(HeliosMotion.DurationMs.nodePulse),
                 easing = LinearEasing
             ),
             repeatMode = RepeatMode.Restart
         ),
-        label = "flowProgress"
+        label = "flowPhase"
     )
+    val dotPhase = if (animating) phase else 0f
 
-    val textMeasurer = rememberTextMeasurer()
-    val labelStyle = TextStyle(fontSize = 10.sp, color = colors.textSecondary)
-    val description = buildString {
-        append("Energy flow. Solar ")
-        append(HeliosFormat.kilowatts(solarW / 1000.0))
-        append(" to home. Home load ")
-        append(HeliosFormat.kilowatts(homeW / 1000.0))
-        append(". Battery ")
-        append(if (batteryW >= 0) "charging " else "discharging ")
-        append(HeliosFormat.kilowatts(abs(batteryW) / 1000.0))
-        append(". Grid ")
-        append(
-            when {
-                gridW > 0 -> "exporting ${HeliosFormat.kilowatts(gridW / 1000.0)}"
-                gridW < 0 -> "importing ${HeliosFormat.kilowatts(abs(gridW) / 1000.0)}"
-                else -> "0 W"
-            }
-        )
-        if (offline) append(". Last known values, the link is down")
-        if (stale) append(". Values are stale")
-    }
-
-    Canvas(
+    // Height: the instrument grows with the user's text scale instead of clipping. Each node
+    // carries three lines (name, reading, state word) and every one of them is load-bearing, so
+    // at 200 percent text the rows need roughly twice the height; the block is allowed to grow
+    // there, which is the same trade the design makes for the hero number.
+    val textScale = LocalDensity.current.fontScale.coerceIn(1f, 1.7f)
+    val boxHeight = flowHeight * textScale
+    val nodeRowHeight = (boxHeight - HeliosSpacing.space3) / 4
+    Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(height)
-            .semantics(mergeDescendants = true) { contentDescription = description }
-    ) {
-        val cx = size.width / 2f
-        val solarPos = Offset(cx, 40f)
-        val homePos = Offset(cx, size.height / 2f)
-        val batteryPos = Offset(cx - 80f, size.height - 40f)
-        val gridPos = Offset(cx + 80f, size.height - 40f)
-
-        data class BezierPath(val p0: Offset, val cp: Offset, val p2: Offset, val path: Path)
-
-        fun path(from: Offset, control: Offset, to: Offset) = BezierPath(
-            p0 = from,
-            cp = control,
-            p2 = to,
-            path = Path().apply {
-                moveTo(from.x, from.y)
-                quadraticBezierTo(control.x, control.y, to.x, to.y)
+            .height(boxHeight)
+            .semantics {
+                contentDescription = energyFlowSummary(solarW, homeW, batteryW, gridW)
             }
-        )
-
-        val solarPath = path(
-            solarPos,
-            Offset(solarPos.x, solarPos.y + (homePos.y - solarPos.y) * 0.4f + 20f),
-            homePos
-        )
-        val batteryPath = path(
-            batteryPos,
-            Offset((batteryPos.x + homePos.x) / 2f + 20f, (batteryPos.y + homePos.y) / 2f),
-            homePos
-        )
-        val gridPath = path(
-            gridPos,
-            Offset((gridPos.x + homePos.x) / 2f - 20f, (gridPos.y + homePos.y) / 2f),
-            homePos
-        )
-
-        val solarColor = colors.solarPrimary
-        val batteryColor = colors.batteryPrimary
-        val gridColor = if (gridW > 0) colors.gridExportPrimary else colors.gridImportPrimary
-        val homeColor = colors.flowPrimary
-
-        val stroke = Stroke(width = 1.5f, cap = StrokeCap.Round)
-        drawPath(solarPath.path, solarColor.copy(alpha = 0.25f * dimFactor), style = stroke)
-        drawPath(batteryPath.path, batteryColor.copy(alpha = 0.25f * dimFactor), style = stroke)
-        drawPath(gridPath.path, gridColor.copy(alpha = 0.25f * dimFactor), style = stroke)
-
-        fun sample(p: BezierPath, t: Float): Offset {
-            val mt = 1f - t
-            return Offset(
-                x = mt * mt * p.p0.x + 2f * mt * t * p.cp.x + t * t * p.p2.x,
-                y = mt * mt * p.p0.y + 2f * mt * t * p.cp.y + t * t * p.p2.y
+    ) {
+        Canvas(modifier = Modifier.fillMaxWidth().height(boxHeight)) {
+            val centre = Offset(size.width / 2f, size.height / 2f)
+            // The node rows sit at the top and the bottom of the panel with the hub between
+            // them (Arrangement.SpaceBetween), so their centres are at 13 and 87 percent of the
+            // height rather than at the thirds of an equal split.
+            val anchors = mapOf(
+                EnergyNode.SOLAR to Offset(size.width * 0.245f, size.height * 0.13f),
+                EnergyNode.HOME to Offset(size.width * 0.755f, size.height * 0.13f),
+                EnergyNode.BATTERY to Offset(size.width * 0.245f, size.height * 0.87f),
+                EnergyNode.GRID to Offset(size.width * 0.755f, size.height * 0.87f)
+            )
+            drawSpoke(
+                from = centre,
+                to = anchors.getValue(EnergyNode.SOLAR),
+                watts = solarW,
+                supplies = true,
+                color = colors.solarPrimary,
+                phase = dotPhase,
+                animating = animating,
+                dimmed = dimmed
+            )
+            drawSpoke(
+                from = centre,
+                to = anchors.getValue(EnergyNode.HOME),
+                watts = homeW,
+                supplies = false,
+                color = colors.flowPrimary,
+                phase = dotPhase,
+                animating = animating,
+                dimmed = dimmed
+            )
+            drawSpoke(
+                from = centre,
+                to = anchors.getValue(EnergyNode.BATTERY),
+                watts = abs(batteryW),
+                supplies = batteryW < 0,
+                color = colors.batteryPrimary,
+                phase = dotPhase,
+                animating = animating,
+                dimmed = dimmed
+            )
+            drawSpoke(
+                from = centre,
+                to = anchors.getValue(EnergyNode.GRID),
+                watts = abs(gridW),
+                supplies = gridW < 0,
+                color = if (gridW < 0) colors.gridImportPrimary else colors.gridExportPrimary,
+                phase = dotPhase,
+                animating = animating,
+                dimmed = dimmed
             )
         }
 
-        fun dots(p: BezierPath, color: Color, count: Int, reverse: Boolean) {
-            if (count <= 0) return
-            for (index in 0 until count) {
-                var t = (progress + index.toFloat() / count) % 1f
-                if (reverse) t = 1f - t
-                val position = sample(p, t)
-                drawCircle(color.copy(alpha = 0.15f * dimFactor), radius = 6f, center = position)
-                drawCircle(color.copy(alpha = dimFactor), radius = 3f, center = position)
+        // Fixed row heights and a hub that takes what is left: with SpaceBetween and free
+        // heights the lower row was squeezed to the 48 dp minimum, which clipped the state word
+        // off the two bottom endpoints (measured on the emulator before this change).
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(boxHeight)
+                .padding(horizontal = HeliosSpacing.space3, vertical = HeliosSpacing.space2)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(nodeRowHeight),
+                horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space3),
+                verticalAlignment = Alignment.Top
+            ) {
+                EnergyNodeCard(
+                    node = EnergyNode.SOLAR,
+                    valueText = HeliosFormat.wattsToKilowatts(solarW),
+                    stateWord = when {
+                        solarW.isNaN() -> "No data"
+                        solarW <= 1.0 -> "No output"
+                        else -> "Producing"
+                    },
+                    tint = colors.solarPrimary,
+                    alpha = detailAlpha,
+                    modifier = Modifier.weight(1f),
+                    onClick = onNodeClick
+                )
+                EnergyNodeCard(
+                    node = EnergyNode.HOME,
+                    valueText = HeliosFormat.wattsToKilowatts(homeW),
+                    stateWord = if (homeW.isNaN()) "No data" else "Consuming",
+                    tint = colors.flowPrimary,
+                    alpha = detailAlpha,
+                    modifier = Modifier.weight(1f),
+                    onClick = onNodeClick
+                )
             }
-        }
-
-        fun arrows(p: BezierPath, color: Color, forward: Boolean) {
-            listOf(0.3f, 0.5f, 0.7f).forEach { t ->
-                val position = sample(p, t)
-                val next = sample(p, if (forward) (t + 0.02f).coerceAtMost(1f) else (t - 0.02f).coerceAtLeast(0f))
-                drawLine(
-                    color = color.copy(alpha = 0.8f * dimFactor),
-                    start = position,
-                    end = next,
-                    strokeWidth = 3f,
-                    cap = StrokeCap.Round
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                contentAlignment = Alignment.Center
+            ) {
+                HubReadout(
+                    value = hubValue,
+                    unit = hubUnit,
+                    label = hubLabel,
+                    liveState = if (dimmed) LiveNumberState.STALE else liveState,
+                    motion = motion
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(nodeRowHeight),
+                horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space3),
+                verticalAlignment = Alignment.Top
+            ) {
+                EnergyNodeCard(
+                    node = EnergyNode.BATTERY,
+                    valueText = HeliosFormat.wattsToKilowatts(abs(batteryW)),
+                    stateWord = batteryStateWord(batteryW),
+                    tint = colors.batteryPrimary,
+                    alpha = detailAlpha,
+                    modifier = Modifier.weight(1f),
+                    onClick = onNodeClick
+                )
+                EnergyNodeCard(
+                    node = EnergyNode.GRID,
+                    valueText = HeliosFormat.wattsToKilowatts(abs(gridW)),
+                    stateWord = gridStateWord(gridW),
+                    tint = if (gridW < 0) colors.gridImportPrimary else colors.gridExportPrimary,
+                    alpha = detailAlpha,
+                    modifier = Modifier.weight(1f),
+                    onClick = onNodeClick
                 )
             }
         }
-
-        val solarDots = densityFor(solarW)
-        val batteryDots = densityFor(abs(batteryW))
-        val gridDots = densityFor(abs(gridW))
-
-        when {
-            reducedMotion -> {
-                arrows(solarPath, solarColor, forward = true)
-                arrows(batteryPath, batteryColor, forward = batteryW < 0)
-                arrows(gridPath, gridColor, forward = gridW > 0)
-            }
-            offline -> Unit
-            else -> {
-                dots(solarPath, solarColor, solarDots, reverse = false)
-                dots(batteryPath, batteryColor, batteryDots, reverse = batteryW > 0)
-                dots(gridPath, gridColor, gridDots, reverse = gridW > 0)
-            }
-        }
-
-        fun label(text: String, position: Offset, color: Color) {
-            val layout = textMeasurer.measure(text, labelStyle)
-            drawText(
-                layout,
-                topLeft = Offset(position.x - layout.size.width / 2f, position.y - 22f)
-            )
-            drawCircle(color.copy(alpha = dimFactor), radius = 6f, center = position)
-        }
-
-        label("Solar", solarPos, solarColor)
-        label("Home", homePos, homeColor)
-        label("Battery", batteryPos, batteryColor)
-        label("Grid", gridPos, gridColor)
     }
 }
 
-/** Dots per path, from the design's density bands. */
-private fun densityFor(watts: Double): Int = when {
-    watts <= 0 -> 0
-    watts <= 500 -> 1
-    watts <= 2_000 -> 2
-    watts <= 5_000 -> 3
-    else -> 4
+/** The centre of the instrument: the hero number, on the panel surface. */
+@Composable
+private fun HubReadout(
+    value: Double,
+    unit: String,
+    label: String,
+    liveState: LiveNumberState,
+    motion: HeliosMotionSettings,
+    modifier: Modifier = Modifier
+) {
+    val colors = LocalHeliosSemanticColors.current
+    Box(
+        modifier = modifier
+            .clip(HeliosShape.lg)
+            .background(colors.backgroundTertiary)
+            .border(
+                HeliosElevation.MaterialTokens.innerStrokeWidth,
+                colors.separatorHairline,
+                HeliosShape.lg
+            )
+            .padding(horizontal = HeliosSpacing.space5, vertical = HeliosSpacing.space3)
+    ) {
+        LiveNumber(
+            label = label,
+            value = value,
+            unit = unit,
+            state = liveState,
+            decimals = 2,
+            motion = motion
+        )
+    }
 }
 
-/** Dot traversal time: 2.2 s at 1 kW down to 1.0 s at 10 kW. */
-private fun flowDurationMs(solarW: Double, batteryW: Double, gridW: Double): Int {
-    val peakKw = maxOf(solarW, abs(batteryW), abs(gridW)) / 1000.0
-    val speed = (1 + (peakKw - 1).coerceAtLeast(0.0) * (1.2 / 9.0)).coerceIn(1.0, 2.2)
-    return (2_200 / speed).toInt()
+/**
+ * One endpoint: name, value and what it is doing, as a 48 dp control.
+ *
+ * Three lines, and every one of them is load-bearing: the name is the endpoint, the value is
+ * the reading, and the state word is what makes the node understandable without colour — a
+ * battery reads "Charging", "Discharging", "Idle" or "No data", a grid reads "Exporting",
+ * "Importing" or "Net zero". The tint is the fourth signal and never the only one.
+ */
+@Composable
+fun EnergyNodeCard(
+    node: EnergyNode,
+    valueText: String,
+    stateWord: String,
+    tint: Color,
+    modifier: Modifier = Modifier,
+    alpha: Float = 1f,
+    onClick: ((EnergyNode) -> Unit)? = null
+) {
+    val colors = LocalHeliosSemanticColors.current
+    val interactive = if (onClick != null) {
+        modifier
+            .defaultMinSize(minHeight = HeliosSpacing.minTouchTarget)
+            .clip(HeliosShape.md)
+            .clickable(role = Role.Button) { onClick(node) }
+    } else {
+        modifier
+    }
+    Column(
+        modifier = interactive
+            .clip(HeliosShape.md)
+            .padding(HeliosSpacing.space2)
+            .semantics(mergeDescendants = true) {
+                contentDescription = "${node.label} $valueText, $stateWord"
+            },
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // No mark inside a node: the label, the reading and the state word already say
+        // everything, and the 22 dp a mark needs is the difference between the instrument
+        // fitting its height budget and the lower node row being clipped.
+        Text(
+            text = node.label.uppercase(),
+            style = HeliosTypography.caption2,
+            color = colors.textTertiary.copy(alpha = alpha)
+        )
+        Text(
+            text = valueText,
+            style = HeliosTypography.callout,
+            color = colors.textPrimary.copy(alpha = alpha),
+            fontWeight = FontWeight.Medium
+        )
+        Text(
+            text = stateWord,
+            style = HeliosTypography.caption2,
+            color = tint.copy(alpha = alpha)
+        )
+    }
+}
+
+/**
+ * The three-cell ledger that closes the hero block: what today produced, how much of it the
+ * house used, and what that avoided.
+ *
+ * The CO2 factor is the PWA's own (0.42 kg per kWh, `src/pages/Dashboard.tsx`), kept here so
+ * a snapshot link and the app state the same number.
+ */
+@Composable
+fun EnergyLedger(
+    cells: List<EnergyLedgerCell>,
+    modifier: Modifier = Modifier,
+    dimmed: Boolean = false,
+    place: String? = null
+) {
+    val colors = LocalHeliosSemanticColors.current
+    val alpha = if (dimmed) 0.6f else 1f
+    Column(modifier = modifier.fillMaxWidth()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(HeliosElevation.MaterialTokens.innerStrokeWidth)
+                .background(colors.separatorHairline)
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = HeliosSpacing.space3),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            cells.forEach { cell ->
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .semantics(mergeDescendants = true) {
+                            contentDescription = "${cell.label} ${cell.value}" +
+                                (cell.qualifier?.let { ", $it" } ?: "")
+                        },
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = cell.value,
+                        style = HeliosTypography.title3,
+                        color = colors.textPrimary.copy(alpha = alpha)
+                    )
+                    Spacer(Modifier.height(HeliosSpacing.space1))
+                    Text(
+                        text = cell.label.uppercase(),
+                        style = HeliosTypography.caption2,
+                        color = colors.textTertiary.copy(alpha = alpha)
+                    )
+                    if (cell.qualifier != null) {
+                        Text(
+                            text = cell.qualifier,
+                            style = HeliosTypography.caption2,
+                            color = colors.textQuaternary.copy(alpha = alpha)
+                        )
+                    }
+                }
+            }
+        }
+        if (place != null) {
+            Spacer(Modifier.height(HeliosSpacing.space2))
+            Text(
+                text = place,
+                style = HeliosTypography.caption2,
+                color = colors.textQuaternary.copy(alpha = alpha)
+            )
+        }
+    }
+}
+
+// ------------------------------------------------------------------ drawing
+
+/**
+ * One spoke of the instrument.
+ *
+ * [watts] is the magnitude on this path. The line is always drawn at low alpha so the
+ * topology is visible even at zero; the moving dots carry the magnitude and the direction.
+ */
+private fun DrawScope.drawSpoke(
+    from: Offset,
+    to: Offset,
+    watts: Double,
+    supplies: Boolean,
+    color: Color,
+    phase: Float,
+    animating: Boolean,
+    dimmed: Boolean
+) {
+    val magnitude = if (watts.isNaN()) 0.0 else abs(watts)
+    val active = magnitude > 1.0
+    val lineAlpha = when {
+        !active -> 0.18f
+        dimmed -> 0.35f
+        else -> 0.55f
+    }
+    drawLine(
+        color = color.copy(alpha = lineAlpha),
+        start = from,
+        end = to,
+        strokeWidth = if (active) 3f else 1.5f,
+        cap = StrokeCap.Round
+    )
+
+    val origin = if (supplies) to else from
+    val destination = if (supplies) from else to
+
+    if (!animating) {
+        if (active) {
+            drawArrowHead(origin = origin, destination = destination, color = color.copy(alpha = 0.9f))
+        }
+        return
+    }
+
+    val dots = (magnitude / 1500.0).roundToInt().coerceIn(1, 4)
+    if (!active) return
+    val speed = (0.6 + (magnitude / 5000.0)).coerceAtMost(1.4)
+    repeat(dots) { index ->
+        val t = ((phase * speed.toFloat()) + index.toFloat() / dots) % 1f
+        val point = Offset(
+            x = origin.x + (destination.x - origin.x) * t,
+            y = origin.y + (destination.y - origin.y) * t
+        )
+        drawCircle(color = color, radius = 3.5f, center = point)
+    }
+    drawArrowHead(origin = origin, destination = destination, color = color.copy(alpha = 0.5f))
+}
+
+/** A small triangle at the far end of a path, so a stopped animation still shows direction. */
+private fun DrawScope.drawArrowHead(origin: Offset, destination: Offset, color: Color) {
+    val dx = destination.x - origin.x
+    val dy = destination.y - origin.y
+    val length = kotlin.math.sqrt(dx * dx + dy * dy)
+    if (length < 1f) return
+    val ux = dx / length
+    val uy = dy / length
+    val tip = Offset(destination.x - ux * 10f, destination.y - uy * 10f)
+    val baseLeft = Offset(tip.x - ux * 12f - uy * 6f, tip.y - uy * 12f + ux * 6f)
+    val baseRight = Offset(tip.x - ux * 12f + uy * 6f, tip.y - uy * 12f - ux * 6f)
+    val path = Path().apply {
+        moveTo(tip.x, tip.y)
+        lineTo(baseLeft.x, baseLeft.y)
+        lineTo(baseRight.x, baseRight.y)
+        close()
+    }
+    drawPath(path = path, color = color)
+}
+
+// ------------------------------------------------------------------ words
+
+/**
+ * The text equivalent of the diagram, which is also its accessibility description. It reads
+ * the four paths in the plant's order and never states a direction it cannot see.
+ */
+fun energyFlowSummary(solarW: Double, homeW: Double, batteryW: Double, gridW: Double): String {
+    val solar = if (solarW.isNaN()) "Solar not reported" else "Solar ${HeliosFormat.wattsToKilowatts(solarW)}"
+    val home = if (homeW.isNaN()) "home load not reported" else "home load ${HeliosFormat.wattsToKilowatts(homeW)}"
+    val battery = if (batteryW.isNaN()) {
+        "battery not reported"
+    } else {
+        "battery ${batteryStateWord(batteryW).lowercase()} ${HeliosFormat.wattsToKilowatts(abs(batteryW))}"
+    }
+    val grid = if (gridW.isNaN()) {
+        "grid not reported"
+    } else {
+        "grid ${gridStateWord(gridW).lowercase()} ${HeliosFormat.wattsToKilowatts(abs(gridW))}"
+    }
+    return "$solar, $home, $battery, $grid."
+}
+
+/** The battery's verb. Charge is positive by convention in [com.helios.core.domain.model.SolarTelemetry]. */
+fun batteryStateWord(batteryW: Double): String = when {
+    batteryW.isNaN() -> "No data"
+    batteryW > 30 -> "Charging"
+    batteryW < -30 -> "Discharging"
+    else -> "Idle"
+}
+
+/** The grid's verb: positive is export, negative is import. */
+fun gridStateWord(gridW: Double): String = when {
+    gridW.isNaN() -> "No data"
+    gridW > 30 -> "Exporting"
+    gridW < -30 -> "Importing"
+    else -> "Net zero"
+}
+
+/** The status pill's word for a simulated reading that is otherwise healthy. */
+fun simulatedStatus(simulated: Boolean, faulted: Boolean): HeliosStatusKind = when {
+    faulted -> HeliosStatusKind.FAULT
+    simulated -> HeliosStatusKind.DEMO
+    else -> HeliosStatusKind.PRODUCING
 }

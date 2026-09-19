@@ -42,3 +42,15 @@
 {"file": "insights-light.png", "attempts": 1, "bytes": 225529, "start": "ok", "marker_found": true, "texts": ["HELIOS\u00b0 INTELLIGENCE", "What we noticed today", "Insights generated from 3 strings, your inverter, the battery cabinet and local weather.", "Live", "HELIOS\u00b0 INSIGHT \u00b7 CRITICAL", "Maintenance", "Inverter fault", "1 fault", "The inverter reported an arc-fault warning at 13:42 and reset itself. Check the DC connectors.", "Open diagnostics", "WEATHER \u00b7 AI FORECAST", "7-day production forecast", "210 kWh", "Sat", "Clear", "37.8 kWh", "+18% vs typical", "Sun", "Mostly clear", "34.2 kWh", "+7% vs typical", "Mon", "Partly cloudy", "21.6 kWh", "-32% vs typical", "Tue", "Overcast", "12.4 kWh", "-61% vs typical", "Wed", "Fog", "28.9 kWh", "-10% vs typical", "Thu", "Drizzle", "36.1 kWh", "+13% vs typical", "Fri", "Rain", "39.4 kWh"]}
 {"file": "insights-long.png", "attempts": 1, "bytes": 238390, "start": "ok", "marker_found": true, "texts": ["HELIOS\u00b0 INTELLIGENCE", "What we noticed today", "Insights generated from 3 strings, your inverter, the battery cabinet and local weather.", "Live", "HELIOS\u00b0 INSIGHT \u00b7 CRITICAL", "Maintenance", "Inverter fault \u00b7 day 5", "1 fault", "The inverter reported an arc-fault warning at 13:42 and reset itself. Check the DC connectors. This row is deliberately long so a two-line card, a three-line card and a truncated card can all be inspected at the same time, including the trailing action.", "Open diagnostics", "WEATHER \u00b7 AI FORECAST", "7-day production forecast", "914 kWh", "Sat", "Clear", "37.8 kWh", "+18% vs typical", "Sun", "Mostly clear", "34.2 kWh", "+7% vs typical", "Mon", "Partly cloudy", "21.6 kWh", "-32% vs typical", "Tue", "Overcast", "12.4 kWh", "-61% vs typical", "Wed", "Fog", "28.9 kWh", "-10% vs typical", "Thu", "Drizzle", "36.1 kWh", "+13% vs typical"]}
 {"file": "insights-stale.png", "bytes": 152812, "swipes": 1, "start": "ok", "marker_found": true, "texts": ["Thu", "Drizzle", "36.1 kWh", "+13% vs typical", "Fri", "Rain", "39.4 kWh", "+23% vs typical", "San Francisco, CA \u00b7 +13.4% vs last week", "Use my location", "SAVINGS", "What the system saved", "Savings \u00b7 today", "No data", "vs grid baseline", "Savings \u00b7 month", "No data", "Month to date", "Lifetime", "No data", "Since install", "CO\u2082 avoided", "No data", "Lifetime", "How is this calculated?", "FULL FEED", "All insights", "0 advisories", "Waiting for the inverter", "Advisories are paused while the reading is stale"]}
+
+# --- Merged from codex/quest-23d2e03d-s4-v1 ---
+device: emulator-5554
+install app-debug.apk
+Performing Streamed Install
+Success
+captured dashboard-large-text.png (192919 bytes) dump 29688 bytes
+captured production-large-text.png (230447 bytes) dump 20321 bytes
+captured dashboard-large-text-2.png after 2 swipes
+captured dashboard-large-text-3.png after 4 swipes
+captured production-large-text-2.png after 2 swipes
+capture complete
