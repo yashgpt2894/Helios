@@ -110,6 +110,21 @@ $ANDROID_HOME/platform-tools/adb logcat -d -b all \
 $ANDROID_HOME/platform-tools/adb exec-out screencap -p > .mobile-work/evidence/skeleton-launch.png
 ```
 
+`.mobile-work/verify-launch.sh` runs exactly this sequence and writes the four
+evidence files; use it instead of retyping the commands.
+
+Two install-time details:
+
+- A package left behind by an earlier session was signed with a different debug
+  keystore, which makes `install -r` fail with
+  `INSTALL_FAILED_UPDATE_INCOMPATIBLE`. Run
+  `$ANDROID_HOME/platform-tools/adb uninstall com.helios.app` once, then install.
+- On the first run after a fresh install the app asks for the location
+  permission, so the permission dialog is the top activity. Grant it
+  (`adb shell pm grant com.helios.app android.permission.ACCESS_FINE_LOCATION`,
+  plus the coarse one) or accept the dialog, then the landing screen appears.
+  The app process stays alive in either case.
+
 Component name: the launcher activity is `com.helios.app.MainActivity` in
 package `com.helios.app` (see "Fixes" below), so both `com.helios.app/.MainActivity`
 and `com.helios.app/com.helios.app.MainActivity` resolve.
@@ -146,20 +161,24 @@ and `com.helios.app/com.helios.app.MainActivity` resolve.
 
 ## Verification results
 
+Re-verified in this workspace after `./gradlew clean`, on the `helios35` AVD:
+
 | Check | Result |
 | --- | --- |
 | `cd android && ./gradlew clean` | exit 0 |
-| `cd android && ./gradlew :app:assembleDebug` (after `./gradlew clean`) | exit 0, 40 tasks executed, APK produced |
-| Same command with `HOME=/Users/yashgupta` (fallback home inside the repo) | exit 0 |
-| `adb install -r -t app-debug.apk` | `Success` |
-| `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 1077 ms |
-| Process alive after 30 s | yes, pid unchanged |
-| logcat fatal entries since launch | none (`FATAL EXCEPTION`, `E AndroidRuntime`, `am_crash`, `am_anr`) |
-| UI dump | package `com.helios.app`, texts `Helios`, `Power, illuminated.`, `No hardware connected. Running in simulation mode.` |
+| `cd android && ./gradlew :app:assembleDebug` (after clean, all 40 tasks executed) | exit 0, `app-debug.apk` rebuilt |
+| `cd android && ./gradlew :app:assembleDebug` (incremental) | exit 0, 3 tasks executed |
+| `adb uninstall` + `adb install -t app-debug.apk` | `Success` for both |
+| `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 1192 ms |
+| Process alive after 30 s | yes, pid 3674 unchanged |
+| Fatal log entries since launch | 0 (`FATAL EXCEPTION`, `E AndroidRuntime`, `am_crash`, `am_anr`) |
+| UI dump | package `com.helios.app`, `ComposeView` present, texts `Helios`, `Power, illuminated.`, `No hardware connected. Running in simulation mode.` |
+| Screenshot | `.mobile-work/evidence/skeleton-launch.png`, 1080x2400, rendered dark landing screen (705 distinct colors) |
 
 Raw evidence: `.mobile-work/evidence/skeleton-launch.png`,
-`.mobile-work/evidence/logcat-launch-30s.log`,
-`.mobile-work/evidence/ui-hierarchy.xml`.
+`.mobile-work/evidence/logcat-launch-30s.log` (app pid only, launch plus 30 s),
+`.mobile-work/evidence/launch-30s.txt` (command transcript, pid check, fatal
+count), `.mobile-work/evidence/ui-hierarchy.xml`.
 
 ## Known issues
 
@@ -168,8 +187,14 @@ Raw evidence: `.mobile-work/evidence/skeleton-launch.png`,
   navigation, not a build problem.
 - Kotlin compiles with deprecation warnings only: `statusBarColor`,
   `navigationBarColor`, `quadraticBezierTo`, `startActivityAndCollapse`.
-- `:wear` is configured in `settings.gradle.kts` and its sources compile as part
-  of `./gradlew build`, but this Quest only builds and runs `:app`.
+- `:wear` is configured in `settings.gradle.kts` but does not build:
+  `./gradlew :wear:assembleDebug` fails in `:wear:checkDebugAarMetadata` because
+  `androidx.wear.compose:compose-material3:1.0.0` and
+  `com.google.android.horologist:horologist-complications-data:0.6.20` both
+  return 404 from `google()` and `mavenCentral()` (checked directly). The broken
+  versions are pre-existing, and the failure is confined to `:wear`;
+  `./gradlew :app:assembleDebug` succeeds. This Quest only builds and runs
+  `:app`, so `:wear` was left alone.
 - The fallback Gradle and Android homes are build caches outside git
   (`$HOME/.gradle-helios`, `android/.gradle-user-home`, `/tmp/helios-avd`).
 - The emulator is stopped after evidence capture (`adb emu kill`); restart it

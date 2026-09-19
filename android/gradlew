@@ -152,6 +152,49 @@ if [ -z "${ANDROID_USER_HOME:-}" ] && ! helios_writable "$helios_java_user_home/
     echo "Helios: '$helios_java_user_home/.android' is not writable; using ANDROID_USER_HOME=$ANDROID_USER_HOME." >&2
 fi
 
+# The launcher itself needs a JVM. A Homebrew JDK is not registered with
+# /usr/libexec/java_home, so with JAVA_HOME unset and Apple's stub 'java' first
+# on PATH the wrapper dies with "Unable to locate a Java Runtime" before Gradle
+# starts. When JAVA_HOME is unset or unusable, resolve a JDK from the one this
+# project pins in gradle.properties, from a working 'java' already on PATH, or
+# from the usual install locations.
+helios_java_home_usable() {
+    [ -n "$1" ] && [ -x "$1/bin/java" ]
+}
+
+if ! helios_java_home_usable "${JAVA_HOME:-}"; then
+    helios_candidates=$(sed -n 's/^[[:space:]]*org\.gradle\.java\.home[[:space:]]*=[[:space:]]*//p' \
+        "$APP_HOME/gradle.properties" 2>/dev/null | tail -n 1)
+    case $helios_candidates in
+        /*) ;;
+        *) helios_candidates= ;;
+    esac
+    if [ -x /usr/libexec/java_home ]; then
+        helios_candidates="$helios_candidates
+$(/usr/libexec/java_home -v 17 2>/dev/null)
+$(/usr/libexec/java_home 2>/dev/null)"
+    fi
+    helios_candidates="$helios_candidates
+/opt/homebrew/opt/openjdk@17
+/opt/homebrew/opt/openjdk
+/usr/local/opt/openjdk@17
+/usr/local/opt/openjdk
+/Library/Java/JavaVirtualMachines/*/Contents/Home"
+    helios_old_ifs=$IFS
+    IFS='
+'
+    for helios_candidate in $helios_candidates; do
+        if helios_java_home_usable "$helios_candidate"; then
+            JAVA_HOME=$helios_candidate
+            export JAVA_HOME
+            echo "Helios: JAVA_HOME is not set to a usable JDK; using $JAVA_HOME." >&2
+            break
+        fi
+    done
+    IFS=$helios_old_ifs
+    unset helios_candidates helios_candidate helios_old_ifs
+fi
+
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD=maximum
