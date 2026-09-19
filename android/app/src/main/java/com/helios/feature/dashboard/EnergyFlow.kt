@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -127,15 +128,22 @@ fun EnergyFlow(
     )
     val dotPhase = if (animating) phase else 0f
 
+    // Height: the instrument grows with the user's text scale instead of clipping. Each node
+    // carries three lines (name, reading, state word) and every one of them is load-bearing, so
+    // at 200 percent text the rows need roughly twice the height; the block is allowed to grow
+    // there, which is the same trade the design makes for the hero number.
+    val textScale = LocalDensity.current.fontScale.coerceIn(1f, 1.7f)
+    val boxHeight = flowHeight * textScale
+    val nodeRowHeight = (boxHeight - HeliosSpacing.space3) / 4
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(flowHeight)
+            .height(boxHeight)
             .semantics {
                 contentDescription = energyFlowSummary(solarW, homeW, batteryW, gridW)
             }
     ) {
-        Canvas(modifier = Modifier.fillMaxWidth().height(flowHeight)) {
+        Canvas(modifier = Modifier.fillMaxWidth().height(boxHeight)) {
             val centre = Offset(size.width / 2f, size.height / 2f)
             // The node rows sit at the top and the bottom of the panel with the hub between
             // them (Arrangement.SpaceBetween), so their centres are at 13 and 87 percent of the
@@ -191,11 +199,10 @@ fun EnergyFlow(
         // Fixed row heights and a hub that takes what is left: with SpaceBetween and free
         // heights the lower row was squeezed to the 48 dp minimum, which clipped the state word
         // off the two bottom endpoints (measured on the emulator before this change).
-        val nodeRowHeight = (flowHeight - HeliosSpacing.space3) / 4
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(flowHeight)
+                .height(boxHeight)
                 .padding(horizontal = HeliosSpacing.space3, vertical = HeliosSpacing.space2)
         ) {
             Row(

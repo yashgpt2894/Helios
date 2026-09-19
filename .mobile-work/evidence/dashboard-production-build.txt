@@ -20,6 +20,12 @@ Commands and results
    (36 | 0 | 0 | 0.116s)
 3. cd android && ./gradlew :app:assembleDebug            -> BUILD SUCCESSFUL, exit 0
    APK: android/app/build/outputs/apk/debug/app-debug.apk
+4. Re-run after the layout fixes at the end of the step (--rerun):
+   ./gradlew :app:testDebugUnitTest :app:compileDebugKotlin --rerun -> BUILD SUCCESSFUL, exit 0
+   Test suites: com.helios.core.data.FixtureStateCoverageTest tests=6 failures=0 errors=0; com.helios.core.data.SnapshotParityTest tests=5 failures=0 errors=0; com.helios.core.designsystem.TokensMatchJsonTest tests=6 failures=0 errors=0; com.helios.feature.dashboard.DashboardStateTest tests=12 failures=0 errors=0; com.helios.feature.production.ProductionStateTest tests=8 failures=0 errors=0
+   Where the two new suites live:
+     app/src/test/java/com/helios/feature/dashboard/DashboardStateTest.kt
+     app/src/test/java/com/helios/feature/production/ProductionStateTest.kt
 
 What the new tests assert (state, not pixels)
 ---------------------------------------------

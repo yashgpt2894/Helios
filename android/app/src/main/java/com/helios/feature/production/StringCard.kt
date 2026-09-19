@@ -106,14 +106,24 @@ fun PerStringCard(
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.Top
         ) {
-            Text(
-                text = label,
-                style = HeliosTypography.headline,
-                color = colors.textPrimary,
-                modifier = Modifier.weight(1f)
-            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = label,
+                    style = HeliosTypography.headline,
+                    color = colors.textPrimary
+                )
+                // The state word sits with the name rather than at the end of the values row: at
+                // 200 percent text that row has no width left for it, and a state word that a
+                // container clips is a state word that is not there.
+                Text(
+                    text = state.word,
+                    style = HeliosTypography.caption2,
+                    color = tint,
+                    fontWeight = FontWeight.Medium
+                )
+            }
             Text(
                 text = if (string.powerW.isNaN()) HeliosFormat.NO_DATA else HeliosFormat.watts(string.powerW),
                 style = HeliosTypography.callout,
@@ -145,12 +155,6 @@ fun PerStringCard(
                 value = DashboardMetrics.number(string.ratedW / 1000.0, 1),
                 unit = "kW \u00B7 ${string.panels} panels",
                 missing = string.ratedW.isNaN()
-            )
-            Text(
-                text = state.word,
-                style = HeliosTypography.caption2,
-                color = tint,
-                fontWeight = FontWeight.Medium
             )
         }
     }
