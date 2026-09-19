@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-09-19T00:11:40.015098+00:00",
+  "root": "/Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s1-v1",
+  "host": {
+    "os": "Darwin",
+    "release": "24.5.0",
+    "machine": "arm64",
+    "python": "3.14.4"
+  },
+  "tools": {
+    "git": {
+      "found_on_path": true,
+      "path": "/usr/bin/git"
+    },
+    "node": {
+      "found_on_path": true,
+      "path": "/opt/homebrew/opt/node@22/bin/node"
+    },
+    "npm": {
+      "found_on_path": true,
+      "path": "/opt/homebrew/opt/node@22/bin/npm"
+    },
+    "pnpm": {
+      "found_on_path": true,
+      "path": "/opt/homebrew/opt/node@22/bin/pnpm"
+    },
+    "yarn": {
+      "found_on_path": false,
+      "path": null
+    },
+    "bun": {
+      "found_on_path": false,
+      "path": null
+    },
+    "python3": {
+      "found_on_path": true,
+      "path": "/opt/homebrew/bin/python3"
+    },
+    "uv": {
+      "found_on_path": true,
+      "path": "/Users/yashgupta/.local/bin/uv"
+    },
+    "docker": {
+      "found_on_path": false,
+      "path": null
+    },
+    "adb": {
+      "found_on_path": true,
+      "path": "/opt/homebrew/bin/adb"
+    },
+    "emulator": {
+      "found_on_path": false,
+      "path": null
+    },
+    "sdkmanager": {
+      "found_on_path": true,
+      "path": "/opt/homebrew/bin/sdkmanager"
+    },
+    "java": {
+      "found_on_path": true,
+      "path": "/usr/bin/java"
+    },
+    "xcodebuild": {
+      "found_on_path": true,
+      "path": "/usr/bin/xcodebuild"
+    },
+    "xcrun": {
+      "found_on_path": true,
+      "path": "/usr/bin/xcrun"
+    },
+    "swift": {
+      "found_on_path": true,
+      "path": "/usr/bin/swift"
+    },
+    "flutter": {
+      "found_on_path": false,
+      "path": null
+    },
+    "dart": {
+      "found_on_path": false,
+      "path": null
+    },
+    "maestro": {
+      "found_on_path": false,
+      "path": null
+    },
+    "agent-device": {
+      "found_on_path": false,
+      "path": null
+    },
+    "watchman": {
+      "found_on_path": false,
+      "path": null
+    }
+  },
+  "project_manifests": [
+    "package-lock.json",
+    "package.json"
+  ],
+  "framework_version_hints": {
+    ".": {
+      "react": "^18.3.1",
+      "typescript": "^5.6.3"
+    }
+  },
+  "sdk_environment_present": {
+    "ANDROID_HOME": false,
+    "ANDROID_SDK_ROOT": false,
+    "JAVA_HOME": false,
+    "DEVELOPER_DIR": false
+  },
+  "native_ios_host_candidate": true,
+  "android_tools_candidate": true,
+  "limitations": [
+    "Executable presence is not a functional device, license, account, network, Docker-daemon, signing, or permission test.",
+    "No environment values or secrets were read into this report; paths/version output may still reveal local metadata.",
+    "This helper does not install dependencies. The host agent performs authorized installation using the skill policy."
+  ]
+}
