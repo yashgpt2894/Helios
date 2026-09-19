@@ -1,0 +1,99 @@
+PASS  file exists and is non-empty: .mobile-work/STATE.md
+PASS  file exists and is non-empty: design/DESIGN.md
+PASS  file exists and is non-empty: design/ux-flows.md
+PASS  file exists and is non-empty: design/screen-inventory.md
+PASS  STATE.md heading verbatim: # Execution state
+PASS  STATE.md heading verbatim: ## Objective and authorized scope
+PASS  STATE.md section non-empty: ## Objective and authorized scope
+PASS  STATE.md heading verbatim: ## Assumptions and decisions
+PASS  STATE.md section non-empty: ## Assumptions and decisions
+PASS  STATE.md heading verbatim: ## Environment
+PASS  STATE.md section non-empty: ## Environment
+PASS  STATE.md heading verbatim: ## Current milestone
+PASS  STATE.md section non-empty: ## Current milestone
+PASS  STATE.md heading verbatim: ## Evidence and artifacts
+PASS  STATE.md section non-empty: ## Evidence and artifacts
+PASS  STATE.md heading verbatim: ## Blockers and risks
+PASS  STATE.md section non-empty: ## Blockers and risks
+PASS  STATE.md heading verbatim: ## Next action
+PASS  STATE.md section non-empty: ## Next action
+PASS  DESIGN.md has direction D1
+PASS  DESIGN.md has direction D2
+PASS  DESIGN.md has direction D3
+PASS  DESIGN.md states the selected direction
+PASS  DESIGN.md explains the selection with numbered reasons
+PASS  DESIGN.md evaluates on an explicit criteria table
+PASS  DESIGN.md covers hierarchy emphasis
+PASS  DESIGN.md covers interaction emphasis
+PASS  DESIGN.md names the styling authority
+PASS  DESIGN.md contains no direction named only by colour
+PASS  ux-flows.md covers first run
+PASS  ux-flows.md covers principal repeated task
+PASS  ux-flows.md covers inverter/network recovery
+PASS  ux-flows.md covers return use
+PASS  ux-flows.md names the socket timeout bound
+PASS  ux-flows.md states the stale threshold
+PASS  ux-flows.md forbids animating stale data
+PASS  inventory defines REQ- ids
+PASS  inventory defines RTE- ids
+PASS  inventory defines SCR- ids
+PASS  inventory defines STS- ids
+PASS  inventory defines ACT- ids
+PASS  inventory defines CMP- ids
+PASS  inventory defines SVC- ids
+PASS  inventory defines FLW- ids
+PASS  every action row has 9 columns
+PASS  every action row is fully populated
+PASS  every action row is traced to the matrix
+PASS  SCR-01 records the Android status
+PASS  SCR-01 records the FPM trace
+PASS  SCR-02 records the Android status
+PASS  SCR-02 records the FPM trace
+PASS  SCR-03 records the Android status
+PASS  SCR-03 records the FPM trace
+PASS  SCR-04 records the Android status
+PASS  SCR-04 records the FPM trace
+PASS  SCR-05 records the Android status
+PASS  SCR-05 records the FPM trace
+PASS  SCR-06 records the Android status
+PASS  SCR-06 records the FPM trace
+PASS  SCR-07 records the Android status
+PASS  SCR-07 records the FPM trace
+PASS  SCR-08 records the Android status
+PASS  SCR-08 records the FPM trace
+PASS  SCR-09 records the Android status
+PASS  SCR-09 records the FPM trace
+PASS  SCR-10 records the Android status
+PASS  SCR-10 records the FPM trace
+PASS  SCR-11 records the Android status
+PASS  SCR-11 records the FPM trace
+PASS  SCR-12 records the Android status
+PASS  SCR-12 records the FPM trace
+PASS  SCR-13 records the Android status
+PASS  SCR-13 records the FPM trace
+PASS  SCR-14 records the Android status
+PASS  SCR-14 records the FPM trace
+PASS  SCR-15 records the Android status
+PASS  SCR-15 records the FPM trace
+PASS  SCR-16 records the Android status
+PASS  SCR-16 records the FPM trace
+PASS  SCR-17 records the Android status
+PASS  SCR-17 records the FPM trace
+PASS  SCR-18 records the Android status
+PASS  SCR-18 records the FPM trace
+PASS  SCR-19 records the Android status
+PASS  SCR-19 records the FPM trace
+PASS  inventory reports coverage and gaps
+PASS  inventory marks out-of-scope surfaces
+PASS  design/DESIGN.md references only defined ids
+PASS  design/ux-flows.md references only defined ids
+PASS  no emoji in .mobile-work/STATE.md
+PASS  no emoji in design/DESIGN.md
+PASS  no emoji in design/ux-flows.md
+PASS  no emoji in design/screen-inventory.md
+PASS  no application source modified by this step
+
+94 of 94 checks passed
+inventory: 280 ids, 94 actions, 19 screens
+
+exit code: 0
