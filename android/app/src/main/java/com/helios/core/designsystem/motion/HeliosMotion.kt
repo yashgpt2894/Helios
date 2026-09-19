@@ -1,6 +1,5 @@
 package com.helios.core.designsystem.motion
 
-import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 
 /**
@@ -48,4 +47,4 @@ object HeliosMotion {
 }
 
 /** Wrapper so spring specs read cleanly at call sites. */
-data class SpringSpec(val spring: Spring<Float>)
+data class SpringSpec(val spring: androidx.compose.animation.core.SpringSpec<Float>)

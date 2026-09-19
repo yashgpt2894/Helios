@@ -1,0 +1,108 @@
++ '[' -z /tmp/helios-user-home ']'
++ mkdir -p /tmp/helios-user-home
++ '[' '!' -f /tmp/helios-user-home/adbkey ']'
++ export ANDROID_HOME=/opt/homebrew/share/android-commandlinetools
++ ANDROID_HOME=/opt/homebrew/share/android-commandlinetools
++ export ANDROID_SDK_ROOT=/opt/homebrew/share/android-commandlinetools
++ ANDROID_SDK_ROOT=/opt/homebrew/share/android-commandlinetools
++ cd /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/android
++ ./gradlew :app:assembleDebug
+Helios: '/Users/yashgupta/.gradle' is not writable; using GRADLE_USER_HOME=/Users/yashgupta/Library/Application Support/@product/desktop/control-plane/prime/37c0794a-4ae4-4af1-a981-f8d1c24ed8fb/.gradle-helios.
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:kspDebugKotlin UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:hiltAggregateDepsDebug UP-TO-DATE
+> Task :app:hiltJavaCompileDebug UP-TO-DATE
+> Task :app:transformDebugClassesWithAsm UP-TO-DATE
+> Task :app:dexBuilderDebug UP-TO-DATE
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeProjectDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:packageDebug UP-TO-DATE
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug UP-TO-DATE
+
+BUILD SUCCESSFUL in 537ms
+40 actionable tasks: 40 up-to-date
++ APK=/Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/android/app/build/outputs/apk/debug/app-debug.apk
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb devices
++ grep -q 'emulator-.*device$'
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb wait-for-device
+++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell getprop sys.boot_completed
+++ tr -d '\r'
++ '[' 1 '!=' 1 ']'
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb install -r -t /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/android/app/build/outputs/apk/debug/app-debug.apk
+Performing Streamed Install
+Success
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell pm grant com.helios.app android.permission.ACCESS_FINE_LOCATION
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell pm grant com.helios.app android.permission.ACCESS_COARSE_LOCATION
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell am force-stop com.google.android.permissioncontroller
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell am force-stop com.helios.app
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb logcat -b all -c
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell am start -W -n com.helios.app/.MainActivity
+Starting: Intent { cmp=com.helios.app/.MainActivity }
+Status: ok
+LaunchState: COLD
+Activity: com.helios.app/.MainActivity
+TotalTime: 912
+WaitTime: 914
+Complete
+++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell pidof com.helios.app
+++ tr -d '\r'
++ PID1=3669
++ '[' -n 3669 ']'
++ sleep 30
+++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell pidof com.helios.app
+++ tr -d '\r'
++ PID2=3669
++ echo 'pid at launch: 3669, after 30 s: 3669'
+pid at launch: 3669, after 30 s: 3669
++ '[' 3669 = 3669 ']'
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb logcat -d -b all
+++ grep -cE 'FATAL EXCEPTION|E AndroidRuntime|am_crash|am_anr' /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/.mobile-work/evidence/logcat-full.log
+++ true
++ FATALS=0
++ echo 'fatal log lines: 0'
+fatal log lines: 0
++ '[' 0 = 0 ']'
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb logcat -d -b all --pid=3669
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb exec-out screencap -p
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell uiautomator dump /sdcard/ui.xml
++ /opt/homebrew/share/android-commandlinetools/platform-tools/adb shell cat /sdcard/ui.xml
++ rm -f /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/.mobile-work/evidence/logcat-full.log
++ echo 'Evidence written to /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/.mobile-work/evidence'
+Evidence written to /Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s2-v1/.mobile-work/evidence

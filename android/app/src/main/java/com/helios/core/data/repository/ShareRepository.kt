@@ -45,8 +45,8 @@ object ShareRepository {
             ac = Math.round(telemetry.acPowerW / 10.0) / 100.0,
             todayKwh = Math.round(telemetry.energyTodayKwh * 10) / 10.0,
             lifeKwh = Math.round(telemetry.energyLifetimeKwh * 10) / 10.0,
-            soc = Math.round(telemetry.batterySoc),
-            selfUse = Math.round(selfUse),
+            soc = Math.round(telemetry.batterySoc).toDouble(),
+            selfUse = Math.round(selfUse).toDouble(),
             fc = forecastDays,
             br = brandId
         )

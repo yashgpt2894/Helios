@@ -1,4 +1,4 @@
-package com.helios.widget
+package com.helios.app.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -12,9 +12,9 @@ import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import androidx.glance.layout.Alignment
-import androidx.glance.layout.Box
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
+import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
@@ -23,7 +23,6 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
 import com.helios.core.data.repository.ForecastRepository
 import com.helios.core.data.repository.TelemetryRepository
 
@@ -43,7 +42,7 @@ class MediumWidgetReceiver : GlanceAppWidgetReceiver() {
 @Composable
 private fun MediumWidgetContent() {
     val series = TelemetryRepository.buildTodaySeries()
-    val forecastDays = ForecastRepository.forecastFlow.value?.days?.take(3) ?: emptyList()
+    val forecastDays = ForecastRepository.currentForecast?.days?.take(3).orEmpty()
 
     val sparklineMax = series.maxOfOrNull { it.productionW } ?: 1.0
     val sparklineValues = series.map { (it.productionW / sparklineMax).coerceIn(0.0, 1.0) }
@@ -63,10 +62,10 @@ private fun MediumWidgetContent() {
                 // Mini sparkline using bar representation
                 sparklineValues.take(12).forEach { v ->
                     val heightPx = (v * 24).toInt().coerceAtLeast(2)
-                    Box(
+                    Spacer(
                         modifier = GlanceModifier
                             .size(width = 8.dp, height = heightPx.dp)
-                            .background(ColorProvider(GlanceTheme.colors.primary))
+                            .background(GlanceTheme.colors.primary)
                             .padding(start = 1.dp)
                     )
                 }
@@ -87,7 +86,7 @@ private fun MediumWidgetContent() {
                             style = TextStyle(
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.Medium,
-                                color = ColorProvider(GlanceTheme.colors.primary),
+                                color = GlanceTheme.colors.primary,
                                 textAlign = TextAlign.Center
                             )
                         )
@@ -95,7 +94,7 @@ private fun MediumWidgetContent() {
                             text = "%.1f".format(day.expectedKwh),
                             style = TextStyle(
                                 fontSize = 10.sp,
-                                color = ColorProvider(GlanceTheme.colors.onSurface),
+                                color = GlanceTheme.colors.onSurface,
                                 textAlign = TextAlign.Center
                             )
                         )

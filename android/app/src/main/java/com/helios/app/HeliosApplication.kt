@@ -1,4 +1,4 @@
-package com.helios
+package com.helios.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

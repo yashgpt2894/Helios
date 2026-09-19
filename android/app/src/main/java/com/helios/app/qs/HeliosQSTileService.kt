@@ -1,4 +1,4 @@
-package com.helios.qs
+package com.helios.app.qs
 
 import android.content.Intent
 import android.os.Build
@@ -22,7 +22,7 @@ class HeliosQSTileService : TileService() {
     override fun onClick() {
         super.onClick()
         val intent = Intent(Intent.ACTION_MAIN).apply {
-            setClassName("com.helios.app", "com.helios.MainActivity")
+            setClassName("com.helios.app", "com.helios.app.MainActivity")
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         startActivityAndCollapse(intent)

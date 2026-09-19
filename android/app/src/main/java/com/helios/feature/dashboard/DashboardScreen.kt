@@ -96,7 +96,7 @@ fun DashboardScreen() {
         // 6. ForecastStrip
         SectionHeader("7-Day Forecast")
         ForecastStrip(
-            days = com.helios.core.data.repository.ForecastRepository.forecastFlow.value?.days ?: emptyList(),
+            days = com.helios.core.data.repository.ForecastRepository.currentForecast?.days ?: emptyList(),
             modifier = Modifier
         )
 

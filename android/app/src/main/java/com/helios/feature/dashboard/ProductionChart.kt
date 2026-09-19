@@ -71,7 +71,8 @@ fun ProductionChart(
                 else lineTo(x, y)
             }
         }
-        val prodFill = Path(prodPath).apply {
+        val prodFill = Path().apply {
+            addPath(prodPath)
             val lastX = series.last().t.x(series.lastIndex)
             lineTo(lastX, padTop + chartH)
             lineTo(padLeft, padTop + chartH)

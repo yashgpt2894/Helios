@@ -1,4 +1,4 @@
-package com.helios
+package com.helios.app
 
 import android.Manifest
 import android.content.pm.PackageManager

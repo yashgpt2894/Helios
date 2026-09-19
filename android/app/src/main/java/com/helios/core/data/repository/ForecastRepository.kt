@@ -21,6 +21,10 @@ object ForecastRepository {
     private val _error = MutableStateFlow<String?>(null)
     val errorFlow: Flow<String?> = _error.asStateFlow()
 
+    /** Latest loaded forecast, for synchronous consumers such as Glance widgets. */
+    val currentForecast: ProductionForecast?
+        get() = _forecast.value
+
     suspend fun loadForecast(location: Location): ProductionForecast {
         _status.value = ForecastStatus.loading
         kotlinx.coroutines.delay(500)
