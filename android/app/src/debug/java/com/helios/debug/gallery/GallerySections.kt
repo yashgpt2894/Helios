@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helios.core.data.fixture.FixtureData
+import com.helios.core.data.repository.SolarCurve
 import com.helios.core.data.fixture.FixtureScenario
 import com.helios.core.data.service.Loadable
 import com.helios.core.data.service.ServiceGraph
@@ -80,9 +81,10 @@ import com.helios.feature.dashboard.HeliosDestinations
 import com.helios.feature.dashboard.InsightHighlight
 import com.helios.feature.dashboard.LiveNumber
 import com.helios.feature.dashboard.LiveNumberState
-import com.helios.feature.dashboard.MetricTile
-import com.helios.feature.dashboard.MetricVariant
-import com.helios.feature.dashboard.MetricsGrid
+import com.helios.feature.dashboard.HeliosMotionSettings
+import com.helios.feature.dashboard.MetricGrid
+import com.helios.feature.dashboard.MetricTileSpec
+import com.helios.feature.dashboard.MetricTileState
 import com.helios.feature.dashboard.ProductionChart
 import com.helios.feature.dashboard.TopBar
 
@@ -147,6 +149,8 @@ fun LiveDashboardTop(context: GalleryContext) {
     val statusKind = statusKindFor(state, context)
     Column(verticalArrangement = Arrangement.spacedBy(HeliosSpacing.space3)) {
         TopBar(
+            brandName = "helios\u00B0",
+            subTitle = "Dashboard",
             statusKind = statusKind,
             freshnessText = freshnessTextFor(context, telemetry),
             freshnessKind = statusKind,
@@ -176,20 +180,39 @@ fun LiveDashboardTop(context: GalleryContext) {
         }
         LiveNumber(
             label = "Live output",
-            value = reading?.let { HeliosFormat.kilowatts(it.acPowerW / 1000.0) } ?: HeliosFormat.NO_DATA,
+            value = (reading?.acPowerW ?: Double.NaN) / 1000.0,
             unit = "kW",
             state = liveNumberStateFor(state, context)
         )
-        MetricsGrid(
-            liveKw = reading?.let { HeliosFormat.fixed(it.acPowerW / 1000.0, 2) } ?: HeliosFormat.NO_DATA,
-            irradiance = reading?.let { HeliosFormat.fixed(it.irradianceWm2, 0) } ?: HeliosFormat.NO_DATA,
-            gridFlow = reading?.let { HeliosFormat.fixed((it.gridExportW - it.gridImportW) / 1000.0, 2) }
-                ?: HeliosFormat.NO_DATA,
-            batterySoc = reading?.let { HeliosFormat.fixed(it.batterySoc, 0) } ?: HeliosFormat.NO_DATA,
-            liveDelta = "+0.4 kW vs 30 min ago",
-            batteryDelta = "-2% vs 30 min ago",
-            irradianceValue = reading?.irradianceWm2 ?: Double.NaN,
-            gridValue = reading?.let { it.gridExportW - it.gridImportW } ?: Double.NaN
+        MetricGrid(
+            tiles = listOf(
+                MetricTileSpec(
+                    label = "Live output",
+                    value = HeliosFormat.fixed((reading?.acPowerW ?: Double.NaN) / 1000.0, 2),
+                    unit = "kW",
+                    delta = "+0.4 kW vs 30 min ago",
+                    deltaIsGood = true
+                ),
+                MetricTileSpec(
+                    label = "Irradiance",
+                    value = HeliosFormat.fixed(reading?.irradianceWm2 ?: Double.NaN, 0),
+                    unit = "W/m\u00B2"
+                ),
+                MetricTileSpec(
+                    label = "Grid",
+                    value = HeliosFormat.fixed(
+                        ((reading?.gridExportW ?: Double.NaN) - (reading?.gridImportW ?: Double.NaN)) / 1000.0,
+                        2
+                    ),
+                    unit = "kW"
+                ),
+                MetricTileSpec(
+                    label = "Battery",
+                    value = HeliosFormat.fixed(reading?.batterySoc ?: Double.NaN, 0),
+                    unit = "%",
+                    delta = "-2% vs 30 min ago"
+                )
+            )
         )
         GalleryLabel("Scenario ${context.scenario.label} renders as ${state.name}")
     }
@@ -203,17 +226,20 @@ fun LiveDashboardEnergy(context: GalleryContext) {
     val reading = telemetry.valueOrNull()
     Column(verticalArrangement = Arrangement.spacedBy(HeliosSpacing.space3)) {
         EnergyFlow(
-            solarW = reading?.acPowerW ?: 0.0,
-            batteryW = reading?.batteryPowerW ?: 0.0,
-            gridW = reading?.let { it.gridExportW - it.gridImportW } ?: 0.0,
-            homeW = reading?.homeLoadW ?: 0.0,
-            stale = state == UiState.STALE,
-            offline = state == UiState.OFFLINE,
-            height = 170.dp
+            hubValue = (reading?.acPowerW ?: Double.NaN) / 1000.0,
+            hubUnit = "kW",
+            hubLabel = "Live output",
+            solarW = reading?.acPowerW ?: Double.NaN,
+            batteryW = reading?.batteryPowerW ?: Double.NaN,
+            gridW = reading?.let { it.gridExportW - it.gridImportW } ?: Double.NaN,
+            homeW = reading?.homeLoadW ?: Double.NaN,
+            state = FixtureData.seriesLoadable(context.scenario, now).toSurfaceState(),
+            liveState = liveNumberStateFor(state, context),
+            flowHeight = 280.dp
         )
         ProductionChart(
-            series = FixtureData.todaySeries(now),
-            state = FixtureData.seriesLoadable(context.scenario, now).toSurfaceState()
+            series = FixtureData.seriesLoadable(context.scenario, now),
+            nowHour = SolarCurve.nowAsHourFloat(now)
         )
     }
 }
@@ -278,47 +304,72 @@ private fun freshnessTextFor(context: GalleryContext, telemetry: Loadable<*>): S
 @Composable
 fun EnergyFlowLiveNight(context: GalleryContext) {
     val day = FixtureData.daytimeTelemetry(System.currentTimeMillis())
-    GalleryLabel("Live: trails run at wattage-scaled density")
+    GalleryLabel("Live: dots run at one per kilowatt, in the direction the energy goes")
     EnergyFlow(
+        hubValue = day.acPowerW / 1000.0,
+        hubUnit = "kW",
+        hubLabel = "Live output",
         solarW = day.acPowerW,
         batteryW = day.batteryPowerW,
         gridW = day.gridExportW,
         homeW = day.homeLoadW,
-        height = 150.dp
+        liveState = LiveNumberState.UPDATING,
+        flowHeight = 280.dp
     )
-    GalleryLabel("Night: no solar dots, the home runs from the battery")
-    EnergyFlow(solarW = 0.0, batteryW = -620.0, gridW = 0.0, homeW = 620.0, height = 150.dp)
+    GalleryLabel("Night: nothing on the solar spoke, the home runs from the battery")
+    EnergyFlow(
+        hubValue = 0.0,
+        hubUnit = "kW",
+        hubLabel = "Live output",
+        solarW = 0.0,
+        batteryW = -620.0,
+        gridW = 0.0,
+        homeW = 620.0,
+        liveState = LiveNumberState.STATIC,
+        flowHeight = 280.dp
+    )
 }
 
 @Composable
 fun EnergyFlowDegraded(context: GalleryContext) {
     val day = FixtureData.daytimeTelemetry(System.currentTimeMillis())
-    GalleryLabel("Stale: trails stop, nodes dim")
+    GalleryLabel("Stale: dots stop, a static arrow keeps the last known direction")
     EnergyFlow(
+        hubValue = day.acPowerW / 1000.0,
+        hubUnit = "kW",
+        hubLabel = "Live output",
         solarW = day.acPowerW,
         batteryW = day.batteryPowerW,
         gridW = day.gridExportW,
         homeW = day.homeLoadW,
-        stale = true,
-        height = 150.dp
+        state = SurfaceState.STALE,
+        liveState = LiveNumberState.STALE,
+        flowHeight = 240.dp
     )
-    GalleryLabel("Offline: no trails at all")
+    GalleryLabel("Offline: the same picture, with the failure state")
     EnergyFlow(
+        hubValue = day.acPowerW / 1000.0,
+        hubUnit = "kW",
+        hubLabel = "Live output",
         solarW = day.acPowerW,
         batteryW = day.batteryPowerW,
         gridW = day.gridExportW,
         homeW = day.homeLoadW,
-        offline = true,
-        height = 150.dp
+        state = SurfaceState.ERROR,
+        liveState = LiveNumberState.OFFLINE,
+        flowHeight = 240.dp
     )
-    GalleryLabel("Reduce Motion: static arrows")
+    GalleryLabel("Reduce Motion: no dots at all, static arrows only")
     EnergyFlow(
+        hubValue = day.acPowerW / 1000.0,
+        hubUnit = "kW",
+        hubLabel = "Live output",
         solarW = day.acPowerW,
         batteryW = day.batteryPowerW,
         gridW = day.gridExportW,
         homeW = day.homeLoadW,
-        reducedMotion = true,
-        height = 150.dp
+        motion = HeliosMotionSettings.ReduceMotion,
+        flowHeight = 240.dp
     )
 }
 
@@ -359,18 +410,29 @@ fun BatteryRingIdleAndMissing(context: GalleryContext) {
 
 @Composable
 fun ProductionChartReadyEmpty(context: GalleryContext) {
-    GalleryLabel("Ready, scrub enabled: tap or drag for the half-hour value")
-    ProductionChart(series = FixtureData.todaySeries())
+    var selected by remember { mutableStateOf<Double?>(14.5) }
+    val now = System.currentTimeMillis()
+    GalleryLabel("Ready, scrubbing: tap or drag for any half hour")
+    ProductionChart(
+        series = FixtureData.seriesLoadable(FixtureScenario.LIVE, now),
+        nowHour = SolarCurve.nowAsHourFloat(now),
+        selectedT = selected,
+        onSelect = { selected = it }
+    )
     GalleryLabel("Before sunrise: empty, with the reason")
-    ProductionChart(series = emptyList(), state = SurfaceState.EMPTY)
+    ProductionChart(series = FixtureData.seriesLoadable(FixtureScenario.EMPTY, now))
 }
 
 @Composable
 fun ProductionChartLoadingStale(context: GalleryContext) {
+    val now = System.currentTimeMillis()
     GalleryLabel("Loading: a skeleton in the chart's own 160 dp box")
-    ProductionChart(series = emptyList(), state = SurfaceState.LOADING)
-    GalleryLabel("Stale: dimmed, no live marker")
-    ProductionChart(series = FixtureData.todaySeries(), state = SurfaceState.STALE)
+    ProductionChart(series = FixtureData.seriesLoadable(FixtureScenario.LOADING, now))
+    GalleryLabel("Stale: dimmed, the marker still reads the past")
+    ProductionChart(
+        series = FixtureData.seriesLoadable(FixtureScenario.STALE, now),
+        nowHour = SolarCurve.nowAsHourFloat(now)
+    )
 }
 
 @Composable
@@ -408,74 +470,81 @@ fun WeekChartError(context: GalleryContext) {
 
 @Composable
 fun MetricTilesBasics(context: GalleryContext) {
-    Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space2)) {
-        MetricTile(label = "Live output", value = "4.23", unit = "kW", sub = "AC", modifier = Modifier.weight(1f))
-        MetricTile(
-            label = "Irradiance",
-            value = "782",
-            unit = "W/m\u00B2",
-            sparkline = FixtureData.liveSeries().map { it.acPowerW },
-            modifier = Modifier.weight(1f)
+    MetricGrid(
+        tiles = listOf(
+            MetricTileSpec(label = "Live output", value = "4.23", unit = "kW"),
+            MetricTileSpec(
+                label = "Irradiance",
+                value = "782",
+                unit = "W/m\u00B2",
+                sparkline = FixtureData.liveSeries().map { it.acPowerW }
+            ),
+            MetricTileSpec(
+                label = "Today",
+                value = "18.4",
+                unit = "kWh",
+                delta = "+2.1 vs yesterday",
+                deltaIsGood = true
+            ),
+            MetricTileSpec(
+                label = "Self-consumption",
+                value = "74",
+                unit = "%",
+                delta = "-6% vs last week",
+                deltaIsGood = false
+            )
         )
-    }
-    Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space2)) {
-        MetricTile(
-            label = "Today",
-            value = "18.4",
-            unit = "kWh",
-            delta = "+2.1 vs yesterday",
-            deltaPositive = true,
-            modifier = Modifier.weight(1f)
-        )
-        MetricTile(
-            label = "Self-consumption",
-            value = "74",
-            unit = "%",
-            delta = "-6% vs last week",
-            deltaPositive = false,
-            modifier = Modifier.weight(1f)
-        )
-    }
+    )
 }
 
 @Composable
 fun MetricTilesEdge(context: GalleryContext) {
-    Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space2)) {
-        MetricTile(
-            label = "Subtle variant",
-            value = "312",
-            unit = "cycles",
-            variant = MetricVariant.SUBTLE,
-            modifier = Modifier.weight(1f)
+    MetricGrid(
+        tiles = listOf(
+            MetricTileSpec(label = "Subtle variant", value = "312", unit = "cycles", state = MetricTileState.SUBTLE),
+            MetricTileSpec(
+                label = "Disabled until a link exists",
+                value = HeliosFormat.NO_DATA,
+                state = MetricTileState.DISABLED
+            ),
+            MetricTileSpec(label = "Last known", value = "4.23", unit = "kW", state = MetricTileState.STALE)
         )
-        MetricTile(
-            label = "Disabled until a link exists",
-            value = HeliosFormat.NO_DATA,
-            variant = MetricVariant.DISABLED,
-            modifier = Modifier.weight(1f)
-        )
-    }
+    )
     GalleryLabel("Missing register: no data, never zero")
-    MetricTile(label = "DC voltage", value = HeliosFormat.NO_DATA, sub = "string C did not report")
+    MetricGrid(
+        tiles = listOf(
+            MetricTileSpec(label = "DC voltage", value = HeliosFormat.NO_DATA, delta = "string C did not report")
+        )
+    )
     GalleryLabel("Long label, long unit, largest text scale")
-    MetricTile(
-        label = "Energy produced since the array was commissioned",
-        value = "18 420.5",
-        unit = "kilowatt hours",
-        delta = "+31.6 today",
-        maxLines = 3
+    MetricGrid(
+        tiles = listOf(
+            MetricTileSpec(
+                label = "Energy produced since the array was commissioned",
+                value = "18 420.5",
+                unit = "kilowatt hours",
+                delta = "+31.6 today",
+                deltaIsGood = true
+            )
+        )
     )
 }
 
 @Composable
 fun LiveNumberStates(context: GalleryContext) {
-    Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space5)) {
-        LiveNumber(label = "Updating", value = "4.23", unit = "kW", state = LiveNumberState.UPDATING)
-        LiveNumber(label = "Static", value = "18.4", unit = "kWh", state = LiveNumberState.STATIC)
-    }
-    Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space5)) {
-        LiveNumber(label = "Stale", value = "4.23", unit = "kW", state = LiveNumberState.STALE)
-        LiveNumber(label = "Demo", value = "4.23", unit = "kW", state = LiveNumberState.DEMO)
+    Column(verticalArrangement = Arrangement.spacedBy(HeliosSpacing.space3)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space5)) {
+            LiveNumber(label = "Updating", value = 4.23, unit = "kW", state = LiveNumberState.UPDATING)
+            LiveNumber(label = "Static", value = 18.4, unit = "kWh", state = LiveNumberState.STATIC)
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space5)) {
+            LiveNumber(label = "Stale", value = 4.23, unit = "kW", state = LiveNumberState.STALE)
+            LiveNumber(label = "Demo", value = 4.23, unit = "kW", state = LiveNumberState.DEMO)
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(HeliosSpacing.space5)) {
+            LiveNumber(label = "Offline", value = 4.23, unit = "kW", state = LiveNumberState.OFFLINE)
+            LiveNumber(label = "Did not report", value = Double.NaN, unit = "kW", state = LiveNumberState.STATIC)
+        }
     }
 }
 
@@ -706,6 +775,8 @@ fun BottomNavSelected(context: GalleryContext) {
 fun TopBarLive(context: GalleryContext) {
     GalleryLabel("Connected: mark, freshness, status")
     TopBar(
+        brandName = "helios\u00B0",
+        subTitle = "Dashboard",
         statusKind = HeliosStatusKind.PRODUCING,
         freshnessText = "Live",
         freshnessKind = HeliosStatusKind.PRODUCING,
@@ -714,6 +785,8 @@ fun TopBarLive(context: GalleryContext) {
     )
     GalleryLabel("Demo: never the word live")
     TopBar(
+        brandName = "helios\u00B0",
+        subTitle = "Production",
         statusKind = HeliosStatusKind.DEMO,
         freshnessText = "Demo data",
         freshnessKind = HeliosStatusKind.DEMO,
@@ -725,14 +798,17 @@ fun TopBarLive(context: GalleryContext) {
 fun TopBarDegraded(context: GalleryContext) {
     GalleryLabel("Stale")
     TopBar(
+        brandName = "helios\u00B0",
+        subTitle = "Dashboard",
         statusKind = HeliosStatusKind.CURTAILED,
         freshnessText = "Stale 42 s",
         freshnessKind = HeliosStatusKind.CURTAILED,
-        subTitle = "Dashboard",
         onShare = {}
     )
     GalleryLabel("Offline: last known, with the age")
     TopBar(
+        brandName = "helios\u00B0",
+        subTitle = "Dashboard",
         statusKind = HeliosStatusKind.OFFLINE,
         freshnessText = "Offline \u00B7 last known 1 min ago",
         freshnessKind = HeliosStatusKind.OFFLINE,
@@ -740,6 +816,7 @@ fun TopBarDegraded(context: GalleryContext) {
     )
     GalleryLabel("Night, and a white-label text mark")
     TopBar(
+        subTitle = "Dashboard",
         statusKind = HeliosStatusKind.NIGHT,
         freshnessText = "Live",
         freshnessKind = HeliosStatusKind.NIGHT,

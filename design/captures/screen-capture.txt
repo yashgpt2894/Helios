@@ -1,0 +1,35 @@
+device: emulator-5554
+install app-debug.apk
+Performing Streamed Install
+Success
+captured dashboard-dark.png (192842 bytes) dump 44874 bytes
+captured dashboard-light.png (194771 bytes) dump 44874 bytes
+captured dashboard-offline.png (165835 bytes) dump 35299 bytes
+captured production-dark.png (194123 bytes) dump 27524 bytes
+captured production-light.png (199033 bytes) dump 27524 bytes
+captured production-offline.png (169155 bytes) dump 28843 bytes
+captured dashboard-dark-connected.png (188927 bytes) dump 44535 bytes
+captured production-dark-connected.png (191834 bytes) dump 27515 bytes
+captured production-scrub.png (199686 bytes) dump 27611 bytes
+captured dashboard-reduced-motion.png (193143 bytes) dump 44874 bytes
+captured production-reduced-motion.png (195081 bytes) dump 27524 bytes
+captured dashboard-error.png (190888 bytes) dump 34709 bytes
+captured dashboard-stale.png (174323 bytes) dump 34975 bytes
+captured dashboard-loading.png (158153 bytes) dump 32008 bytes
+captured dashboard-empty.png (187680 bytes) dump 34026 bytes
+captured dashboard-partial.png (192703 bytes) dump 44547 bytes
+captured dashboard-denied.png (194968 bytes) dump 44908 bytes
+captured dashboard-long-content.png (199270 bytes) dump 34219 bytes
+captured dashboard-night.png (184612 bytes) dump 44538 bytes
+captured production-error.png (192622 bytes) dump 27515 bytes
+captured production-stale.png (199304 bytes) dump 24996 bytes
+captured production-loading.png (145441 bytes) dump 25482 bytes
+captured production-empty.png (176429 bytes) dump 31089 bytes
+captured production-partial.png (179342 bytes) dump 27527 bytes
+captured production-long-content.png (194751 bytes) dump 27524 bytes
+captured production-night.png (191185 bytes) dump 27510 bytes
+captured dashboard-dark-connected-2.png after 2 swipes
+captured dashboard-dark-connected-3.png after 4 swipes
+captured production-dark-connected-2.png after 1 swipes
+captured production-dark-connected-3.png after 3 swipes
+capture complete
