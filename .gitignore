@@ -5,3 +5,12 @@ dist-ssr
 *.local
 .vite
 .env
+
+# Build & cache directories
+.gradle/
+.gradle-user-home/
+build/
+**/build/
+.kotlin/
+*.hprof
+local.properties

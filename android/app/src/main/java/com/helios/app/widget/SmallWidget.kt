@@ -1,4 +1,4 @@
-package com.helios.widget
+package com.helios.app.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -20,7 +20,6 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
 import com.helios.core.data.repository.TelemetryRepository
 
 class SmallWidget : GlanceAppWidget() {
@@ -58,7 +57,7 @@ private fun SmallWidgetContent() {
                     style = TextStyle(
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = ColorProvider(GlanceTheme.colors.primary),
+                        color = GlanceTheme.colors.primary,
                         textAlign = TextAlign.Center
                     )
                 )
@@ -66,7 +65,7 @@ private fun SmallWidgetContent() {
                     text = soc,
                     style = TextStyle(
                         fontSize = 12.sp,
-                        color = ColorProvider(GlanceTheme.colors.onSurface),
+                        color = GlanceTheme.colors.onSurface,
                         textAlign = TextAlign.Center
                     )
                 )

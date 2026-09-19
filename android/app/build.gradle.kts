@@ -45,7 +45,7 @@ android {
     }
 }
 
-val composeBom = platform("androidx.compose:compose-bom:2024.12.00")
+val composeBom = "androidx.compose:compose-bom:2024.12.01"
 val navVersion = "2.8.5"
 val roomVersion = "2.6.1"
 val hiltVersion = "2.51.1"
@@ -56,7 +56,7 @@ val serializationVersion = "1.7.3"
 
 dependencies {
     // Compose BOM
-    implementation(composeBom)
+    implementation(platform(composeBom))
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -107,6 +107,6 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(composeBom)
+    androidTestImplementation(platform(composeBom))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 }

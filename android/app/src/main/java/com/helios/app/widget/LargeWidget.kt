@@ -1,4 +1,4 @@
-package com.helios.widget
+package com.helios.app.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -14,6 +14,7 @@ import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
+import androidx.glance.layout.RowScope
 import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
@@ -21,7 +22,6 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
 import com.helios.core.data.repository.ForecastRepository
 import com.helios.core.data.repository.TelemetryRepository
 
@@ -41,7 +41,7 @@ class LargeWidgetReceiver : GlanceAppWidgetReceiver() {
 @Composable
 private fun LargeWidgetContent() {
     val telemetry = TelemetryRepository.readTelemetry()
-    val forecastDays = ForecastRepository.forecastFlow.value?.days?.take(3) ?: emptyList()
+    val forecastDays = ForecastRepository.currentForecast?.days?.take(3).orEmpty()
 
     GlanceTheme {
         Column(
@@ -60,7 +60,7 @@ private fun LargeWidgetContent() {
                         text = "Solar",
                         style = TextStyle(
                             fontSize = 10.sp,
-                            color = ColorProvider(GlanceTheme.colors.onSurface)
+                            color = GlanceTheme.colors.onSurface
                         )
                     )
                     Text(
@@ -68,7 +68,7 @@ private fun LargeWidgetContent() {
                         style = TextStyle(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            color = ColorProvider(GlanceTheme.colors.primary)
+                            color = GlanceTheme.colors.primary
                         )
                     )
                 }
@@ -77,7 +77,7 @@ private fun LargeWidgetContent() {
                         text = "Battery",
                         style = TextStyle(
                             fontSize = 10.sp,
-                            color = ColorProvider(GlanceTheme.colors.onSurface),
+                            color = GlanceTheme.colors.onSurface,
                             textAlign = TextAlign.End
                         )
                     )
@@ -86,7 +86,7 @@ private fun LargeWidgetContent() {
                         style = TextStyle(
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
-                            color = ColorProvider(GlanceTheme.colors.onSurface),
+                            color = GlanceTheme.colors.onSurface,
                             textAlign = TextAlign.End
                         )
                     )
@@ -101,7 +101,7 @@ private fun LargeWidgetContent() {
                 ),
                 style = TextStyle(
                     fontSize = 10.sp,
-                    color = ColorProvider(GlanceTheme.colors.onSurface)
+                    color = GlanceTheme.colors.onSurface
                 ),
                 modifier = GlanceModifier.fillMaxWidth().padding(bottom = 8.dp)
             )
@@ -122,7 +122,7 @@ private fun LargeWidgetContent() {
                                 style = TextStyle(
                                     fontSize = 11.sp,
                                     fontWeight = FontWeight.Medium,
-                                    color = ColorProvider(GlanceTheme.colors.primary),
+                                    color = GlanceTheme.colors.primary,
                                     textAlign = TextAlign.Center
                                 )
                             )
@@ -130,7 +130,7 @@ private fun LargeWidgetContent() {
                                 text = "%.1f".format(day.expectedKwh),
                                 style = TextStyle(
                                     fontSize = 10.sp,
-                                    color = ColorProvider(GlanceTheme.colors.onSurface),
+                                    color = GlanceTheme.colors.onSurface,
                                     textAlign = TextAlign.Center
                                 )
                             )
@@ -156,7 +156,7 @@ private fun LargeWidgetContent() {
 }
 
 @Composable
-private fun StatItem(label: String, value: String) {
+private fun RowScope.StatItem(label: String, value: String) {
     Column(
         modifier = GlanceModifier.defaultWeight().padding(horizontal = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -165,7 +165,7 @@ private fun StatItem(label: String, value: String) {
             text = label,
             style = TextStyle(
                 fontSize = 9.sp,
-                color = ColorProvider(GlanceTheme.colors.onSurface)
+                color = GlanceTheme.colors.onSurface
             ),
             maxLines = 1
         )
@@ -174,7 +174,7 @@ private fun StatItem(label: String, value: String) {
             style = TextStyle(
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Medium,
-                color = ColorProvider(GlanceTheme.colors.primary)
+                color = GlanceTheme.colors.primary
             ),
             maxLines = 1
         )

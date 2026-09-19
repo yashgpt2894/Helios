@@ -44,7 +44,7 @@ object TelemetryRepository {
             val orientationGain = 1 + orientation * sunSkew
             val fractionOfRated = (ratedW / SYSTEM_RATED_W) * orientationGain
             val power = clamp(totalDcPowerW * fractionOfRated, 0.0, ratedW)
-            val voltage = if (power > 30) jitter(380 + id[0].code % 20, 0.01) else 0.0
+            val voltage = if (power > 30) jitter(380.0 + (id[0].code % 20), 0.01) else 0.0
             val current = if (voltage > 0) power / voltage else 0.0
             PanelString(
                 id = id,

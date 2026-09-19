@@ -40,11 +40,11 @@ android {
     }
 }
 
-val composeBom = platform("androidx.compose:compose-bom:2024.12.00")
+val composeBom = "androidx.compose:compose-bom:2024.12.01"
 
 dependencies {
     // Compose
-    implementation(composeBom)
+    implementation(platform(composeBom))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
