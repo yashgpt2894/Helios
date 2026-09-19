@@ -1,27 +1,37 @@
 package com.helios.feature.dashboard
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.helios.core.data.repository.ForecastRepository
+import com.helios.core.data.repository.InsightsRepository
 import com.helios.core.data.repository.TelemetryRepository
-import com.helios.core.domain.model.HistoryPoint
-import com.helios.core.domain.model.SolarTelemetry
+import com.helios.core.designsystem.color.HeliosStatusKind
+import com.helios.core.designsystem.component.SectionHeader
+import com.helios.core.designsystem.component.toSeverityKind
+import com.helios.core.designsystem.layout.HeliosSpacing
+import com.helios.core.designsystem.type.HeliosTypography
+import com.helios.core.domain.model.InverterStatus
 
 /**
- * DashboardScreen — the main dashboard composable.
- * Sections:
- *   1. TopBar (brand + status)
- *   2. LiveNumber (real-time kW)
- *   3. MetricsGrid (2×2 tile grid)
- *   4. EnergyFlow (animated Canvas)
- *   5. ProductionChart (Canvas line/area chart)
- *   6. ForecastStrip (horizontal scroll 7-day)
- *   7. InsightHighlight (severity card)
+ * Dashboard, in the order the design fixes: identity and state, the live number, the four
+ * glance metrics, the energy model, today's curve, the forecast, then advisories.
+ *
+ * The screen still reads the repositories directly. Wiring it to the service contracts
+ * (`core/data/service`) and to the theme repository belongs to the next step, which owns
+ * navigation and the application shell.
  */
 @Composable
 fun DashboardScreen() {
@@ -35,92 +45,117 @@ fun DashboardScreen() {
     } else {
         "%.2f".format(telemetry.gridImportW / 1000)
     }
-    val batterySoc = "%.0f%%".format(telemetry.batterySoc)
+    val batterySoc = "%.0f".format(telemetry.batterySoc)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        // 1. TopBar
         TopBar(
             subTitle = "Dashboard",
-            status = telemetry.status.name
+            statusKind = if (telemetry.status == InverterStatus.FAULT) {
+                HeliosStatusKind.FAULT
+            } else {
+                HeliosStatusKind.DEMO
+            },
+            statusLabel = if (telemetry.status == InverterStatus.FAULT) "Fault" else "Demo system",
+            freshnessText = "Demo data",
+            freshnessKind = HeliosStatusKind.DEMO,
+            onShare = {}
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(Modifier.height(HeliosSpacing.space2))
 
-        // 2. LiveNumber
         LiveNumber(
-            label = "Live Output",
+            label = "Live output",
             value = liveKw,
             unit = "kW",
             isLive = true,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+            state = LiveNumberState.DEMO,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = HeliosSpacing.gutter)
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(Modifier.height(HeliosSpacing.space3))
 
-        // 3. MetricsGrid
         MetricsGrid(
             liveKw = liveKw,
             irradiance = irradiance,
             gridFlow = gridFlow,
             batterySoc = batterySoc,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            irradianceValue = telemetry.irradianceWm2,
+            gridValue = telemetry.gridExportW - telemetry.gridImportW,
+            modifier = Modifier.padding(horizontal = HeliosSpacing.space3)
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(Modifier.height(HeliosSpacing.space5))
 
-        // 4. EnergyFlow
-        SectionHeader("Energy Flow")
+        SectionHeader(
+            title = "Energy flow",
+            modifier = Modifier.padding(horizontal = HeliosSpacing.gutter)
+        )
         EnergyFlow(
             solarW = telemetry.acPowerW,
             batteryW = telemetry.batteryPowerW,
             gridW = if (telemetry.gridExportW > 0) telemetry.gridExportW else -telemetry.gridImportW,
             homeW = telemetry.homeLoadW,
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = HeliosSpacing.gutter)
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(Modifier.height(HeliosSpacing.space5))
 
-        // 5. ProductionChart
-        SectionHeader("Today's Production")
+        SectionHeader(
+            title = "Today's production",
+            modifier = Modifier.padding(horizontal = HeliosSpacing.gutter)
+        )
         ProductionChart(
             series = series,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            modifier = Modifier.padding(horizontal = HeliosSpacing.space3)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(Modifier.height(HeliosSpacing.space5))
 
-        // 6. ForecastStrip
-        SectionHeader("7-Day Forecast")
+        SectionHeader(
+            title = "Next five days",
+            eyebrow = "Forecast",
+            modifier = Modifier.padding(horizontal = HeliosSpacing.gutter)
+        )
+        Spacer(Modifier.height(HeliosSpacing.space3))
         ForecastStrip(
-            days = com.helios.core.data.repository.ForecastRepository.currentForecast?.days ?: emptyList(),
-            modifier = Modifier
+            days = ForecastRepository.currentForecast?.days ?: emptyList(),
+            state = com.helios.core.designsystem.component.SurfaceState.EMPTY
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(Modifier.height(HeliosSpacing.space5))
 
-        // 7. InsightHighlight
-        val insights = com.helios.core.data.repository.InsightsRepository.generateInsights(telemetry)
-        insights.take(2).forEach { insight ->
-            InsightHighlight(
-                insight = insight,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+        val insights = remember(telemetry) { InsightsRepository.generateInsights(telemetry) }
+        if (insights.isEmpty()) {
+            Text(
+                text = "No advisories for the current reading.",
+                style = HeliosTypography.callout,
+                modifier = Modifier.padding(horizontal = HeliosSpacing.gutter)
             )
+        } else {
+            SectionHeader(
+                title = "Advisories",
+                modifier = Modifier.padding(horizontal = HeliosSpacing.gutter)
+            )
+            Spacer(Modifier.height(HeliosSpacing.space3))
+            insights.take(2).forEach { insight ->
+                InsightHighlight(
+                    insight = insight,
+                    severity = insight.severity.toSeverityKind(),
+                    demoQualifier = true,
+                    modifier = Modifier.padding(
+                        horizontal = HeliosSpacing.gutter,
+                        vertical = HeliosSpacing.space1
+                    )
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(80.dp)) // bottom nav space
+        Spacer(Modifier.height(HeliosSpacing.LayoutMetrics.bottomNavHeight))
     }
-}
-
-@Composable
-fun SectionHeader(title: String) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleSmall,
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
-    )
 }

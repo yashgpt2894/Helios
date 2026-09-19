@@ -2,228 +2,179 @@
 
 ## Objective and authorized scope
 
-Quest step: produce the Android phone design foundation for helios solar
-intelligence, as documents only. Deliverables: `.mobile-work/STATE.md` (this file),
-`design/DESIGN.md`, `design/ux-flows.md`, `design/screen-inventory.md`.
+Current step: the Android design foundation at step 4 of the mobile-experience-design
+skill, as code rather than documents.
 
-Repository: `/Users/yashgupta/Desktop/yash/code/Helios/.infy/worktrees/quest-23d2e03d-s1-v1`
-(worktree of the Helios repository, base commit `daebea8`). Platform in scope: Android
-phone only. Scoped features: first-run onboarding and inverter connection, live
-dashboard with energy flow and tickers, production and inverter detail with per-string
-telemetry, 7-day forecast, insights and savings, battery state of charge and charge
-strategy, settings for connection, location, theme, and white-label brand, shareable
-snapshot deep links, shared-snapshot viewer.
+Deliverables of this step:
 
-Authorized actions used: reading the repository, running the bundled doctor script,
-writing documents under `design/` and `.mobile-work/`, running a local check script.
-Not used and not authorized in this step: any edit to `android/`, `ios/`, `dist/`,
-`dist-tsc/`, or `release/`; any emulator boot; any dependency install; any network
-call; any commit, push, or merge; any external service or upload.
+- `design/tokens.json` — the single token source: semantic colour for both themes, the
+  type scale, spacing, radius, elevation, and motion durations and easings, derived from
+  `shared-spec/design-tokens.json` and the existing Compose tokens.
+- Aligned Compose token objects under
+  `android/app/src/main/java/com/helios/core/designsystem/**`, with the platform mapping
+  documented in `design/DESIGN.md` section 11.1.
+- Fixture data and typed, swappable service adapters under
+  `android/app/src/main/java/com/helios/core/data/fixture/**` and `.../core/data/service/**`
+  covering telemetry, today series, live series, forecast, insights, connection, location,
+  theme, brand and share, so any screen can render loading, empty, partial, stale/offline,
+  error, denied-permission and long-content states with no network.
+- A debug-only component gallery under `android/app/src/debug/**` showing every reused
+  component in every variant and state, exposed as a composable entry point.
 
-External processing policy: no repository content, screenshot, or user media left the
-machine. Nothing in the design requires a third-party service beyond the two
-documented Open-Meteo calls that the PWA already makes (forecast and reverse geocode).
+Constraints kept: no edit to `core/nav/**` or `MainActivity.kt` (a later step owns
+navigation), no edit to `ios/`, `dist/`, `dist-tsc/` or `release/`, no emoji, no trackers,
+local-first, and `SnapshotPayload` v1 parity with the PWA.
 
 ## Assumptions and decisions
 
-User facts (from the quest brief and the repository, not inferred):
+Design decisions from the earlier design step still hold (see the design documents). New
+decisions in this step, each with its reason:
 
-- The product is helios solar intelligence for people who own solar panels and
-  batteries; the Android app must reach feature parity with the PWA (`README.md`,
-  `shared-spec/feature-parity-matrix.md`).
-- Local-first: no accounts, no cloud sync, no analytics, no trackers, no secrets in the
-  app.
-- `SnapshotPayload` v1 base64url must stay PWA-identical.
-- The existing Jetpack Compose app in `android/` and its design system in
-  `android/app/src/main/java/com/helios/core/designsystem/` are the styling authority;
-  no React Native, no Expo, no second design system.
-- No emoji in copy, code, or documents.
-- Non-goals: iOS, Wear OS, store submission, accounts, cloud sync, analytics.
-
-Reversible assumptions (made to keep the design concrete; each is recorded with its
-reason in `.mobile-work/decisions.md`):
-
-- A1 The inverter is a SunSpec Modbus TCP device on the home LAN, and most devices
-  accept one master at a time. This drives the failure taxonomy in `design/ux-flows.md`
-  FLW-03.
-- A2 Device discovery (mDNS or subnet scan) is out of scope for v1; the connection step
-  takes a host and a port plus a one-tap demo fallback.
-- A3 Freshness thresholds: live at 5 s or less, aging to 15 s, stale past 15 s, with a
-  bounded retry schedule of 1 s / 2 s / 4 s, then 30 s, then 60 s after five failures.
-- A4 Five bottom-navigation destinations (Home, Solar, Insights, Battery, Settings),
-  from FPM section 1 and `src/components/BottomNav.tsx`.
-- A5 The marketing landing page is not shipped inside the Android app; the first run is
-  the working onboarding that FPM section 1 already assigns to that route.
-- A6 Location permission is requested from the "Use my location" action only, not at
-  launch. This deliberately replaces the launch-time request in `MainActivity.kt`.
-- A7 Notifications and app lock are not shipped in this pass, so their PWA settings rows
-  are removed rather than shown as dead controls. This needs the owner's confirmation
-  and is flagged in `design/screen-inventory.md` (SCR-11 notes).
-- A8 The brand registry must match the PWA (`helios`, `voltcraft`, `sunworks`,
-  `meridian`); the Android registry currently differs and must change.
-
-Design decisions: D1 "Live flow console" selected over D2 "Day ledger" and D3 "Today
-timeline", with reasons and three corrections (freshness as a first-class element,
-connection reachable in one tap, insights suppressed when data cannot support them).
-Full evaluation in `design/DESIGN.md` sections 4-6; the decision list is
-`.mobile-work/decisions.md`.
+- D-15 `design/tokens.json` is generated by `.mobile-work/generate-tokens.py` rather than
+  hand-written, so the upstream aliases, the alpha modifiers and the contrast measurements
+  stay reproducible. Regenerating the file produces no diff.
+- D-16 Six upstream alias choices could not reach their contrast target (for example
+  `text.secondary` as `neutral.800` measures 2.48 on carbon). Each role moved to the
+  nearest upstream step that passes, and the move is recorded in the role's `note` field.
+  Measured result: 27 pairs, 0 failures.
+- D-17 `text.inverse` resolves as `neutral.50` in both themes (bone on carbon, carbon on
+  bone), because the ramps invert and the earlier alias produced bone on bone.
+- D-18 Services return `Loadable<T>` (Loading, Ready with `SourceMeta`, Empty with a
+  reason and an action, Failed with a classified `ServiceFailure`) instead of a bare value,
+  so a screen cannot render a value without its state.
+- D-19 Failure kinds are the FLW-03 classes F1-F9. The message, the offered action and the
+  view state all come from the failure class, not from the screen.
+- D-20 The default `ServiceGraph` implementation is the fixture family, so the app and any
+  preview render with no hardware and no network. The device family wraps the existing
+  repositories and is installed explicitly.
+- D-21 `InMemoryConnectionService` is labelled interim in its KDoc: it does not persist.
+  The Room-backed `ConnectionRepository` (SVC-19) belongs to the onboarding step.
+- D-22 Snapshot parity is now byte-level, not schema-level: `lifeKwh`, `soc`, `selfUse` and
+  every `fc` entry are integers, `fc` and `br` are omitted when absent, `br` is omitted for
+  the helios brand, and the JSON keeps the PWA key order. A register read that failed is
+  `Double.NaN` and renders "No data", never 0.
+- D-23 The gallery packs sections into pages that fit one screen, and every page ends with
+  a magenta marker. A capture without the marker means the page overflowed, which is a
+  failure the capture script can detect without reading the image.
+- D-24 The brand registry now matches `src/services/brand.ts` (helios, voltcraft, sunworks,
+  meridian) in both the fixture and the repository, because a shared snapshot carries the
+  brand id.
 
 ## Environment
 
-Detected by `python3 <skill>/scripts/doctor.py --root .` (exit 0; raw output saved to
-`.mobile-work/evidence/doctor.json`):
-
-- Host: Darwin 24.5.0, arm64, `python3` 3.14.4 at `/opt/homebrew/bin/python3`.
-- Present: git, node 22, npm, pnpm, uv, adb, sdkmanager, java, xcodebuild, xcrun, swift.
-- Absent: docker, yarn, bun, flutter, dart, maestro, watchman, and `emulator` on PATH.
-- Project manifests found: `package.json`, `package-lock.json` (react ^18.3.1,
-  typescript ^5.6.3). The doctor script does not inspect Gradle manifests, so the
-  Android toolchain was checked directly (below).
-- The doctor reports `ANDROID_HOME`, `ANDROID_SDK_ROOT`, `JAVA_HOME`, and
-  `DEVELOPER_DIR` as unset in this session's environment.
-
-Checked directly for this step:
-
-- `/opt/homebrew/opt/openjdk@17/bin/java` exists and reports OpenJDK 17.0.20.
-- `/opt/homebrew/share/android-commandlinetools/emulator/emulator` and
-  `.../platform-tools/adb` exist; `$ANDROID_HOME/platform-tools/adb devices` lists no
-  running device (none was started, which is correct for a documents-only step).
-- The AVDs are present at `/Users/yashgupta/.android/avd/` (`helios35.avd`,
-  `medium_phone.avd`). Important environment finding: this session's `HOME` is
-  redirected to the control-plane directory
-  (`/Users/yashgupta/Library/Application Support/@product/desktop/control-plane/prime/d711f1c3-0415-4185-bccf-076f07344065`),
-  so `emulator -list-avds` returns nothing until `ANDROID_AVD_HOME=/Users/yashgupta/.android/avd`
-  is set. With that variable set, `emulator -list-avds` returns `helios35` and
-  `medium_phone`. The next step must export it, and must export
-  `GRADLE_USER_HOME=/Users/yashgupta/.gradle` explicitly because the redirected `HOME`
-  would otherwise point Gradle at a fresh cache.
-- Python helper limitation: the doctor script reports executable presence only, not a
-  functional device, licence, or permission state.
-
-Dependency plan: none acquired in this step; nothing was installed. The build step needs
-no new Android dependency for this design: Compose BOM 2024.12.00, navigation-compose
-2.8.5, Room 2.6.1, DataStore 1.1.1, Hilt 2.51.1, play-services-location 21.3.0, and
-kotlinx-serialization-json 1.7.3 are already declared in
-`android/app/build.gradle.kts`. Details and rollback notes are in
-`.mobile-work/dependencies.md`.
+- Host: Darwin 24.5.0, arm64. JDK `/opt/homebrew/opt/openjdk@17`, Android SDK
+  `/opt/homebrew/share/android-commandlinetools`, Gradle 8.11.1 from the wrapper.
+- `$HOME` is redirected to the control-plane directory and `/Users/yashgupta/.gradle` is
+  read-only, so `android/gradlew`'s prelude moves `GRADLE_USER_HOME` to
+  `$HOME/.gradle-helios` and seeds it from the read-only default. The build succeeds with
+  and without an explicit `GRADLE_USER_HOME`.
+- `android/local.properties` holds `sdk.dir=/opt/homebrew/share/android-commandlinetools`
+  (gitignored, as before).
+- Emulator: `helios35` booted as a writable copy in `/tmp/helios-avd`, under the shared
+  `/tmp/helios-emulator.lock`, with `ANDROID_USER_HOME=/tmp/helios-user-home` for the adb
+  key. Physical size 1080x2400.
+- `bash()` is unavailable in this session (`orphan-journal enrollment failed`); long
+  commands were run through `subprocess.Popen` handles with their output logged under
+  `/tmp/helios-*.log`. Nothing about the repository depends on that.
 
 ## Current milestone
 
-Milestone: Android phone design foundation written and internally cross-checked
-(documents only).
+Milestone: tokens, Compose alignment, fixtures, service contracts, gallery, build,
+tests, capture.
 
 Acceptance criteria and status:
 
-- `.mobile-work/STATE.md` uses the skill's template headings verbatim — complete.
-- `design/DESIGN.md` contains three genuinely distinct Dashboard directions that differ
-  in hierarchy and interaction emphasis (not accent colour), evaluates them against
-  task clarity, brand fit, native plausibility, accessibility, density, cohesion, and
-  implementation cost, and selects one with numbered reasons and three corrections —
-  complete.
-- `design/ux-flows.md` covers first run, the principal repeated task (checking live
-  solar and battery state), recovery from inverter and network failure, and return use,
-  plus the share and shared-viewer flow — complete.
-- `design/screen-inventory.md` gives stable IDs for every route, screen, state, and
-  visible action, each action stating trigger, feedback, state change, persistence,
-  failure response, and accessibility semantics, each traced to the feature-parity
-  matrix — complete: 12 requirements, 19 routes, 19 screens, 89 states, 94 actions,
-  24 components, 19 service concerns, 6 flows.
-- Cross-document reference integrity, heading conformance, and the "no android/ source
-  changed" constraint are machine-checked by `.mobile-work/check-design-docs.py` and
-  pass (see evidence below).
-
-Status: complete for this step. No visual review, screenshot, or device verification is
-claimed, because this step produces documents rather than a running build.
+- `design/tokens.json` exists and is the one token source — complete. 59 KB, semantic
+  colour for light and dark, type scale, spacing, radius, elevation, motion durations and
+  easings, layout numbers, haptics, platform mapping and the contrast audit.
+- Compose token objects aligned with it — complete: `HeliosSemanticColor.kt` (new),
+  `HeliosSpacing.kt` (new), `HeliosShape.kt`, `HeliosElevation.kt`, `HeliosMotion.kt`,
+  `HeliosTheme.kt`. Guarded by `TokensMatchJsonTest`.
+- Platform mapping documented — complete: `design/DESIGN.md` section 11.
+- Fixtures and service adapters for all ten concerns, all nine states, no network —
+  complete: `core/data/service/**` (10 interfaces, `Loadable`, `ServiceGraph`, device
+  adapters) and `core/data/fixture/**` (deterministic data, nine scenarios, fixture
+  adapters). Guarded by `FixtureStateCoverageTest`.
+- Gallery showing every reused component in every variant and state, composable entry
+  point, debug only — complete: 42 sections packed into 40 pages, reachable as
+  `ComponentGalleryScreen(...)` and hosted by the debug-only `GalleryActivity`.
+- Build succeeds — complete: `:app:assembleDebug` and `:app:assembleRelease` exit 0.
+- Tests pass — complete: 17 JVM tests, 0 failures.
+- Capture — complete: 47 page PNGs, two extra single-screen captures (Paper theme,
+  offline scenario) and the contact sheet in `design/captures/`; every page checked for
+  the end marker (`gallery-check.txt`). The first budget produced five overflowed pages,
+  which were split rather than re-captured.
 
 ## Evidence and artifacts
 
-Artifacts written in this step (all new files, committed locally on the Quest branch
-`codex/quest-23d2e03d-s1-v1` with the message "docs(android): add design direction, ux
-flows and screen inventory"; nothing was pushed, and no `android/` file was modified):
+Code and tokens:
 
-- `design/DESIGN.md` — 381 lines: scope and authority, the task that must win, three
-  directions, evaluation table, selected direction with corrections, token-to-Compose
-  mapping, component contracts, accessibility decisions, rejected alternatives, risks.
-- `design/ux-flows.md` — flows FLW-01 to FLW-06 with state taxonomy, first-run steps and
-  timing, the six glance facts, the F1-F9 failure taxonomy, recovery rules, return use,
-  share and viewer behaviour including the App Links gap.
-- `design/screen-inventory.md` — requirements, routes, screens with states and actions,
-  components, services, flows, and a coverage-and-gaps section.
-- `.mobile-work/decisions.md` — decision log D-01 to D-14 with reasons.
-- `.mobile-work/dependencies.md` — dependency plan, including the environment overrides
-  the build step needs.
-- `.mobile-work/evidence/doctor.json` — raw doctor output (exit 0).
-- `.mobile-work/evidence/check-design-docs.txt` — output of the documentation check.
-- `.mobile-work/check-design-docs.py` — the check itself, re-runnable.
+- `design/tokens.json`, generated by `.mobile-work/generate-tokens.py`.
+- `design/DESIGN.md` sections 11.1 to 11.3 (token mapping, fixture/service table, gallery).
+- Compose: `core/designsystem/color/HeliosSemanticColor.kt`,
+  `core/designsystem/layout/HeliosSpacing.kt`, `core/designsystem/motion/HeliosMotion.kt`,
+  `core/designsystem/shape/HeliosShape.kt`, `core/designsystem/shape/HeliosElevation.kt`,
+  `core/designsystem/component/**` (primitives, charts, cards, semantic mapping),
+  `core/format/HeliosFormat.kt`, `core/ui/theme/HeliosTheme.kt`.
+- Data: `core/data/service/**`, `core/data/fixture/**`, plus the snapshot parity fixes in
+  `core/data/domain`/`core/data/repository/ShareRepository.kt` and `BrandRepository.kt`.
+- Gallery: `android/app/src/debug/java/com/helios/debug/gallery/**` and
+  `android/app/src/debug/AndroidManifest.xml`.
+- Tests: `android/app/src/test/java/com/helios/core/data/SnapshotParityTest.kt`,
+  `.../FixtureStateCoverageTest.kt`, `.../designsystem/TokensMatchJsonTest.kt`.
 
-Commands run (all with the working directory set to the worktree root):
+Commands and results (working directory the worktree root unless stated):
 
-- `python3 <skill>/scripts/doctor.py --root .` → exit 0.
-- `/opt/homebrew/opt/openjdk@17/bin/java -version` → OpenJDK 17.0.20.
-- `$ANDROID_HOME/emulator/emulator -list-avds` with `ANDROID_AVD_HOME` set → `helios35`,
-  `medium_phone`; without it → empty (documented above).
-- `$ANDROID_HOME/platform-tools/adb devices` → no devices attached.
-- `python3 .mobile-work/check-design-docs.py` → exit 0 (details in the evidence file).
-- `git status --porcelain` after the commit → clean; no
-  path under `android/`, `ios/`, `dist/`, `dist-tsc/`, or `release/` was modified.
-
-Sources read to establish the brief: `README.md`; `.factory/missions/helios-native-apps.md`;
-`shared-spec/feature-parity-matrix.md`, `design-tokens.json`, `motion-language.md`,
-`simulation-formulas.md`, `screens/dashboard-dark.svg`; `design/` (icon assets);
-`src/` pages, components, store, and services as cited by path and line throughout the
-design documents; and the Android sources, including `MainActivity.kt`,
-`core/nav/HeliosNavGraph.kt`, `feature/*/**Screen.kt`, and
-`core/data/repository/*.kt`.
+- `python3 .mobile-work/generate-tokens.py` → exit 0, 27 contrast pairs checked, 0 below
+  target. Re-running produces no diff in `design/tokens.json`.
+- `cd android && ./gradlew :app:assembleDebug` → exit 0.
+- `cd android && ./gradlew :app:assembleDebug :app:assembleRelease` → exit 0.
+- `cd android && ./gradlew :app:testDebugUnitTest` → exit 0, 17 tests, 0 failures
+  (6 fixture-state, 5 snapshot-parity, 6 token tests).
+- `bash .mobile-work/boot-emulator.sh` → exit 0, `emulator-5554`, boot completed.
+- `bash .mobile-work/capture-gallery.sh` → exit 0, 47 pages captured.
+- `uv run --with pillow python3 .mobile-work/build-gallery-sheet.py` → exit 0, 47 pages,
+  0 clipped, `design/captures/gallery-components.png` (864x23664, 3.5 MB). Pillow is not
+  in the system Python; `uv run --with pillow` supplies it without touching the project.
+- `python3 .mobile-work/build-gallery-sheet.py` → see `design/captures/`.
+- `unzip -o app-release-unsigned.apk -d /tmp/... && grep -rl 'GalleryActivity\|ComponentGalleryScreen'` → no match in the release APK; the same grep finds `ComponentGalleryScreen` in the debug APK (`classes6.dex`).
 
 ## Blockers and risks
 
-Blockers: none. Every required deliverable exists and the check passes.
+Blockers: none.
 
 Risks and unresolved issues, stated honestly:
 
-1. No rendering, screenshot, or device verification happened in this step, by design.
-   The design's claims about layout fit (hero block within 430 dp, five forecast days at
-   caption-2, the four-item hero header row at font scale 1.6) are calculations from the
-   token values, not measurements. They must be measured on the `helios35` AVD during
-   the build step, and corrected there if they fail.
-2. Design quality is not empirically validated. No user research was performed, and
-   none is claimed. The direction was evaluated against the repository's own spec and
-   the brief's task, not against real users.
-3. The Android implementation is well behind the design: 8 of 19 screens do not exist,
-   4 are stubs, the Dashboard is partial, `BottomNav` is never composed, telemetry is
-   read once per screen, the theme is hard-coded to dark, location permission is
-   requested at launch, and the settings share button is a dead control. This is
-   expected for a design step and is listed per screen in `design/screen-inventory.md`.
-4. Verified Android App Links cannot work until `.well-known/assetlinks.json` is hosted
-   for `helios.app`; it is absent from `public/`. Deep-link behaviour must be tested with
-   `helios://share/{payload}`, and the verified-link gap stays open until the host file
-   exists.
-5. Brand-registry mismatch: `android/.../BrandRepository.kt` uses
-   `helios`/`solaris`/`volt`/`aether`, the PWA uses
-   `helios`/`voltcraft`/`sunworks`/`meridian`. Until they match, a shared snapshot can
-   resolve to the wrong brand.
-6. Snapshot parity is asserted at the schema level (v1 fields and rounding rules), not at
-   the byte level: Kotlin JSON serialisation does not have to produce the same key order
-   as `JSON.stringify`. The build step must prove round-trip compatibility in both
-   directions instead of assuming string equality.
-7. Two PWA settings rows (Notifications, App lock) are dropped from the Android design
-   because they have no implementation and a dead control is not acceptable. If the owner
-   wants either feature, it needs a real design (BiometricPrompt plus a lock state
-   machine; WorkManager plus notification permission at the point of use).
-8. Delegation note: one subagent (`ui-surface-extract`) was started to produce a
-   machine-readable UI-surface extraction. It ran 23 tool calls and ended without
-   writing its file, so its output was discarded and the extraction was done directly by
-   reading the sources. No conclusion in these documents rests on an unverified
-   subagent claim.
+1. No visual review was performed by a person or a vision model. The captures and the
+   marker check prove that every page rendered and fitted one screen; they do not prove
+   that the screens look good. The per-page PNGs in `design/captures/` are the review
+   material for the next step.
+2. Emulator captures are debug builds on one AVD at 1080x2400 and the default font scale.
+   Text scaling at 200 percent, the light theme on device, and Reduce Motion are
+   implemented (the gallery can show Paper, and the trail and ring take the flags) but
+   were not captured page by page; only the dark theme at the default scale was captured.
+3. `InMemoryConnectionService` does not persist the connection config; the Room-backed
+   repository is still to be written in the onboarding step.
+4. `RepositoryForecastService` still reads the stub day list; the Open-Meteo call and the
+   reverse geocoder (SVC-04, SVC-05) are not wired. The failure surface (F8) is.
+5. Widgets, the Quick Settings tile and the Wear module read `TelemetryRepository`
+   directly and were not moved onto the service contracts; `:wear` still does not build
+   for the pre-existing dependency reason recorded in `.mobile-work/runbook.md`.
+6. Parity is byte-level for the payload the app produces from a reading; a payload written
+   by JavaScript with an integral `ac` or `todayKwh` (for example 4000 W exactly) prints
+   without a decimal point, which Kotlin's `Double` serialiser would print as `4.0`. The
+   app ignores that case when decoding; it only affects byte equality on such an input.
+7. The gallery is a debug source set, and the source-set boundary was checked directly:
+   `unzip -o app-debug.apk` contains `ComponentGalleryScreen` in `classes6.dex`, while the
+   release APK contains no occurrence of `GalleryActivity`, `ComponentGalleryScreen` or
+   `component/gallery`. The check is manual, not part of an automated task.
 
 ## Next action
 
-Next step (build, not this one): implement the Android first-run gate and connection
-stack — SCR-01 to SCR-06 plus the Room-backed `ConnectionRepository` (SVC-19), the
-freshness-aware telemetry flow, and the five-destination scaffold — against
-`design/screen-inventory.md` and `design/ux-flows.md`, then build with
-`JAVA_HOME=/opt/homebrew/opt/openjdk@17`,
-`ANDROID_HOME=/opt/homebrew/share/android-commandlinetools`,
-`GRADLE_USER_HOME=/Users/yashgupta/.gradle`, and
-`ANDROID_AVD_HOME=/Users/yashgupta/.android/avd`, boot `helios35` under the
-`/tmp/helios-emulator.lock` discipline, and capture real screenshots as evidence.
+Next step: the onboarding and connection stack (SCR-01 to SCR-06), the five-destination
+scaffold and the first real screens, built against `design/screen-inventory.md`,
+`design/ux-flows.md` and the contracts in `core/data/service/**`. That step owns
+`core/nav/**` and `MainActivity.kt`, moves `ServiceGraph` onto Hilt with
+`HeliosDeviceServices`, replaces `InMemoryConnectionService` with the Room-backed
+`ConnectionRepository` (SVC-19), resolves the theme before the first frame, and removes the
+launch-time location request.

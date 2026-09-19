@@ -2,84 +2,115 @@ package com.helios.core.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.helios.core.designsystem.color.HeliosColor
+import com.helios.core.designsystem.color.CarbonColors
+import com.helios.core.designsystem.color.HeliosSemanticColors
+import com.helios.core.designsystem.color.LocalHeliosSemanticColors
+import com.helios.core.designsystem.color.PaperColors
 import com.helios.core.designsystem.shape.HeliosShape
 import com.helios.core.designsystem.type.HeliosTypography
 
-private val LightColorScheme = lightColorScheme(
-    primary = HeliosColor.Solar.Light500,
-    onPrimary = Color.White,
-    primaryContainer = HeliosColor.Solar.Light100,
-    onPrimaryContainer = HeliosColor.Solar.Light900,
-    secondary = HeliosColor.Flow.Light500,
-    onSecondary = Color.White,
-    secondaryContainer = HeliosColor.Flow.Light100,
-    onSecondaryContainer = HeliosColor.Flow.Light900,
-    tertiary = HeliosColor.GridExport.Light500,
-    onTertiary = Color.White,
-    tertiaryContainer = HeliosColor.GridExport.Light100,
-    onTertiaryContainer = HeliosColor.GridExport.Light900,
-    error = HeliosColor.Alert.Light500,
-    onError = Color.White,
-    errorContainer = HeliosColor.Alert.Light100,
-    onErrorContainer = HeliosColor.Alert.Light900,
-    background = HeliosColor.Neutral.Light50,
-    onBackground = HeliosColor.Neutral.Light950,
-    surface = HeliosColor.Neutral.Light50,
-    onSurface = HeliosColor.Neutral.Light950,
-    surfaceVariant = HeliosColor.Neutral.Light200,
-    onSurfaceVariant = HeliosColor.Neutral.Light700,
-    outline = HeliosColor.Neutral.Light400,
-    outlineVariant = HeliosColor.Neutral.Light200,
-    inverseSurface = HeliosColor.Neutral.Light900,
-    inverseOnSurface = HeliosColor.Neutral.Light50,
-    inversePrimary = HeliosColor.Solar.Light300
+/**
+ * Theme entry point. Every colour comes from [HeliosSemanticColors], which is
+ * `design/tokens.json` `color.semantic` resolved for Paper (light) and Carbon (dark).
+ *
+ * Material roles are kept for Material components only. App components read
+ * [HeliosThemeTokens.colors] so a semantic role cannot drift between screens.
+ */
+object HeliosThemeTokens {
+
+    /** The semantic palette in the current theme. */
+    val colors: HeliosSemanticColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalHeliosSemanticColors.current
+}
+
+private fun heliosLightScheme(colors: HeliosSemanticColors) = lightColorScheme(
+    primary = colors.accentPrimary,
+    onPrimary = colors.onAccent,
+    primaryContainer = colors.accentSubtle,
+    onPrimaryContainer = colors.onSubtle,
+    secondary = colors.flowPrimary,
+    onSecondary = colors.textInverse,
+    secondaryContainer = colors.flowSubtle,
+    onSecondaryContainer = colors.flowStrong,
+    tertiary = colors.gridExportPrimary,
+    onTertiary = colors.textInverse,
+    tertiaryContainer = colors.gridExportSubtle,
+    onTertiaryContainer = colors.gridExportStrong,
+    error = colors.alertPrimary,
+    onError = colors.onAlert,
+    errorContainer = colors.alertSubtle,
+    onErrorContainer = colors.alertStrong,
+    background = colors.backgroundPrimary,
+    onBackground = colors.textPrimary,
+    surface = colors.backgroundPrimary,
+    onSurface = colors.textPrimary,
+    surfaceVariant = colors.backgroundTertiary,
+    onSurfaceVariant = colors.textSecondary,
+    outline = colors.separatorStrong,
+    outlineVariant = colors.separatorHairline,
+    scrim = colors.scrim,
+    inverseSurface = colors.textPrimary,
+    inverseOnSurface = colors.textInverse,
+    inversePrimary = colors.accentStrong
 )
 
-private val DarkColorScheme = darkColorScheme(
-    primary = HeliosColor.Solar.Dark500,
-    onPrimary = HeliosColor.Solar.Dark900,
-    primaryContainer = HeliosColor.Solar.Dark200,
-    onPrimaryContainer = HeliosColor.Solar.Dark800,
-    secondary = HeliosColor.Flow.Dark500,
-    onSecondary = HeliosColor.Flow.Dark900,
-    secondaryContainer = HeliosColor.Flow.Dark200,
-    onSecondaryContainer = HeliosColor.Flow.Dark800,
-    tertiary = HeliosColor.GridExport.Dark500,
-    onTertiary = HeliosColor.GridExport.Dark900,
-    tertiaryContainer = HeliosColor.GridExport.Dark200,
-    onTertiaryContainer = HeliosColor.GridExport.Dark800,
-    error = HeliosColor.Alert.Dark500,
-    onError = HeliosColor.Alert.Dark900,
-    errorContainer = HeliosColor.Alert.Dark200,
-    onErrorContainer = HeliosColor.Alert.Dark800,
-    background = HeliosColor.Neutral.Dark50,
-    onBackground = HeliosColor.Neutral.Dark950,
-    surface = HeliosColor.Neutral.Dark50,
-    onSurface = HeliosColor.Neutral.Dark950,
-    surfaceVariant = HeliosColor.Neutral.Dark200,
-    onSurfaceVariant = HeliosColor.Neutral.Dark700,
-    outline = HeliosColor.Neutral.Dark400,
-    outlineVariant = HeliosColor.Neutral.Dark200,
-    inverseSurface = HeliosColor.Neutral.Dark900,
-    inverseOnSurface = HeliosColor.Neutral.Dark50,
-    inversePrimary = HeliosColor.Solar.Dark300
+private fun heliosDarkScheme(colors: HeliosSemanticColors) = darkColorScheme(
+    primary = colors.accentPrimary,
+    onPrimary = colors.onAccent,
+    primaryContainer = colors.accentSubtle,
+    onPrimaryContainer = colors.onSubtle,
+    secondary = colors.flowPrimary,
+    onSecondary = colors.textInverse,
+    secondaryContainer = colors.flowSubtle,
+    onSecondaryContainer = colors.flowStrong,
+    tertiary = colors.gridExportPrimary,
+    onTertiary = colors.textInverse,
+    tertiaryContainer = colors.gridExportSubtle,
+    onTertiaryContainer = colors.gridExportStrong,
+    error = colors.alertPrimary,
+    onError = colors.onAlert,
+    errorContainer = colors.alertSubtle,
+    onErrorContainer = colors.alertStrong,
+    background = colors.backgroundPrimary,
+    onBackground = colors.textPrimary,
+    surface = colors.backgroundPrimary,
+    onSurface = colors.textPrimary,
+    surfaceVariant = colors.backgroundTertiary,
+    onSurfaceVariant = colors.textSecondary,
+    outline = colors.separatorStrong,
+    outlineVariant = colors.separatorHairline,
+    scrim = colors.scrim,
+    inverseSurface = colors.textPrimary,
+    inverseOnSurface = colors.textInverse,
+    inversePrimary = colors.accentStrong
 )
 
 @Composable
 fun HeliosTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = false,
+    colors: HeliosSemanticColors = if (darkTheme) CarbonColors else PaperColors,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    @Suppress("UNUSED_EXPRESSION")
+    dynamicColor // Dynamic colour is off: the palette is authored, not sampled.
+
+    val colorScheme = if (darkTheme) heliosDarkScheme(colors) else heliosLightScheme(colors)
 
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -91,29 +122,46 @@ fun HeliosTheme(
         }
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography(
-            displayLarge = HeliosTypography.hero,
-            displayMedium = HeliosTypography.title1,
-            displaySmall = HeliosTypography.title2,
-            headlineLarge = HeliosTypography.title3,
-            headlineMedium = HeliosTypography.headline,
-            headlineSmall = HeliosTypography.callout,
-            bodyLarge = HeliosTypography.body,
-            bodyMedium = HeliosTypography.callout,
-            bodySmall = HeliosTypography.subheadline,
-            labelLarge = HeliosTypography.caption,
-            labelMedium = HeliosTypography.caption2,
-            labelSmall = HeliosTypography.caption2
-        ),
-        shapes = Shapes(
-            extraSmall = HeliosShape.xs,
-            small = HeliosShape.sm,
-            medium = HeliosShape.md,
-            large = HeliosShape.lg,
-            extraLarge = HeliosShape.xl
-        ),
-        content = content
-    )
+    CompositionLocalProvider(LocalHeliosSemanticColors provides colors) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography(
+                displayLarge = HeliosTypography.hero,
+                displayMedium = HeliosTypography.title1,
+                displaySmall = HeliosTypography.title2,
+                headlineLarge = HeliosTypography.title3,
+                headlineMedium = HeliosTypography.headline,
+                headlineSmall = HeliosTypography.callout,
+                bodyLarge = HeliosTypography.body,
+                bodyMedium = HeliosTypography.callout,
+                bodySmall = HeliosTypography.subheadline,
+                labelLarge = HeliosTypography.caption,
+                labelMedium = HeliosTypography.caption2,
+                labelSmall = HeliosTypography.caption2
+            ),
+            shapes = Shapes(
+                extraSmall = HeliosShape.xs,
+                small = HeliosShape.sm,
+                medium = HeliosShape.md,
+                large = HeliosShape.lg,
+                extraLarge = HeliosShape.xl
+            ),
+            content = content
+        )
+    }
 }
+
+/** Convenience for previews and the gallery: an explicit palette without a host Activity. */
+@Composable
+fun HeliosPreviewSurface(colors: HeliosSemanticColors, content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalHeliosSemanticColors provides colors) {
+        MaterialTheme(
+            colorScheme = if (colors.isDark) heliosDarkScheme(colors) else heliosLightScheme(colors),
+            content = content
+        )
+    }
+}
+
+/** White-label helper: the palette with a brand accent, hue roles untouched. */
+fun HeliosSemanticColors.branded(accentHex: String, accentLightHex: String): HeliosSemanticColors =
+    withBrandAccent(Color(android.graphics.Color.parseColor(accentHex)), Color(android.graphics.Color.parseColor(accentLightHex)))

@@ -13,6 +13,7 @@ import com.helios.core.data.repository.BrandRepository
 import com.helios.core.data.repository.ShareRepository
 import com.helios.core.designsystem.color.HeliosColor
 import com.helios.core.domain.model.SnapshotPayload
+import com.helios.core.format.HeliosFormat
 
 /**
  * SharedScreen: renders a deep-linked snapshot payload for the shared view.
@@ -55,9 +56,9 @@ fun SharedScreen(encodedPayload: String, brandId: String? = null) {
 
         SnapshotRow(label = "Live Power", value = "%.2f kW".format(payload.ac))
         SnapshotRow(label = "Today", value = "%.1f kWh".format(payload.todayKwh))
-        SnapshotRow(label = "Lifetime", value = "%.1f kWh".format(payload.lifeKwh))
-        SnapshotRow(label = "Battery", value = "%.0f%%".format(payload.soc))
-        SnapshotRow(label = "Self-Use", value = "%.0f%%".format(payload.selfUse))
+        SnapshotRow(label = "Lifetime", value = HeliosFormat.kwh(payload.lifeKwh.toDouble(), decimals = 0))
+        SnapshotRow(label = "Battery", value = HeliosFormat.percent(payload.soc.toDouble()))
+        SnapshotRow(label = "Self-Use", value = HeliosFormat.percent(payload.selfUse.toDouble()))
 
         if (payload.fc != null && payload.fc.isNotEmpty()) {
             Spacer(modifier = Modifier.height(16.dp))
@@ -70,7 +71,7 @@ fun SharedScreen(encodedPayload: String, brandId: String? = null) {
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 payload.fc.take(7).forEach { f ->
                     Text(
-                        text = "%.1f".format(f),
+                        text = f.toString(),
                         style = MaterialTheme.typography.bodySmall,
                         color = accent
                     )

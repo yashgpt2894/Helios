@@ -1,29 +1,45 @@
 package com.helios.core.data.repository
 
-import com.helios.core.domain.model.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.encodeToString
+import com.helios.core.domain.model.SolarTelemetry
+import com.helios.core.domain.model.SnapshotPayload
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.util.Base64
 
 /**
- * Share service: base64url encode/decode snapshots identical to PWA v1.
+ * Share service: base64url encode/decode of the v1 snapshot, byte-compatible with the
+ * PWA `src/services/share.ts`.
+ *
+ * Three details make it byte-compatible rather than merely compatible:
+ *  - `explicitNulls = false` omits `fc` and `br` exactly where the PWA writes
+ *    `undefined`, while `encodeDefaults = true` still writes `v: 1`;
+ *  - the integer fields are `Int`, so they print without a trailing decimal point;
+ *  - `br` is omitted for the helios brand, which is what the PWA does.
+ *
+ * `ac` is kilowatts to 2 dp and `todayKwh` 1 dp, matching the PWA rounding expressions.
  */
 object ShareRepository {
 
-    private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
+    private val json = Json {
+        ignoreUnknownKeys = true
+        encodeDefaults = true
+        explicitNulls = false
+    }
 
     fun encodeSnapshot(payload: SnapshotPayload): String {
         val jsonString = json.encodeToString(payload)
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(jsonString.toByteArray())
+        return Base64.getUrlEncoder().withoutPadding()
+            .encodeToString(jsonString.toByteArray(Charsets.UTF_8))
     }
 
     fun decodeSnapshot(encoded: String): SnapshotPayload? {
         return try {
             val bytes = Base64.getUrlDecoder().decode(encoded)
-            val jsonString = String(bytes)
-            json.decodeFromString<SnapshotPayload>(jsonString)
-        } catch (e: Exception) {
+            val jsonString = String(bytes, Charsets.UTF_8)
+            val payload = json.decodeFromString<SnapshotPayload>(jsonString)
+            if (payload.v != 1) null else payload
+        } catch (error: Exception) {
             null
         }
     }
@@ -44,11 +60,11 @@ object ShareRepository {
             loc = locationLabel,
             ac = Math.round(telemetry.acPowerW / 10.0) / 100.0,
             todayKwh = Math.round(telemetry.energyTodayKwh * 10) / 10.0,
-            lifeKwh = Math.round(telemetry.energyLifetimeKwh * 10) / 10.0,
-            soc = Math.round(telemetry.batterySoc).toDouble(),
-            selfUse = Math.round(selfUse).toDouble(),
-            fc = forecastDays,
-            br = brandId
+            lifeKwh = Math.round(telemetry.energyLifetimeKwh).toInt(),
+            soc = Math.round(telemetry.batterySoc).toInt(),
+            selfUse = Math.round(selfUse).toInt(),
+            fc = forecastDays?.map { Math.round(it).toInt() },
+            br = if (brandId == null || brandId == "helios") null else brandId
         )
     }
 

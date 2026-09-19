@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- Debug-only gallery host. Not present in a release build. -->
+        <activity
+            android:name="com.helios.debug.gallery.GalleryActivity"
+            android:exported="true"
+            android:label="Helios component gallery"
+            android:theme="@style/Theme.Helios" />
+    </application>
+
+</manifest>

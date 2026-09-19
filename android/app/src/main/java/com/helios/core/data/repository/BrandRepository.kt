@@ -3,54 +3,71 @@ package com.helios.core.data.repository
 import com.helios.core.domain.model.Brand
 
 /**
- * Brand repository: resolves brand from deep-link or defaults to helios.
- * 4-brand registry.
+ * Brand repository: resolves a brand from a deep link, a snapshot payload or settings.
+ *
+ * Registry ids and accent pairs match `src/services/brand.ts` exactly, because a shared
+ * snapshot carries the brand id: a registry that differs resolves another person's link
+ * to the wrong brand. `accent` is the dark-theme accent and `accentLight` the
+ * light-theme accent, which is the same field meaning the PWA uses.
  */
 object BrandRepository {
 
-    private val registry = mapOf(
-        "helios" to Brand(
-            id = "helios",
-            name = "Helios",
-            legalName = "Helios Energy Inc.",
-            accent = "#B88A2E",
-            accentLight = "#F0C674",
-            mark = "helios",
-            tagline = "Power, illuminated."
-        ),
-        "solaris" to Brand(
-            id = "solaris",
-            name = "Solaris",
-            accent = "#D97757",
-            accentLight = "#EDAB94",
-            mark = "text",
-            textMark = "S"
-        ),
-        "volt" to Brand(
-            id = "volt",
-            name = "Volt",
-            accent = "#5D8AA8",
-            accentLight = "#90CAF9",
-            mark = "text",
-            textMark = "V"
-        ),
-        "aether" to Brand(
-            id = "aether",
-            name = "Aether",
-            accent = "#4A7F3C",
-            accentLight = "#7FB069",
-            mark = "text",
-            textMark = "A"
-        )
+    val helios = Brand(
+        id = "helios",
+        name = "helios\u00B0",
+        legalName = "helios\u00B0 energy",
+        accent = "#F0C674",
+        accentLight = "#B8862E",
+        mark = "helios",
+        tagline = "Precision energy intelligence for your solar array."
     )
 
-    private val _current = registry["helios"]!!
-    private var currentBrand: Brand = _current
+    private val registry: Map<String, Brand> = listOf(
+        helios,
+        Brand(
+            id = "voltcraft",
+            name = "Voltcraft",
+            legalName = "Voltcraft Solar, Inc.",
+            accent = "#A78BFA",
+            accentLight = "#6D28D9",
+            mark = "text",
+            textMark = "V",
+            supportEmail = "support@voltcraft.example",
+            tagline = "Your solar, refined."
+        ),
+        Brand(
+            id = "sunworks",
+            name = "SunWorks",
+            legalName = "SunWorks Energy Co.",
+            accent = "#38BDF8",
+            accentLight = "#0369A1",
+            mark = "text",
+            textMark = "S",
+            supportEmail = "help@sunworks.example",
+            tagline = "Powering your home, smarter."
+        ),
+        Brand(
+            id = "meridian",
+            name = "Meridian",
+            legalName = "Meridian Renewables",
+            accent = "#FB923C",
+            accentLight = "#C2410C",
+            mark = "text",
+            textMark = "M",
+            supportEmail = "care@meridian.example",
+            tagline = "Solar, perfectly tuned."
+        )
+    ).associateBy { it.id }
+
+    private var currentBrand: Brand = helios
+
+    /** Registry order, for the settings brand row. */
+    fun all(): List<Brand> = listOf("helios", "voltcraft", "sunworks", "meridian").mapNotNull { registry[it] }
 
     fun resolve(from: String?): Brand {
-        val brand = from?.let { registry[it] } ?: _current
+        val brand = from?.lowercase()?.let { registry[it] } ?: helios
         currentBrand = brand
-        return currentBrand
+        return brand
     }
 
     fun current(): Brand = currentBrand
