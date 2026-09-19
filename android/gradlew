@@ -124,7 +124,16 @@ helios_seed() {
     : > "$2/.helios-seeded"
 }
 
-helios_default_home=${GRADLE_USER_HOME:-${HOME:-/nonexistent}/.gradle}
+# Java resolves user.home from the passwd database, which can differ from $HOME
+# inside a sandbox, and Gradle's wrapper defaults to <user.home>/.gradle. Test the
+# same location the JVM will use, not just $HOME.
+helios_java_user_home=$(eval echo "~$(id -un 2>/dev/null)" 2>/dev/null)
+case $helios_java_user_home in
+    /*) ;;
+    *) helios_java_user_home=${HOME:-/nonexistent} ;;
+esac
+
+helios_default_home=${GRADLE_USER_HOME:-$helios_java_user_home/.gradle}
 if ! helios_writable "$helios_default_home"; then
     if [ -n "${HOME:-}" ] && helios_writable "$HOME"; then
         GRADLE_USER_HOME="$HOME/.gradle-helios"
@@ -136,15 +145,8 @@ if ! helios_writable "$helios_default_home"; then
     echo "Helios: '$helios_default_home' is not writable; using GRADLE_USER_HOME=$GRADLE_USER_HOME." >&2
 fi
 
-# Java resolves user.home from the passwd database, which can differ from $HOME
-# inside a sandbox. AGP puts the debug keystore in <user.home>/.android, so test
-# that same location.
-helios_java_user_home=$(eval echo "~$(id -un 2>/dev/null)" 2>/dev/null)
-case $helios_java_user_home in
-    /*) ;;
-    *) helios_java_user_home=${HOME:-/nonexistent} ;;
-esac
-
+# AGP puts the debug keystore in <user.home>/.android, the same JVM-resolved
+# location as above.
 if [ -z "${ANDROID_USER_HOME:-}" ] && ! helios_writable "$helios_java_user_home/.android"; then
     ANDROID_USER_HOME="${GRADLE_USER_HOME:-$APP_HOME/.gradle-user-home}/android-user-home"
     mkdir -p "$ANDROID_USER_HOME" 2>/dev/null

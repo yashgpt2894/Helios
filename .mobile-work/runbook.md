@@ -56,7 +56,16 @@ not writable it:
 2. seeds that home once from the read-only default (wrapper distribution plus
    `caches/modules-2` and `caches/jars-9`) so the build still works offline;
 3. exports `ANDROID_USER_HOME` to a writable directory inside that home, so AGP
-   can create the debug keystore.
+   can create the debug keystore;
+4. stops the wrapper from dying with "Unable to locate a Java Runtime" by
+   resolving a JDK when `JAVA_HOME` is unset: the `org.gradle.java.home` path in
+   `android/gradle.properties`, then `/usr/libexec/java_home`, then the usual
+   Homebrew and `/Library/Java` locations.
+
+The checks in 1 and 3 use the home the JVM resolves (`user.home` from the passwd
+database), not `$HOME`, because those two differ in this sandbox: `$HOME` is
+writable while `~yashgupta/.gradle` is not. Testing only `$HOME` is the reason an
+earlier version of this prelude still failed when `GRADLE_USER_HOME` was unset.
 
 Where the defaults are writable (a normal workstation) the prelude does nothing.
 Both paths were exercised: exit code 0 with `GRADLE_USER_HOME=/Users/yashgupta/.gradle`,
@@ -168,6 +177,7 @@ Re-verified in this workspace after `./gradlew clean`, on the `helios35` AVD:
 | `cd android && ./gradlew clean` | exit 0 |
 | `cd android && ./gradlew :app:assembleDebug` (after clean, all 40 tasks executed) | exit 0, `app-debug.apk` rebuilt |
 | `cd android && ./gradlew :app:assembleDebug` (incremental) | exit 0, 3 tasks executed |
+| `clean` + `:app:assembleDebug` with `PATH=/usr/bin:/bin:/usr/sbin:/sbin` and no `JAVA_HOME`, `ANDROID_HOME` or `GRADLE_USER_HOME` | exit 0, all 40 tasks executed |
 | `adb uninstall` + `adb install -t app-debug.apk` | `Success` for both |
 | `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 1192 ms |
 | Process alive after 30 s | yes, pid 3674 unchanged |
