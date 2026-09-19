@@ -66,6 +66,12 @@ Decisions from the earlier design steps still hold (see `design/DESIGN.md` and
   `/opt/homebrew/share/android-commandlinetools`, Gradle 8.11.1. `$HOME` is redirected to the
   control-plane directory, so the Gradle wrapper prelude moves `GRADLE_USER_HOME` to
   `$HOME/.gradle-helios` and seeds it from the read-only default.
+- The environment the step is graded in is not the environment it is written in. Grading ran
+  `cd android && ./gradlew :app:compileDebugKotlin` with no `JAVA_HOME`, no `ANDROID_HOME` and
+  `HOME=/Users/yashgupta`, which is not writable: the wrapper prelude moved `GRADLE_USER_HOME`
+  to `android/.gradle-user-home` and resolved a JDK, and the build then failed with
+  `SDK location not found` because nothing named the Android SDK. Every command below was
+  therefore re-run with those variables removed (see "Repair after validation").
 - Network is reachable, so plugin resolution works without `--offline`; `--offline` fails
   with "Plugin [id: 'com.android.application', version: '8.7.3'] was not found" when the
   cache is cold.
@@ -85,8 +91,10 @@ Milestone: three surfaces implemented, compiling, exercised on a device, and cap
 
 Acceptance criteria and status:
 
-- `cd android && ./gradlew :app:compileDebugKotlin` — complete, exit 0 (also with
-  `:app:assembleDebug` in the same invocation).
+- `cd android && ./gradlew :app:compileDebugKotlin` — exit 0 with an exported `ANDROID_HOME`,
+  and after the repair below also exit 0 with no environment at all (the form the step is
+  graded in). The earlier claim of exit 0 was true only with `ANDROID_HOME` exported; see
+  "Repair after validation".
 - `cd android && ./gradlew :app:testDebugUnitTest` — complete, exit 0, existing 17 tests pass.
 - Onboarding reaches value first, is skippable, requests the permission at the action, and
   has denied-permission and unreachable-inverter paths — complete; each path captured.
@@ -138,6 +146,53 @@ connection (saved, dirty with the keyboard up, probe result, 160 percent text), 
 (default, denied), appearance (dark, light, Paper selected), brand (helios, Voltcraft
 selected), share sheet; shared viewer (valid dark, valid light, white label, older reading,
 invalid, valid and invalid through the real deep link, 160 percent text).
+
+## Repair after validation
+
+The first validation of this step failed before any task ran:
+
+```
+* What went wrong:
+Could not determine the dependencies of task ':app:compileDebugKotlin'.
+> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment
+  variable or by setting the sdk.dir path in your project's local properties file at
+  '.../android/local.properties'.
+```
+
+The cause was environmental, not in the owned sources: the grading shell sets no `ANDROID_HOME`
+and there is no `android/local.properties` (it is gitignored and was never committed), so AGP
+had nothing to resolve. The wrapper prelude already resolved the Gradle user home, the Android
+user home and a JDK for exactly this reason, and the SDK was the one default it did not cover.
+
+Fix (`android/gradlew`, "Helios sandbox prelude"): a fourth resolution step. `ANDROID_HOME`,
+then `ANDROID_SDK_ROOT`, then a real `sdk.dir` in `local.properties`, each accepted only when
+the directory it names contains `platforms/`; when none of the three is usable, the first
+known install location that is (`$HOME/Library/Android/sdk`,
+`/opt/homebrew/share/android-commandlinetools`, `/opt/homebrew/share/android-sdk`,
+`/usr/local/share/android-commandlinetools`, `/usr/local/share/android-sdk`,
+`/Library/Android/sdk`, `/Applications/Android Studio.app/Contents/sdk`) is exported as both
+`ANDROID_HOME` and `ANDROID_SDK_ROOT`, and the prelude says so on stderr. An explicit
+environment value and a project `local.properties` still win, and the prelude does nothing
+where they are already correct.
+
+Verification, all with `JAVA_HOME`, `ANDROID_HOME`, `ANDROID_SDK_ROOT`, `GRADLE_USER_HOME` and
+`ANDROID_USER_HOME` removed from the environment and `HOME=/Users/yashgupta`:
+
+- `cd android && ./gradlew :app:compileDebugKotlin` -> exit 0,
+  `Helios: no usable Android SDK in ANDROID_HOME or local.properties; using
+  /opt/homebrew/share/android-commandlinetools.`
+- `cd android && ./gradlew :app:compileDebugKotlin --rerun-tasks` -> exit 0, 15 tasks
+  executed, `compileDebugKotlin` really recompiled; the only warnings are in
+  `app/qs/`, `core/ui/theme/HeliosTheme.kt` and `feature/dashboard/EnergyFlow.kt`, none in the
+  three packages this step owns.
+- `cd android && ./gradlew :app:testDebugUnitTest` -> exit 0 (17 tests, up to date).
+- Reproduced first without the fix in the same environment: exit 1 with the message above.
+
+Captures were not retaken: the shared emulator was held by a sibling step of this Quest for the
+whole repair window (`com.helios.app/com.helios.debug.screens.ScreenCaptureActivity` in the
+foreground, their APK installed), and installing over their build is what lost two captures in
+the first pass. The committed `design/captures/*.png` set is unchanged and still covers dark
+and light for each of the three surfaces.
 
 ## Blockers and risks
 
