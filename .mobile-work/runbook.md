@@ -119,10 +119,12 @@ $ANDROID_HOME/platform-tools/adb logcat -d -b all \
 $ANDROID_HOME/platform-tools/adb exec-out screencap -p > .mobile-work/evidence/skeleton-launch.png
 ```
 
-`.mobile-work/verify-launch.sh` runs exactly this sequence and writes the four
-evidence files; use it instead of retyping the commands.
+`.mobile-work/verify-launch.sh` runs the whole sequence above, from the build to
+the screenshot, and writes the four evidence files; use it instead of retyping
+the commands. It needs `bash` (it keeps its own transcript with process
+substitution) and a booted `helios35` emulator.
 
-Two install-time details:
+Three install-time details:
 
 - A package left behind by an earlier session was signed with a different debug
   keystore, which makes `install -r` fail with
@@ -132,7 +134,13 @@ Two install-time details:
   permission, so the permission dialog is the top activity. Grant it
   (`adb shell pm grant com.helios.app android.permission.ACCESS_FINE_LOCATION`,
   plus the coarse one) or accept the dialog, then the landing screen appears.
-  The app process stays alive in either case.
+  The app process stays alive in either case, and `verify-launch.sh` grants the
+  permissions before it launches so the screenshot shows the app, not the dialog.
+- A dialog left on screen by an earlier run is owned by
+  `com.google.android.permissioncontroller`, not by the app, so `am force-stop
+  com.helios.app` does not clear it and the next `am start` answers "intent has
+  been delivered to currently running top-most instance" and starts nothing.
+  `verify-launch.sh` force-stops that package before launching.
 
 Component name: the launcher activity is `com.helios.app.MainActivity` in
 package `com.helios.app` (see "Fixes" below), so both `com.helios.app/.MainActivity`
@@ -178,17 +186,19 @@ Re-verified in this workspace after `./gradlew clean`, on the `helios35` AVD:
 | `cd android && ./gradlew :app:assembleDebug` (after clean, all 40 tasks executed) | exit 0, `app-debug.apk` rebuilt |
 | `cd android && ./gradlew :app:assembleDebug` (incremental) | exit 0, 3 tasks executed |
 | `clean` + `:app:assembleDebug` with `PATH=/usr/bin:/bin:/usr/sbin:/sbin` and no `JAVA_HOME`, `ANDROID_HOME` or `GRADLE_USER_HOME` | exit 0, all 40 tasks executed |
-| `adb uninstall` + `adb install -t app-debug.apk` | `Success` for both |
-| `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 1192 ms |
-| Process alive after 30 s | yes, pid 3674 unchanged |
+| `adb install -r -t app-debug.apk` (clean device) | `Success` |
+| `adb install -r -t app-debug.apk` then `adb uninstall` + `adb install -t` (device left by another session) | fallback path taken, `Success` |
+| `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 912 ms |
+| Process alive after 30 s | yes, pid 3669 unchanged |
 | Fatal log entries since launch | 0 (`FATAL EXCEPTION`, `E AndroidRuntime`, `am_crash`, `am_anr`) |
 | UI dump | package `com.helios.app`, `ComposeView` present, texts `Helios`, `Power, illuminated.`, `No hardware connected. Running in simulation mode.` |
-| Screenshot | `.mobile-work/evidence/skeleton-launch.png`, 1080x2400, rendered dark landing screen (705 distinct colors) |
+| Screenshot | `.mobile-work/evidence/skeleton-launch.png`, 1080x2400, rendered dark landing screen (721 distinct colors, not a blank frame) |
 
-Raw evidence: `.mobile-work/evidence/skeleton-launch.png`,
+All rows above come from one run of `.mobile-work/verify-launch.sh`. Raw
+evidence: `.mobile-work/evidence/skeleton-launch.png`,
 `.mobile-work/evidence/logcat-launch-30s.log` (app pid only, launch plus 30 s),
-`.mobile-work/evidence/launch-30s.txt` (command transcript, pid check, fatal
-count), `.mobile-work/evidence/ui-hierarchy.xml`.
+`.mobile-work/evidence/launch-30s.txt` (shell transcript of that run, including
+the pid check and the fatal count), `.mobile-work/evidence/ui-hierarchy.xml`.
 
 ## Known issues
 

@@ -1,35 +1,35 @@
 --------- beginning of main
-09-19 11:44:17.351  3674  3674 I com.helios.app: Late-enabling -Xcheck:jni
-09-19 11:44:17.374  3674  3674 I com.helios.app: Using CollectorTypeCMC GC.
-09-19 11:44:17.401  3674  3674 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
-09-19 11:44:17.458  3674  3674 D CompatChangeReporter: Compat change id reported: 242716250; UID 10208; state: ENABLED
-09-19 11:44:17.485  3674  3674 W ziparchive: Unable to open '/data/app/~~9Qi1zvj_J6-HmvXAbtPa_Q==/com.helios.app-0TvvOk8w3P_CQqN9PUX9-w==/base.dm': No such file or directory
-09-19 11:44:17.485  3674  3674 W ziparchive: Unable to open '/data/app/~~9Qi1zvj_J6-HmvXAbtPa_Q==/com.helios.app-0TvvOk8w3P_CQqN9PUX9-w==/base.dm': No such file or directory
-09-19 11:44:17.856  3674  3674 D nativeloader: Configuring clns-7 for other apk /data/app/~~9Qi1zvj_J6-HmvXAbtPa_Q==/com.helios.app-0TvvOk8w3P_CQqN9PUX9-w==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~9Qi1zvj_J6-HmvXAbtPa_Q==/com.helios.app-0TvvOk8w3P_CQqN9PUX9-w==/lib/arm64:/data/app/~~9Qi1zvj_J6-HmvXAbtPa_Q==/com.helios.app-0TvvOk8w3P_CQqN9PUX9-w==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.helios.app
-09-19 11:44:17.863  3674  3674 V GraphicsEnvironment: Currently set values for:
-09-19 11:44:17.863  3674  3674 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
-09-19 11:44:17.863  3674  3674 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
-09-19 11:44:17.863  3674  3674 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
-09-19 11:44:17.863  3674  3674 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
-09-19 11:44:17.868  3674  3674 D WM-WrkMgrInitializer: Initializing WorkManager with default configuration.
+09-19 11:49:51.905  3669  3669 I com.helios.app: Late-enabling -Xcheck:jni
+09-19 11:49:51.915  3669  3669 I com.helios.app: Using CollectorTypeCMC GC.
+09-19 11:49:51.916  3669  3669 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+09-19 11:49:51.959  3669  3669 D CompatChangeReporter: Compat change id reported: 242716250; UID 10209; state: ENABLED
+09-19 11:49:51.989  3669  3669 W ziparchive: Unable to open '/data/app/~~GkJ74D-hdAkUsKh4BQOJ8A==/com.helios.app-7znklX7jEWC2WTZJbgu1pg==/base.dm': No such file or directory
+09-19 11:49:51.991  3669  3669 W ziparchive: Unable to open '/data/app/~~GkJ74D-hdAkUsKh4BQOJ8A==/com.helios.app-7znklX7jEWC2WTZJbgu1pg==/base.dm': No such file or directory
+09-19 11:49:52.329  3669  3669 D nativeloader: Configuring clns-7 for other apk /data/app/~~GkJ74D-hdAkUsKh4BQOJ8A==/com.helios.app-7znklX7jEWC2WTZJbgu1pg==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~GkJ74D-hdAkUsKh4BQOJ8A==/com.helios.app-7znklX7jEWC2WTZJbgu1pg==/lib/arm64:/data/app/~~GkJ74D-hdAkUsKh4BQOJ8A==/com.helios.app-7znklX7jEWC2WTZJbgu1pg==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.helios.app
+09-19 11:49:52.336  3669  3669 V GraphicsEnvironment: Currently set values for:
+09-19 11:49:52.336  3669  3669 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+09-19 11:49:52.336  3669  3669 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+09-19 11:49:52.336  3669  3669 V GraphicsEnvironment: Global.Settings values are invalid: number of packages: 0, number of values: 0
+09-19 11:49:52.337  3669  3669 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+09-19 11:49:52.387  3669  3669 D WM-WrkMgrInitializer: Initializing WorkManager with default configuration.
 --------- beginning of events
-09-19 11:44:18.009  3674  3674 I wm_on_create_called: [224185990,com.helios.app.MainActivity,performCreate,81]
-09-19 11:44:18.010  3674  3674 I wm_on_start_called: [224185990,com.helios.app.MainActivity,handleStartActivity,0]
-09-19 11:44:18.012  3674  3674 I wm_on_resume_called: [224185990,com.helios.app.MainActivity,RESUME_ACTIVITY,0]
-09-19 11:44:18.034  3674  3674 W HWUI    : Unknown dataspace 0
-09-19 11:44:18.039  3674  3674 I wm_on_top_resumed_gained_called: [224185990,com.helios.app.MainActivity,topStateChangedWhenResumed]
-09-19 11:44:18.368  3674  3674 W com.helios.app: Method boolean androidx.compose.runtime.snapshots.SnapshotStateList.conditionalUpdate(boolean, kotlin.jvm.functions.Function1) failed lock verification and will run slower.
-09-19 11:44:18.368  3674  3674 W com.helios.app: Common causes for lock verification issues are non-optimized dex code
-09-19 11:44:18.368  3674  3674 W com.helios.app: and incorrect proguard optimizations.
-09-19 11:44:18.368  3674  3674 W com.helios.app: Method boolean androidx.compose.runtime.snapshots.SnapshotStateList.conditionalUpdate$default(androidx.compose.runtime.snapshots.SnapshotStateList, boolean, kotlin.jvm.functions.Function1, int, java.lang.Object) failed lock verification and will run slower.
-09-19 11:44:18.369  3674  3674 W com.helios.app: Method java.lang.Object androidx.compose.runtime.snapshots.SnapshotStateList.mutate(kotlin.jvm.functions.Function1) failed lock verification and will run slower.
-09-19 11:44:18.369  3674  3674 W com.helios.app: Method void androidx.compose.runtime.snapshots.SnapshotStateList.update(boolean, kotlin.jvm.functions.Function1) failed lock verification and will run slower.
-09-19 11:44:18.369  3674  3674 W com.helios.app: Method void androidx.compose.runtime.snapshots.SnapshotStateList.update$default(androidx.compose.runtime.snapshots.SnapshotStateList, boolean, kotlin.jvm.functions.Function1, int, java.lang.Object) failed lock verification and will run slower.
-09-19 11:44:18.402  3674  3678 I com.helios.app: Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
-09-19 11:44:18.428  3674  3690 I EGL_emulation: Opening libGLESv1_CM_emulation.so
-09-19 11:44:18.428  3674  3690 I EGL_emulation: Opening libGLESv2_emulation.so
-09-19 11:44:18.438  3674  3690 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
-09-19 11:44:18.438  3674  3690 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
-09-19 11:44:18.448  3674  3690 I Gralloc4: mapper 4.x is not supported
-09-19 11:44:18.480  3674  3674 I viewroot_draw_event: [VRI[MainActivity],reportDrawFinished seqId=0]
-09-19 11:44:23.509  3674  3704 D ProfileInstaller: Installing profile for com.helios.app
+09-19 11:49:52.467  3669  3669 I wm_on_create_called: [98482194,com.helios.app.MainActivity,performCreate,42]
+09-19 11:49:52.468  3669  3669 I wm_on_start_called: [98482194,com.helios.app.MainActivity,handleStartActivity,0]
+09-19 11:49:52.469  3669  3669 I wm_on_resume_called: [98482194,com.helios.app.MainActivity,RESUME_ACTIVITY,0]
+09-19 11:49:52.471  3669  3669 W HWUI    : Unknown dataspace 0
+09-19 11:49:52.482  3669  3669 I wm_on_top_resumed_gained_called: [98482194,com.helios.app.MainActivity,topStateChangedWhenResumed]
+09-19 11:49:52.644  3669  3669 W com.helios.app: Method boolean androidx.compose.runtime.snapshots.SnapshotStateList.conditionalUpdate(boolean, kotlin.jvm.functions.Function1) failed lock verification and will run slower.
+09-19 11:49:52.644  3669  3669 W com.helios.app: Common causes for lock verification issues are non-optimized dex code
+09-19 11:49:52.644  3669  3669 W com.helios.app: and incorrect proguard optimizations.
+09-19 11:49:52.644  3669  3669 W com.helios.app: Method boolean androidx.compose.runtime.snapshots.SnapshotStateList.conditionalUpdate$default(androidx.compose.runtime.snapshots.SnapshotStateList, boolean, kotlin.jvm.functions.Function1, int, java.lang.Object) failed lock verification and will run slower.
+09-19 11:49:52.644  3669  3669 W com.helios.app: Method java.lang.Object androidx.compose.runtime.snapshots.SnapshotStateList.mutate(kotlin.jvm.functions.Function1) failed lock verification and will run slower.
+09-19 11:49:52.644  3669  3669 W com.helios.app: Method void androidx.compose.runtime.snapshots.SnapshotStateList.update(boolean, kotlin.jvm.functions.Function1) failed lock verification and will run slower.
+09-19 11:49:52.644  3669  3669 W com.helios.app: Method void androidx.compose.runtime.snapshots.SnapshotStateList.update$default(androidx.compose.runtime.snapshots.SnapshotStateList, boolean, kotlin.jvm.functions.Function1, int, java.lang.Object) failed lock verification and will run slower.
+09-19 11:49:52.675  3669  3692 I com.helios.app: Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
+09-19 11:49:52.694  3669  3721 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+09-19 11:49:52.694  3669  3721 I EGL_emulation: Opening libGLESv2_emulation.so
+09-19 11:49:52.697  3669  3721 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+09-19 11:49:52.697  3669  3721 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-19 11:49:52.712  3669  3721 I Gralloc4: mapper 4.x is not supported
+09-19 11:49:52.752  3669  3669 I viewroot_draw_event: [VRI[MainActivity],reportDrawFinished seqId=0]
+09-19 11:49:57.772  3669  3734 D ProfileInstaller: Installing profile for com.helios.app
