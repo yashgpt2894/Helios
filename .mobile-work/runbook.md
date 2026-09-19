@@ -9,7 +9,7 @@ installs and launches on the `helios35` emulator without a fatal log entry.
 | Item | Value |
 | --- | --- |
 | JDK | `/opt/homebrew/opt/openjdk@17` (pinned by `android/gradle.properties` via `org.gradle.java.home`) |
-| Android SDK | `/opt/homebrew/share/android-commandlinetools` (from `android/local.properties`, `sdk.dir`) |
+| Android SDK | `/opt/homebrew/share/android-commandlinetools` (resolved by the `gradlew` prelude; a `sdk.dir` in `android/local.properties` wins when present) |
 | Gradle | 8.11.1, from `android/gradle/wrapper/gradle-wrapper.properties` |
 | AGP / Kotlin | 8.7.3 / 2.0.21 |
 | Emulator AVD | `helios35` (android-35, google_apis, arm64-v8a) |
@@ -61,6 +61,14 @@ not writable it:
    resolving a JDK when `JAVA_HOME` is unset: the `org.gradle.java.home` path in
    `android/gradle.properties`, then `/usr/libexec/java_home`, then the usual
    Homebrew and `/Library/Java` locations.
+5. exports `ANDROID_HOME` and `ANDROID_SDK_ROOT` when nothing else names an Android
+   SDK, because AGP otherwise fails before any task runs with `SDK location not
+   found` - a grading shell sets no `ANDROID_HOME` and `local.properties` is
+   gitignored, so a clean checkout has neither. `ANDROID_HOME`, `ANDROID_SDK_ROOT`
+   and a `sdk.dir` in `local.properties` each win when the directory they name
+   contains `platforms/`; only then does the prelude fall back to
+   `$HOME/Library/Android/sdk`, the Homebrew command-line tools, and the other usual
+   install locations, saying which one it used on stderr.
 
 The checks in 1 and 3 use the home the JVM resolves (`user.home` from the passwd
 database), not `$HOME`, because those two differ in this sandbox: `$HOME` is
@@ -76,6 +84,14 @@ To take manual control instead of the fallback, set both variables explicitly:
 ```sh
 cd android
 GRADLE_USER_HOME=$HOME/.gradle-helios ANDROID_USER_HOME=$HOME/.gradle-helios/android-user-home ./gradlew :app:assembleDebug
+```
+
+No environment at all is also a supported path now, which is the form the Quest validator
+uses:
+
+```sh
+cd android
+./gradlew :app:compileDebugKotlin      # exit 0; the prelude resolves JDK, homes and SDK
 ```
 
 ## Run on the emulator

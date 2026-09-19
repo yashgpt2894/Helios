@@ -197,6 +197,50 @@ $(/usr/libexec/java_home 2>/dev/null)"
     unset helios_candidates helios_candidate helios_old_ifs
 fi
 
+# AGP resolves the Android SDK from ANDROID_HOME, then from sdk.dir in
+# local.properties. A sandbox can set neither, and AGP then fails before any task
+# runs with "SDK location not found". Resolve one the same way the JDK above is
+# resolved: an explicit environment value and a real local.properties entry always
+# win, and only when neither is usable does a known install location fill in.
+helios_sdk_usable() {
+    [ -n "$1" ] && [ -d "$1/platforms" ]
+}
+
+helios_sdk_configured() {
+    helios_sdk_usable "${ANDROID_HOME:-}" && return 0
+    helios_sdk_usable "${ANDROID_SDK_ROOT:-}" && return 0
+    [ -f "$APP_HOME/local.properties" ] || return 1
+    helios_local_sdk=$(sed -n 's/^[[:space:]]*sdk\.dir[[:space:]]*=[[:space:]]*//p' \
+        "$APP_HOME/local.properties" 2>/dev/null | tail -n 1)
+    helios_sdk_usable "$helios_local_sdk"
+}
+
+if ! helios_sdk_configured; then
+    helios_sdk_candidates="${HOME:-}/Library/Android/sdk
+$APP_HOME/../android-sdk
+/opt/homebrew/share/android-commandlinetools
+/opt/homebrew/share/android-sdk
+/usr/local/share/android-commandlinetools
+/usr/local/share/android-sdk
+/Library/Android/sdk
+/Applications/Android Studio.app/Contents/sdk"
+    helios_old_ifs=$IFS
+    IFS='
+'
+    for helios_sdk_candidate in $helios_sdk_candidates; do
+        if helios_sdk_usable "$helios_sdk_candidate"; then
+            ANDROID_HOME=$helios_sdk_candidate
+            ANDROID_SDK_ROOT=$helios_sdk_candidate
+            export ANDROID_HOME ANDROID_SDK_ROOT
+            echo "Helios: no usable Android SDK in ANDROID_HOME or local.properties; using $ANDROID_HOME." >&2
+            break
+        fi
+    done
+    IFS=$helios_old_ifs
+    unset helios_sdk_candidates helios_sdk_candidate helios_old_ifs
+fi
+unset helios_sdk_configured helios_local_sdk helios_sdk_usable
+
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD=maximum

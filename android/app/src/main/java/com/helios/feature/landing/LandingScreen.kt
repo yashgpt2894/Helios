@@ -1,44 +1,45 @@
 package com.helios.feature.landing
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import com.helios.core.data.service.AppServices
+import com.helios.core.data.service.ServiceGraph
+import com.helios.core.designsystem.color.LocalHeliosSemanticColors
 
 /**
- * LandingScreen: initial setup / connection config screen (M4 stub).
+ * The app's start surface: first-run onboarding (FLW-01, SCR-02 to SCR-06).
+ *
+ * It replaces the earlier 44-line welcome stub, which had no visible action at all.
+ *
+ * Light and dark are the shell's decision, not this surface's: `MainActivity` (and the step
+ * that owns `core/nav`) applies `HeliosTheme` from the stored theme, and a screen that
+ * re-applied it would fight that host - a capture host that asks for the light palette would
+ * get the dark one. So this surface reads the palette it is given and only paints its own
+ * background with it. The stored theme is still applied before the first frame; it is applied
+ * at the root, which is where a single application can be guaranteed.
+ *
+ * [onFinished] is the shell's navigation: the app passes a lambda that opens the dashboard
+ * (SCR-07). When no lambda is supplied - a preview, a capture host, or a build whose
+ * navigation is not wired yet - the completion step shows the summary and its dashboard
+ * action is omitted rather than rendered as a control that does nothing.
  */
 @Composable
-fun LandingScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+fun LandingScreen(
+    modifier: Modifier = Modifier,
+    onFinished: ((OnboardingOutcome) -> Unit)? = null,
+    services: AppServices = ServiceGraph.current,
+    initialStep: OnboardingStep = OnboardingStep.WELCOME
+) {
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = LocalHeliosSemanticColors.current.backgroundPrimary
     ) {
-        Text(
-            text = "Helios\u00B0",
-            style = MaterialTheme.typography.displayLarge,
-            fontWeight = FontWeight.Light,
-            color = MaterialTheme.colorScheme.primary
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = "Power, illuminated.",
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-        Text(
-            text = "No hardware connected.\nRunning in simulation mode.",
-            style = MaterialTheme.typography.bodyMedium,
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        OnboardingScreen(
+            services = services,
+            onFinished = onFinished,
+            initialStep = initialStep
         )
     }
 }
