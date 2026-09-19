@@ -149,10 +149,10 @@ and `com.helios.app/com.helios.app.MainActivity` resolve.
 | Check | Result |
 | --- | --- |
 | `cd android && ./gradlew clean` | exit 0 |
-| `cd android && ./gradlew :app:assembleDebug` | exit 0, 40 tasks executed, APK produced |
+| `cd android && ./gradlew :app:assembleDebug` (after `./gradlew clean`) | exit 0, 40 tasks executed, APK produced |
 | Same command with `HOME=/Users/yashgupta` (fallback home inside the repo) | exit 0 |
 | `adb install -r -t app-debug.apk` | `Success` |
-| `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 801 ms |
+| `am start -W -n com.helios.app/.MainActivity` | `Status: ok`, cold start, 1077 ms |
 | Process alive after 30 s | yes, pid unchanged |
 | logcat fatal entries since launch | none (`FATAL EXCEPTION`, `E AndroidRuntime`, `am_crash`, `am_anr`) |
 | UI dump | package `com.helios.app`, texts `Helios`, `Power, illuminated.`, `No hardware connected. Running in simulation mode.` |
@@ -172,3 +172,5 @@ Raw evidence: `.mobile-work/evidence/skeleton-launch.png`,
   of `./gradlew build`, but this Quest only builds and runs `:app`.
 - The fallback Gradle and Android homes are build caches outside git
   (`$HOME/.gradle-helios`, `android/.gradle-user-home`, `/tmp/helios-avd`).
+- The emulator is stopped after evidence capture (`adb emu kill`); restart it
+  with the commands above. The shared AVD is never written to.
