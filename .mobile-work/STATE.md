@@ -104,7 +104,13 @@ Acceptance criteria and status:
 - The viewer renders a decoded v1 payload, an invalid payload and an older reading, read-only
   — complete, including two captures taken through the app's own `helios://share/...` deep
   link rather than through a host.
-- Captures for dark and light themes — complete: 35 PNGs under `design/captures/`.
+- Captures for dark and light themes — complete: 52 PNGs under `design/captures/`. The
+  first pass left light to a subset of states; a second pass on an independent emulator
+  (`helios-capture`, port 5556, booted because the shared device was held by a sibling
+  step) added light for the connect, unreachable, location, denied and complete pages,
+  connection, location, brand and share settings, the invalid payload and the white-label
+  payload, plus `shared-stale-dark` and two real deep links from the shipped build. See
+  `.mobile-work/step7-capture-pass.md`.
 - Keyboard avoidance and back behaviour — implemented (`imePadding` plus scrolling on every
   input surface, `BackHandler` for the pager and for each secondary Settings surface, a leave
   guard on a dirty connection form). Back behaviour was exercised by hand on the device; the
@@ -186,13 +192,22 @@ Verification, all with `JAVA_HOME`, `ANDROID_HOME`, `ANDROID_SDK_ROOT`, `GRADLE_
   `app/qs/`, `core/ui/theme/HeliosTheme.kt` and `feature/dashboard/EnergyFlow.kt`, none in the
   three packages this step owns.
 - `cd android && ./gradlew :app:testDebugUnitTest` -> exit 0 (17 tests, up to date).
+- `cd android && ./gradlew :app:assembleDebug` -> exit 0 twice: once with the temporary capture
+  host in the tree and once after removing it again, so the committed tree is the build that was
+  installed for the captures.
+- The temporary `feature/landing/CaptureHost.kt` and its one-line change to `LandingScreen.kt`
+  are gone: `git status` shows no modification to either surface file, and the shipped build was
+  installed on `emulator-5556` afterwards to capture `onboarding-welcome-dark` and the two
+  `helios://share/...` deep links from it.
 - Reproduced first without the fix in the same environment: exit 1 with the message above.
 
-Captures were not retaken: the shared emulator was held by a sibling step of this Quest for the
-whole repair window (`com.helios.app/com.helios.debug.screens.ScreenCaptureActivity` in the
-foreground, their APK installed), and installing over their build is what lost two captures in
-the first pass. The committed `design/captures/*.png` set is unchanged and still covers dark
-and light for each of the three surfaces.
+The shared emulator was held by a sibling step of this Quest for the whole repair window
+(`com.helios.app/com.helios.debug.screens.ScreenCaptureActivity` in the foreground, their APK
+installed), so the extra light captures were taken on an independent emulator instead of
+installing over their build: an `helios-capture` AVD (Pixel 6, android-35, arm64-v8a) created
+under `/tmp/helios-user-home/avd` and booted on port 5556. 17 captures were added or re-taken
+there, and two were re-taken from the shipped build through its own deep link. See
+`.mobile-work/step7-capture-pass.md`.
 
 ## Blockers and risks
 
