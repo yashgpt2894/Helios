@@ -14,3 +14,4 @@ build/
 .kotlin/
 *.hprof
 local.properties
+.infy/
